@@ -1,24 +1,34 @@
 // Cache-first network
 var CACHE = "code101-cache";
 var precacheFiles = [
-	/* Arquivos a serem salvos no cache */
+	/* Files to be cached */
 	"/",
+
 	// HTML
 	"index.html",
+
 	// JSON
 	"json/c.json",
+
 	// CSS
-	"css/w3.css",
+	"css/material-components.css",
 	"css/code101.css",
+
 	// JS
 	"js/code101.js",
+	"js/jquery.hideseek.min.js",
 	"js/jquery.min.js",
-	// RECURSOS (RES)
+	"material-components-web.min.js",
+	"velocity.min.js",
+	"velocity.ui.min.js",
+
+	// RESOURCES (RES)
 	"res/c-logo.png",
+	"js.png",
 	"res/PressStart2P.ttf"
 ];
 
-//Install stage sets up the cache-array to configure pre-cache content
+// Install stage sets up the cache-array to configure pre-cache content
 self.addEventListener('install', function(evt) {
 	console.log("Instalando Service Worker...");
 	evt.waitUntil(precache().then(function() {
