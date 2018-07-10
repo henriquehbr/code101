@@ -1,0 +1,118 @@
+@font-face {font-family: Atari; src: url("/res/PressStart2P.ttf")}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Roboto;
+	margin: 0;
+	background: #fafafa;
+}
+
+a,
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+#pageContent {
+	padding: 10px;
+}
+
+.code101-logo {
+	font-family: Atari;
+}
+
+.mdc-top-app-bar {
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px;
+}
+
+/* ACCORDIONS */
+
+.panel {
+	background-color: #fff;
+}
+
+.panel-body {
+	padding: 30px;
+}
+
+.panel-title {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+
+.accordion {
+	margin-bottom: 60px;
+}
+
+.accordion .collapsed,
+.toggle .collapsed {
+	display: none;
+}
+
+.panel-group .panel {
+	border: none;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+	margin-bottom: 0;
+	border-radius: 4px;
+}
+
+.panel-group .panel + .panel {
+	margin-top: 10px;
+}
+
+.panel-group .panel-heading {
+	position: relative;
+	padding: 0;
+	border-radius: 0;
+	display: block;
+	border-bottom: 0;
+}
+
+.panel-default > .panel-heading {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+}
+
+.panel-group .panel-heading > a {
+	background: #eee;
+	display: block;
+	padding: 18px 15px;
+}
+
+.panel-group .panel-title {
+	color: #333;
+	font-size: 1.5rem;
+}
+
+.panel-group a[aria-expanded='true'] {
+	background: #6200ee;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.panel-group a[aria-expanded='true'] .panel-title,
+.panel-group a[aria-expanded='true'] .panel-subtitle {
+	color: #fff;
+}
+
+.panel-group .accordion-toggle-icon {
+	font-size: 16px;
+	line-height: 50px;
+	position: absolute;
+	top: 0;
+	right: 12px;
+	transition: -webkit-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;
+	transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+	color: #333;
+}
+
+.panel-group [aria-expanded='true'] .accordion-toggle-icon {
+	color: #fff;
+	-webkit-transform: rotate(180deg) translateZ(0);
+	transform: rotate(180deg) translateZ(0);
+}

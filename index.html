@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>code101</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="css/material-components-web.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="css/code101.css">
+	</head>
+	<body>
+
+		<!-- DRAWER -->
+		<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
+			<nav class="mdc-drawer__drawer">
+				<header class="mdc-drawer__header">
+					<div class="mdc-drawer__header-content mdc-theme--on-primary mdc-theme--primary-bg code101-logo">
+						code101
+					</div>
+				</header>
+
+				<!-- LANGUAGES LIST -->
+				<nav id="languagesDrawer" class="mdc-drawer__content mdc-list"></nav>
+
+			</nav>
+		</aside>
+
+		<!-- TOP APP BAR -->
+		<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor">
+			<div class="mdc-top-app-bar__row">
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+					<a id="drawer-btn" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+					<span class="mdc-top-app-bar__title code101-logo">code101</span>
+				</section>
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+					<a id="menu-btn" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
+					<!-- CONTEXTUAL MENU -->
+					<div class="mdc-menu-anchor">
+						<div class="mdc-menu">
+							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">home</i>
+									Página inicial
+								</li>
+								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">info</i>
+									Sobre
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</header>
+
+		<!-- PAGE CONTENT -->
+		<div class="mdc-top-app-bar--fixed-adjust">
+			<div id="pageContent">
+
+				<!-- LANGUAGES LIST -->
+				<ul id="languagesList" class="mdc-list mdc-list--two-line" aria-orientation="vertical"></ul>
+				<!-- ACCORDIONS -->
+				<div id="accordionList" class="toggle panel-group"></div>
+
+			</div>
+		</div>
+
+		<aside id="aboutDialog"
+			class="mdc-dialog"
+			role="alertdialog"
+			aria-labelledby="my-mdc-dialog-label"
+			aria-describedby="my-mdc-dialog-description">
+			<div class="mdc-dialog__surface">
+
+				<!-- DIALOG HEADER -->
+				<header class="mdc-dialog__header">
+					<h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+						Sobre o code101
+					</h2>
+				</header>
+
+				<!-- DIALOG BODY -->
+				<section id="my-mdc-dialog-description" class="mdc-dialog__body">
+					Plataforma para consultar comandos de linguagens de programação
+				</section>
+
+				<!-- DIALOG FOOTER -->
+				<footer class="mdc-dialog__footer">
+					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">OK</button>
+				</footer>
+
+			</div>
+			<div class="mdc-dialog__backdrop"></div>
+		</aside>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/material-components-web.min.js"></script>
+		<script src="js/velocity.min.js"></script>
+		<script src="js/velocity.ui.min.js"></script>
+		<script src="js/jquery.hideseek.min.js"></script>
+		<script src="js/code101.js"></script>
+		<script>
+			if ("serviceWorker" in navigator) {
+				navigator.serviceWorker
+					.register("/sw.js", { scope: "/" })
+					.then(function(registration) {
+					console.log("Service Worker Registrado");
+				})
+					.catch(function(err) {
+					console.log("Service Worker Falhou em registrar", err);
+				})
+						
+				navigator.serviceWorker.ready.then(function(registration) {
+					console.log("Service Worker Pronto");
+				})
+			}
+		</script>
+	</body>
+</html>
