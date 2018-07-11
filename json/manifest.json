@@ -1,0 +1,9 @@
+{
+	"name": "code101",
+	"short_name": "code101",
+	"lang": "pt-BR",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "any",
+	"theme_color": "#6200cc"
+}
