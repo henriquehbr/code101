@@ -11,20 +11,20 @@ var precacheFiles = [
 	"json/c.json",
 
 	// CSS
-	"css/material-components.css",
+	"css/material-components-web.min.css",
 	"css/code101.css",
 
 	// JS
 	"js/code101.js",
 	"js/jquery.hideseek.min.js",
 	"js/jquery.min.js",
-	"material-components-web.min.js",
-	"velocity.min.js",
-	"velocity.ui.min.js",
+	"js/material-components-web.min.js",
+	"js/velocity.min.js",
+	"js/velocity.ui.min.js",
 
 	// RESOURCES (RES)
-	"res/c-logo.png",
-	"js.png",
+	"res/lang-icons/c.png",
+	"res/lang-icons/js.png",
 	"res/PressStart2P.ttf"
 ];
 

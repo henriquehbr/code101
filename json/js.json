@@ -1,0 +1,7 @@
+[
+	{
+		"nome":"Declarar variável",
+		"exemplo":"var variável;",
+		"descricao":"Inclui uma biblioteca no código"
+	}
+]
