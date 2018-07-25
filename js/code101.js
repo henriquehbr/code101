@@ -1,5 +1,4 @@
 // Material components
-
 let drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
 document.querySelector("#drawer-btn").addEventListener('click', () => drawer.open = true);
 
@@ -80,18 +79,20 @@ function listLanguagesOnPage() {
 		nodata: "Sem resultados!"
 	});
 
-	// Get all data from languages.json
-	$.getJSON("json/languages.json", function(data) {
-		// For each item in the languages.json...
-		$.each(data, function(i) {
-			// Append the following code on the language list
+	// Request the file languages.yaml
+	$.get("yml/languages.yml", function(data) {
+		// Convert the file data from YAML into JSON
+		var yamlData = jsyaml.load(data);
+		// For each item in languages.yaml...
+		$.each(yamlData, function(i) {
+			// Append the language on the language list
 			$("#languagesList").append(`
-				<li onclick="listCommands('${data[i].nome.toLowerCase()}')" class="mdc-list-item">
-					<img src="${data[i].icone}" class="mdc-list-item__graphic"></img>
+				<li onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-list-item">
+					<img src="${yamlData[i].icone}" class="mdc-list-item__graphic"></img>
 					<span class="mdc-list-item__text">
-						${data[i].nome}
+						${yamlData[i].nome}
 						<span class="mdc-list-item__secondary-text">
-							${data[i].descricao}
+							${yamlData[i].descricao}
 						</span>
 					</span>
 				</li>
@@ -114,15 +115,17 @@ function listLanguagesOnDrawer() {
 		<hr class="mdc-list-divider">
 	`);
 
-	// Get all data from languages.json
-	$.getJSON("json/languages.json", function(data) {
-		// For each item in the languages.json...
-		$.each(data, function(i) {
+	// Request the file languages.yaml
+	$.get("yml/languages.yml", function(data) {
+		// Convert the file data from YAML into JSON
+		var yamlData = jsyaml.load(data);
+		// For each item in languages.yaml...
+		$.each(yamlData, function(i) {
 			// Appends the following code to the drawer
 			$("#languagesDrawer").append(`
-				<a onclick="listCommands('${data[i].nome.toLowerCase()}'); drawer.open = false" class="mdc-list-item mdc-list-item">
-					<img class="mdc-list-item__graphic" src="${data[i].icone}">
-					${data[i].nome}
+				<a onclick="listCommands('${yamlData[i].nome.toLowerCase()}'); drawer.open = false" class="mdc-list-item mdc-list-item">
+					<img class="mdc-list-item__graphic" src="${yamlData[i].icone}">
+					${yamlData[i].nome}
 				</a>
 			`)
 		})
@@ -161,24 +164,26 @@ function listCommands(language) {
 		nodata: "Sem resultados!"
 	});
 
-	// Get all data from the selected language JSON
-	$.getJSON(`json/c.json`, function(data) {
-		// For each item in the JSON...
-		$.each(data, function(i) {
+	// Get all data from the selected language YML file
+	$.get(`yml/${language}.yml`, function(data) {
+		// Convert the file data from YAML into JSON
+		var yamlData = jsyaml.load(data);
+		// For each item in the YAML data...
+		$.each(yamlData, function(i) {
 			// Append the following code on the accordion list
 			$("#accordionList").append(`
 				<div class="panel panel-default">
 					<div class="panel-heading waves-effect">
 						<a class="toggle-link" aria-expanded="false">
-							<h4 class="panel-title active">${data[i].nome}</h4>
-							<span class="panel-subtitle">${data[i].exemplo}</span>
+							<h4 class="panel-title active">${yamlData[i].nome}</h4>
+							<span class="panel-subtitle">${yamlData[i].exemplo}</span>
 							<i class="material-icons accordion-toggle-icon">arrow_downward</i>
 						</a>
 					</div>
 					<div class="content-collapse collapsed" aria-expanded="false">
 						<div class="panel-body">
 							<p>
-								${data[i].descricao}
+								${yamlData[i].descricao}
 							</p>
 						</div>
 					</div>

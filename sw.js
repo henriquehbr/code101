@@ -8,7 +8,9 @@ var precacheFiles = [
 	"index.html",
 
 	// JSON
-	"json/c.json",
+	"yml/languages.yml",
+	"yml/c.yml",
+	"yml/javascript.yml",
 
 	// CSS
 	"css/material-components-web.min.css",
@@ -21,6 +23,7 @@ var precacheFiles = [
 	"js/material-components-web.min.js",
 	"js/velocity.min.js",
 	"js/velocity.ui.min.js",
+	"js/js-yaml.min.js",
 
 	// RESOURCES (RES)
 	"res/lang-icons/c.png",

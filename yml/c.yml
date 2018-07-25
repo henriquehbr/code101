@@ -1,0 +1,12 @@
+---
+- nome: Incluir biblioteca
+  exemplo: "#include &lt;stdio.h&gt;"
+  descricao: Inclui uma biblioteca no código
+
+- nome: Declarar variável
+  exemplo: int variavel;
+  descricao: Declara uma variável no código
+  
+- nome: Condicional
+  exemplo: if (1 > 0) {...}
+  descricao: Cria um laço condicional (if) no código
