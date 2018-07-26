@@ -176,15 +176,13 @@ function listCommands(language) {
 					<div class="panel-heading waves-effect">
 						<a class="toggle-link" aria-expanded="false">
 							<h4 class="panel-title active">${yamlData[i].nome}</h4>
-							<span class="panel-subtitle">${yamlData[i].exemplo}</span>
+							<code class="panel-subtitle">${yamlData[i].exemplo}</code>
 							<i class="material-icons accordion-toggle-icon">arrow_downward</i>
 						</a>
 					</div>
 					<div class="content-collapse collapsed" aria-expanded="false">
 						<div class="panel-body">
-							<p>
-								${yamlData[i].descricao}
-							</p>
+							<p>${yamlData[i].descricao}</p>
 						</div>
 					</div>
 				</div>
