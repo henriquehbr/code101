@@ -18,7 +18,6 @@ menuEl.addEventListener('MDCMenu:selected', function(evt) {
 });
 
 // Toggles
-
 function toggleAccordion() {
 	$('.toggle-link').click(function(e) {
 
@@ -46,6 +45,8 @@ function toggleAccordion() {
 		}
 	});
 };
+
+var html2md = new showdown.Converter()
 
 // List all the programming languages on the page
 function listLanguagesOnPage() {
@@ -182,7 +183,7 @@ function listCommands(language) {
 					</div>
 					<div class="content-collapse collapsed" aria-expanded="false">
 						<div class="panel-body">
-							<p>${yamlData[i].descricao}</p>
+							<p>${html2md.makeHtml(yamlData[i].descricao)}</p>
 						</div>
 					</div>
 				</div>

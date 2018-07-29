@@ -6,29 +6,37 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 		<meta name="keywords" content="code101, code, programming, learn">
-		<meta name="description" content="Uma aplicação web progressiva para consultar comandos de linguagens de programação"> <!-- 150 WORDS -->
+		<meta name="description" content="Aplicação web progressiva para consultar comandos de linguagens de programação"> <!-- 150 WORDS -->
 
-		<!-- OG (OPENGRAPH) META TAGS -->
+		<!-- OPENGRAPH META TAGS -->
 		<meta property="og:title" content="code101">
-		<meta property="og:description" content="Uma aplicação web progressiva para consultar comandos de linguagens de programação">
+		<meta property="og:description" content="Aplicação web progressiva para consultar comandos de linguagens de programação">
 		<meta property="og:image" content="/">
 
+		<!-- ANDROID META TAGS -->
+		<meta name="theme-color" content="#6200cc">
 		<meta name="mobile-web-app-capable" content="yes">
 
 		<!-- APPLE META TAGS -->
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="application-name" content="code101">
 		<meta name="apple-mobile-web-app-title" content="code101">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 		<!-- MICROSOFT META TAGS -->
-		<meta name="theme-color" content="#6200cc">
 		<meta name="msapplication-navbutton-color" content="#6200cc">
-		<meta name="msapplication-starturl" content="/">
+		<meta name="msapplication-TileColor" content="#6200cc">
+		<meta name="msapplication-TileImage" content="icon-144x144.png">
 
 		<title>code101</title>
-		<link rel="shortcut icon" type="image/png" href="res/app-icons/favicon-16x16.png">
+
+		<!-- FAVICONS -->
+		<link rel="icon" href="res/app-icons/favicon-16x16.png" type="image/png" size="16x16">
+		<link href="icon-192x192.png" rel="icon" sizes="192x192">
+
+		<!-- MANIFEST JSON -->
 		<link rel="manifest" href="manifest.json">
+
+		<!-- CSS LIBRARIES -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 		<link rel="stylesheet" href="css/material-components-web.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -122,11 +130,13 @@
 			<div class="mdc-dialog__backdrop"></div>
 		</aside>
 
+		<!-- JS LIBRARIES -->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/material-components-web.min.js"></script>
 		<script src="js/velocity.min.js"></script>
 		<script src="js/velocity.ui.min.js"></script>
 		<script src="js/js-yaml.min.js"></script>
+		<script src="js/showdown.min.js"></script>
 		<script src="js/jquery.hideseek.min.js"></script>
 		<script src="js/code101.js"></script>
 		<script>

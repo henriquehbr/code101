@@ -1,7 +1,4 @@
-[
-	{
-		"nome":"Declarar variável",
-		"exemplo":"var variável;",
-		"descricao":"Inclui uma biblioteca no código"
-	}
-]
+---
+- nome: Declarar variável
+  exemplo: int variavel;
+  descricao: Declara uma variável no código

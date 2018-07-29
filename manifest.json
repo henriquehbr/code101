@@ -26,11 +26,9 @@
 			"src": "../res/app-icons/android-icon-192-192.png",
 			"type": "image/png",
 			"sizes": "192x192"
-		},
+		}
 	],
 	"lang": "pt-BR",
-	"start_url": "/",
-	"scope": "/",
 	"display": "standalone",
 	"orientation": "any",
 	"theme_color": "#6200cc"

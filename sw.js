@@ -19,6 +19,7 @@ var precacheFiles = [
 	// JS
 	"js/code101.js",
 	"js/jquery.hideseek.min.js",
+	"js/showdown.min.js",
 	"js/jquery.min.js",
 	"js/material-components-web.min.js",
 	"js/velocity.min.js",

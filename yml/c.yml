@@ -1,7 +1,31 @@
 ---
 - nome: Incluir biblioteca
   exemplo: "#include &lt;stdio.h&gt;"
-  descricao: Inclui uma biblioteca no código
+  descricao: |
+    ### Função do comando:
+    Inclui uma biblioteca no programa.
+
+    ### O que é uma biblioteca?
+    São arquivos que podem conter diversas funções da linguagem C, esses arquivos
+    geralmente possuem a extensão `.h` e são utilizados quando há necessidade
+    de repetir um trecho de código multiplas vezes no programa.
+
+    ### Exemplo:
+    Existem duas formas de incluir uma biblioteca:
+
+    ```
+    #include <biblioteca.h>
+    ```
+
+    É usado para as [bibliotecas padrões da linguagem](https://pt.wikipedia.org/wiki/Biblioteca_padr%C3%A3o_do_C#Cabe%C3%A7alhos_do_ANSI_C),
+    Em geral o compilador já sabe onde estão os cabeçalhos do que faz parte da linguagem.
+
+    ```
+    #include "biblioteca.h"
+    ```
+
+    É usado para bibliotecas de terceiros e seu próprio código. Em geral ele olha na
+    pasta do que está sendo compilado.
 
 - nome: Declarar variável
   exemplo: int variavel;
