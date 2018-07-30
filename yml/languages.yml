@@ -1,7 +1,7 @@
 ---
 - nome: C
   descricao: Linguagem de programação compilada de propósito geral, estruturada, imperativa
-    e procedural
+    e procedural.
   icone: res/lang-icons/c.png
   
 - nome: Javascript

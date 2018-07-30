@@ -4,32 +4,34 @@ var precacheFiles = [
 	/* Files to be cached */
 	"/",
 
-	// HTML
-	"index.html",
-
-	// JSON
-	"yml/languages.yml",
-	"yml/c.yml",
-	"yml/javascript.yml",
-
 	// CSS
-	"css/material-components-web.min.css",
+	"css/animate.min.css",
 	"css/code101.css",
+	"css/material-components-web.min.css",
+	"css/normalize.min.css",
 
 	// JS
 	"js/code101.js",
 	"js/jquery.hideseek.min.js",
-	"js/showdown.min.js",
 	"js/jquery.min.js",
+	"js/js-yaml.min.js",
 	"js/material-components-web.min.js",
+	"js/showdown.min.js",
 	"js/velocity.min.js",
 	"js/velocity.ui.min.js",
-	"js/js-yaml.min.js",
 
 	// RESOURCES (RES)
 	"res/lang-icons/c.png",
 	"res/lang-icons/js.png",
-	"res/PressStart2P.ttf"
+	"res/PressStart2P.ttf",
+
+	// YML
+	"yml/c.yml",
+	"yml/javascript.yml",
+	"yml/languages.yml",
+
+	// HTML
+	"index.html"
 ];
 
 // Install stage sets up the cache-array to configure pre-cache content

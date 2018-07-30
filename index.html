@@ -30,15 +30,15 @@
 		<title>code101</title>
 
 		<!-- FAVICONS -->
-		<link rel="icon" href="res/app-icons/favicon-16x16.png" type="image/png" size="16x16">
-		<link href="icon-192x192.png" rel="icon" sizes="192x192">
+		<link rel="shortcut icon" href="res/app-icons/favicon-16x16.png" type="image/png">
 
 		<!-- MANIFEST JSON -->
 		<link rel="manifest" href="manifest.json">
 
 		<!-- CSS LIBRARIES -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+		<link rel="stylesheet" href="css/normalize.min.css">
 		<link rel="stylesheet" href="css/material-components-web.min.css">
+		<link rel="stylesheet" href="css/animate.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="css/code101.css">
@@ -68,15 +68,23 @@
 					<span class="mdc-top-app-bar__title code101-logo">code101</span>
 				</section>
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+					<a id="changeview-btn" onclick="changeViewMode()" class="material-icons mdc-top-app-bar__action-item" aria-label="Alternar visualização" alt="Alternar visualização">view_modules</a>
 					<a id="menu-btn" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
 					<!-- CONTEXTUAL MENU -->
 					<div class="mdc-menu-anchor">
 						<div class="mdc-menu">
 							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
-								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
+								<!-- HOME PAGE -->
+								<li onclick="listLanguagesOnPage(viewMode)" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">home</i>
 									Página inicial
 								</li>
+								<!-- OFFLINE MODE -->
+								<li onclick="offlineModeDialog()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">signal_wifi_off</i>
+									Modo offline
+								</li>
+								<!-- ABOUT -->
 								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">info</i>
 									Sobre
@@ -92,43 +100,21 @@
 		<div class="mdc-top-app-bar--fixed-adjust">
 			<div id="pageContent">
 
-				<!-- LANGUAGES LIST -->
-				<ul id="languagesList" class="mdc-list mdc-list--two-line" aria-orientation="vertical"></ul>
+				<div id="searchInputDiv" class="mdc-text-field mdc-text-field--fullwidth">
+					<input type="text" id="searchInput" class="mdc-text-field__input"placeholder="Pesquisar" aria-label="Pesquisar" />
+				</div>
+
 				<!-- ACCORDIONS -->
 				<div id="accordionList" class="toggle panel-group"></div>
 
+				<!-- LANGUAGES LIST (CARD VIEW) -->
+				<div id="view-card" class="mdc-layout-grid mdc-layout-grid__inner"></div>
+
+				<!-- LANGUAGES LIST (LIST VIEW) -->
+				<ul id="view-list" class="mdc-list mdc-list--two-line" aria-orientation="vertical"></ul>
+
 			</div>
 		</div>
-
-		<aside id="aboutDialog"
-			class="mdc-dialog"
-			role="alertdialog"
-			aria-labelledby="my-mdc-dialog-label"
-			aria-describedby="my-mdc-dialog-description">
-			<div class="mdc-dialog__surface">
-
-				<!-- DIALOG HEADER -->
-				<header class="mdc-dialog__header">
-					<h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
-						Sobre o code101
-					</h2>
-				</header>
-
-				<!-- DIALOG BODY -->
-				<section id="my-mdc-dialog-description" class="mdc-dialog__body">
-					Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
-
-					<a href="https://github.com/henriquehbr/code101" target="_blank">Visitar repositório no Github</a>
-				</section>
-
-				<!-- DIALOG FOOTER -->
-				<footer class="mdc-dialog__footer">
-					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">OK</button>
-				</footer>
-
-			</div>
-			<div class="mdc-dialog__backdrop"></div>
-		</aside>
 
 		<!-- JS LIBRARIES -->
 		<script src="js/jquery.min.js"></script>
