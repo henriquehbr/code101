@@ -11,14 +11,8 @@ var precacheFiles = [
 	"css/normalize.min.css",
 
 	// JS
+	"js/js-megapack.js",
 	"js/code101.js",
-	"js/jquery.hideseek.min.js",
-	"js/jquery.min.js",
-	"js/js-yaml.min.js",
-	"js/material-components-web.min.js",
-	"js/showdown.min.js",
-	"js/velocity.min.js",
-	"js/velocity.ui.min.js",
 
 	// RESOURCES (RES)
 	"res/lang-icons/c.png",

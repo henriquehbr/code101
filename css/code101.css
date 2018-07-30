@@ -21,6 +21,10 @@ a:focus {
 	padding: 10px;
 }
 
+.offmode-switch {
+	margin-left: 10px;
+}
+
 .code101-logo {
 	font-family: Atari;
 }

@@ -39,6 +39,7 @@
 		<link rel="stylesheet" href="css/normalize.min.css">
 		<link rel="stylesheet" href="css/material-components-web.min.css">
 		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="css/code101.css">
@@ -68,7 +69,6 @@
 					<span class="mdc-top-app-bar__title code101-logo">code101</span>
 				</section>
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-					<a id="changeview-btn" onclick="changeViewMode()" class="material-icons mdc-top-app-bar__action-item" aria-label="Alternar visualização" alt="Alternar visualização">view_modules</a>
 					<a id="menu-btn" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
 					<!-- CONTEXTUAL MENU -->
 					<div class="mdc-menu-anchor">
@@ -78,6 +78,11 @@
 								<li onclick="listLanguagesOnPage(viewMode)" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">home</i>
 									Página inicial
+								</li>
+								<!-- CHANGE VIEW -->
+								<li id="changeview-btn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">view_list</i>
+									Visualizar em lista
 								</li>
 								<!-- OFFLINE MODE -->
 								<li onclick="offlineModeDialog()" class="mdc-list-item" role="menuitem">
@@ -117,29 +122,8 @@
 		</div>
 
 		<!-- JS LIBRARIES -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/material-components-web.min.js"></script>
-		<script src="js/velocity.min.js"></script>
-		<script src="js/velocity.ui.min.js"></script>
-		<script src="js/js-yaml.min.js"></script>
-		<script src="js/showdown.min.js"></script>
-		<script src="js/jquery.hideseek.min.js"></script>
+		<script src="js/js-megapack.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script src="js/code101.js"></script>
-		<script>
-			if ("serviceWorker" in navigator) {
-				navigator.serviceWorker
-					.register("sw.js")
-					.then(function(registration) {
-					console.log("Service Worker Registrado");
-				})
-					.catch(function(err) {
-					console.log("Service Worker Falhou em registrar", err);
-				})
-						
-				navigator.serviceWorker.ready.then(function(registration) {
-					console.log("Service Worker Pronto");
-				})
-			}
-		</script>
 	</body>
 </html>

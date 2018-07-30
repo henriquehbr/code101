@@ -3,27 +3,27 @@
 	"short_name": "code101",
 	"icons": [
 		{
-			"src": "../res/app-icons/android-icon-48-48.png",
+			"src": "../res/app-icons/icon-48-48.png",
 			"type": "image/png",
 			"sizes": "48x48"
 		},
 		{
-			"src": "../res/app-icons/android-icon-72-72.png",
+			"src": "../res/app-icons/icon-72-72.png",
 			"type": "image/png",
 			"sizes": "72x72"
 		},
 		{
-			"src": "../res/app-icons/android-icon-96-96.png",
+			"src": "../res/app-icons/icon-96-96.png",
 			"type": "image/png",
 			"sizes": "96x96"
 		},
 		{
-			"src": "../res/app-icons/android-icon-144-144.png",
+			"src": "../res/app-icons/icon-144-144.png",
 			"type": "image/png",
 			"sizes": "144x144"
 		},
 		{
-			"src": "../res/app-icons/android-icon-192-192.png",
+			"src": "../res/app-icons/icon-192-192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		}

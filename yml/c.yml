@@ -13,7 +13,7 @@
     ### Exemplo:
     Existem duas formas de incluir uma biblioteca:
 
-    ```
+    ```c
     #include <biblioteca.h>
     ```
 

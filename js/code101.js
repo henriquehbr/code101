@@ -199,6 +199,11 @@ function listCommands(language) {
 			`)
 		})
 
+		// Highlight all the code blocks
+		$("pre code").each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+
 		toggleAccordion();
 
 	})
@@ -209,13 +214,19 @@ function changeViewMode() {
 		case "list":
 			viewMode = "card";
 			listLanguagesOnPage(viewMode);
-			$("#changeview-btn").text("view_module");
+			$("#changeview-btn").html(`
+				<i class="mdc-list-item__graphic material-icons">view_list</i>
+				Visualizar em lista
+			`);
 			break;
 
 		case "card":
 			viewMode = "list";
 			listLanguagesOnPage(viewMode);
-			$("#changeview-btn").text("view_list");
+			$("#changeview-btn").html(`
+				<i class="mdc-list-item__graphic material-icons">view_modules</i>
+				Visualizar em card
+			`);
 			break;
 	}
 }
@@ -226,12 +237,12 @@ function offlineModeDialog() {
 		<aside id="offlineModeDialog"
 			class="mdc-dialog"
 			role="alertdialog"
-			aria-labelledby="my-mdc-dialog-label"
+			aria-labelledby="dialog-title"
 			aria-describedby="my-mdc-dialog-description">
 			<div class="mdc-dialog__surface">
 
 				<header class="mdc-dialog__header">
-					<h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+					<h2 id="dialog-title" class="mdc-dialog__header__title">
 						Modo offline
 					</h2>
 				</header>
@@ -244,7 +255,7 @@ function offlineModeDialog() {
 					
 					Essa funcionalidade nada mais é do que um script que o navegador executa em segundo
 					plano, possibilitando o armazenamento de recursos da página de forma responsiva, ou seja,
-					sem que seja necessário interromper a execução do app.
+					sem que seja necessário interromper a execução do app.<br><br>
 				</section>
 
 				<footer class="mdc-dialog__footer">
@@ -255,8 +266,94 @@ function offlineModeDialog() {
 			<div class="mdc-dialog__backdrop"></div>
 		</aside>
 	`);
+
+	if ("serviceWorker" in navigator) {
+		// Verify if is there a service worker running on the page
+		if (navigator.serviceWorker.controller) {
+
+			// Remove the previous existing switch
+			$(".offmode-switch").remove();
+
+			// Append the triggered switch
+			$("#dialog-title").append(`
+				<div class="mdc-switch offmode-switch">
+					<input id="offmode-switch" type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+					<div class="mdc-switch__background">
+						<div class="mdc-switch__knob"></div>
+					</div>
+				</div>
+			`);
+		// If is there isn't a service worker running on the page
+		} else {
+
+			// Remove the previous existing switch
+			$(".offmode-switch").remove();
+
+			// Append the untriggered switch
+			$("#dialog-title").append(`
+				<div class="mdc-switch offmode-switch">
+					<input id="offmode-switch" type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+					<div class="mdc-switch__background">
+						<div class="mdc-switch__knob"></div>
+					</div>
+				</div>
+			`);
+		}
+	// If the browser doesn't support Service Workers
+	} else {
+
+		// Remove the previous existing switch
+		$(".offmode-switch").remove();
+
+		// Append the disabled switch
+		$("#dialog-title").append(`
+			<div class="mdc-switch offmode-switch">
+				<input id="offmode-switch" type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" disabled>
+				<div class="mdc-switch__background">
+					<div class="mdc-switch__knob"></div>
+				</div>
+			</div>
+		`);
+	}
+
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#offlineModeDialog"));
 	dialog.show();
+
+	$("#offmode-switch").change(function() {
+		// Switch is turned on
+		if ($("#offmode-switch").prop("checked") == true) {
+
+			// If the browser support Service Workers...
+			if ("serviceWorker" in navigator) {
+				navigator.serviceWorker
+					.register("sw.js")
+					.then(function(registration) {
+					console.log("Service Worker Registrado");
+				})
+					.catch(function(err) {
+					console.log("Service Worker Falhou em registrar", err);
+				})
+						
+				navigator.serviceWorker.ready.then(function(registration) {
+					console.log("Service Worker Pronto");
+				})
+			// If the browser doesn't support Service Workers...
+			} else {
+				console.log("Seu navegador não suporta Service Workers!");
+			}
+
+		// Switch is turned off
+		} else if ($("#offmode-switch").prop("checked") == false) {
+
+			// Remove the Service Worker
+			navigator.serviceWorker.getRegistrations().then(function(registrations) {
+				for (let registration of registrations) {
+					registration.unregister();
+				}
+			})
+			console.log("Service Worker removido");
+		}
+	})
 }
 
 // Displays the "about" dialog
@@ -265,12 +362,12 @@ function aboutDialog() {
 		<aside id="aboutDialog"
 			class="mdc-dialog"
 			role="alertdialog"
-			aria-labelledby="my-mdc-dialog-label"
+			aria-labelledby="dialog-title"
 			aria-describedby="my-mdc-dialog-description">
 			<div class="mdc-dialog__surface">
 
 				<header class="mdc-dialog__header">
-					<h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+					<h2 id="dialog-title" class="mdc-dialog__header__title">
 						Sobre o code101
 					</h2>
 				</header>
