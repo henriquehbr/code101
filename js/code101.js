@@ -114,14 +114,6 @@ function listLanguagesOnPage(viewMode) {
 										<h3 class="mdc-typography--body2">${yamlData[i].descricao}</h3>
 									</div>
 								</div>
-								<div class="mdc-card__actions">
-									<div class="mdc-card__action-buttons mdc-card__actions--full-bleed">
-										<button onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-button mdc-card__action mdc-card__action--button">Aprender</button>
-									</div>
-									<div class="mdc-card__action-icons">
-										<button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Sugerir um comando">question_answer</button>
-									</div>
-								</div>
 							</div>
 						</div>
 					`)
