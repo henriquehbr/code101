@@ -238,7 +238,7 @@ function offlineModeDialog() {
 			class="mdc-dialog"
 			role="alertdialog"
 			aria-labelledby="dialog-title"
-			aria-describedby="my-mdc-dialog-description">
+			aria-describedby="dialog-description">
 			<div class="mdc-dialog__surface">
 
 				<header class="mdc-dialog__header">
@@ -247,15 +247,10 @@ function offlineModeDialog() {
 					</h2>
 				</header>
 
-				<section id="my-mdc-dialog-description" class="mdc-dialog__body">
-					O modo offline utiliza de uma tecnologia web moderna conhecida como "Service Workers"
+				<section id="mdc-dialog-description" class="mdc-dialog__body">
+					O modo offline utiliza de uma tecnologia web moderna conhecida como
+					<a target="_blank" href="https://developers.google.com/web/fundamentals/primers/service-workers/?hl=pt-br">Service Workers</a>
 					para tornar sua experiência offline a melhor e mais eficiente possivel.
-
-					<h4>O que são Service Workers?</h4>
-					
-					Essa funcionalidade nada mais é do que um script que o navegador executa em segundo
-					plano, possibilitando o armazenamento de recursos da página de forma responsiva, ou seja,
-					sem que seja necessário interromper a execução do app.<br><br>
 				</section>
 
 				<footer class="mdc-dialog__footer">
@@ -363,7 +358,7 @@ function aboutDialog() {
 			class="mdc-dialog"
 			role="alertdialog"
 			aria-labelledby="dialog-title"
-			aria-describedby="my-mdc-dialog-description">
+			aria-describedby="mdc-dialog-description">
 			<div class="mdc-dialog__surface">
 
 				<header class="mdc-dialog__header">
@@ -372,7 +367,7 @@ function aboutDialog() {
 					</h2>
 				</header>
 
-				<section id="my-mdc-dialog-description" class="mdc-dialog__body">
+				<section id="mdc-dialog-description" class="mdc-dialog__body">
 					Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
 
 					<a href="https://github.com/henriquehbr/code101" target="_blank">Visitar repositório no Github</a>

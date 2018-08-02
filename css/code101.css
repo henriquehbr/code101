@@ -21,6 +21,14 @@ a:focus {
 	padding: 10px;
 }
 
+#drawer-btn, #menu-btn, .mdc-menu-anchor {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .offmode-switch {
 	margin-left: 10px;
 }
@@ -68,7 +76,7 @@ a:focus {
 	border-radius: 4px;
 }
 
-.panel-group .panel + .panel {
+.panel-group .panel {
 	margin-top: 10px;
 }
 
