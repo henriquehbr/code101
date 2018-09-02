@@ -103,12 +103,6 @@
 									Visualizar em lista
 								</li>
 
-								<!-- OFFLINE MODE -->
-								<li onclick="offlineModeDialog()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">signal_wifi_off</i>
-									Modo offline
-								</li>
-
 								<!-- ABOUT -->
 								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">info</i>
@@ -157,5 +151,26 @@
 		<script src="js/js-megapack.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script src="js/code101.js"></script>
+		<script>
+			// If the browser support Service Workers
+			if ("serviceWorker" in navigator) {
+				// Verify if is there a service worker running on the page
+				navigator.serviceWorker
+					.register("sw.js")
+					.then(function(registration) {
+					console.log("Service Worker registrado");
+				})
+					.catch(function(err) {
+					console.log("Service Worker falhou em registrar", err);
+				})
+						
+				navigator.serviceWorker.ready.then(function(registration) {
+					console.log("Service Worker pronto");
+				})
+			} else {
+				// If the browser doesn't support Service Workers
+				console.log("Seu navegador não suporta Service Workers, tente utilizar a versão mais recente do Google Chrome");
+			}
+		</script>
 	</body>
 </html>

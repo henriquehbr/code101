@@ -3,38 +3,38 @@
 	"short_name": "code101",
 	"icons": [
 		{
-			"src": "../res/app-icons/icon-48-48.png",
+			"src": "../res/app-icons/icon-48x48.png",
 			"type": "image/png",
 			"sizes": "48x48"
 		},
 		{
-			"src": "../res/app-icons/icon-72-72.png",
+			"src": "../res/app-icons/icon-72x72.png",
 			"type": "image/png",
 			"sizes": "72x72"
 		},
 		{
-			"src": "../res/app-icons/icon-96-96.png",
+			"src": "../res/app-icons/icon-96x96.png",
 			"type": "image/png",
 			"sizes": "96x96"
 		},
 		{
-			"src": "../res/app-icons/icon-144-144.png",
+			"src": "../res/app-icons/icon-144x144.png",
 			"type": "image/png",
 			"sizes": "144x144"
 		},
 		{
-			"src": "../res/app-icons/icon-192-192.png",
+			"src": "../res/app-icons/icon-192x192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "../res/app-icons/icon-512-512.png",
+			"src": "../res/app-icons/icon-512x512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
 	],
 	"lang": "pt-BR",
-	"background-color": "#fafafa",
+	"background_color": "#fafafa",
 	"display": "standalone",
 	"orientation": "any",
 	"theme_color": "#6200cc"
