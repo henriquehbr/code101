@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 	<head>
 
 		<!-- META TAGS -->
@@ -36,12 +36,13 @@
 		<link rel="manifest" href="manifest.json">
 
 		<!-- CSS LIBRARIES -->
-		<link rel="stylesheet" href="css/css-megapack.css">
-		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+		<link rel="stylesheet" href="css/code101.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="css/code101.css">
 	</head>
 	<body>
 
@@ -142,14 +143,21 @@
 				<div id="view-card" class="mdc-layout-grid mdc-layout-grid__inner"></div>
 
 				<!-- LANGUAGES LIST (LIST VIEW) -->
-				<ul id="view-list" class="mdc-list mdc-list--two-line" aria-orientation="vertical"></ul>
+				<ul id="view-list" class="mdc-list mdc-list--two-line"></ul>
 
 			</div>
 		</div>
 
 		<!-- JS LIBRARIES -->
-		<script src="js/js-megapack.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
 		<script src="js/code101.js"></script>
 		<script>
 			// If the browser support Service Workers

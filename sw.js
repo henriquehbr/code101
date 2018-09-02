@@ -5,11 +5,20 @@ var precacheFiles = [
 	"/",
 
 	// CSS
-	"css/css-megapack.css",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css",
+	"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
+	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
 	"css/code101.css",
 
 	// JS
-	"js/js-megapack.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js",
 	"js/code101.js",
 
 	// RESOURCES (RES)
@@ -23,7 +32,10 @@ var precacheFiles = [
 	"yml/languages.yml",
 
 	// HTML
-	"index.html"
+	"index.html",
+
+	// MANIFEST
+	"manifest.json"
 ];
 
 // Install stage sets up the cache-array to configure pre-cache content
