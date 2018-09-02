@@ -36,9 +36,8 @@
 		<link rel="manifest" href="manifest.json">
 
 		<!-- CSS LIBRARIES -->
-		<link rel="stylesheet" href="css/normalize.min.css">
-		<link rel="stylesheet" href="css/material-components-web.min.css">
-		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" href="css/css-megapack.css">
+		
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -61,44 +60,61 @@
 			</nav>
 		</aside>
 
-		<!-- TOP APP BAR -->
-		<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor">
+		<!-- TOP APP BAR (SEARCH BAR COLLAPSED) -->
+		<header id="searchBarCollapsed" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor">
 			<div class="mdc-top-app-bar__row">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-					<a id="drawer-btn" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+
+					<!-- DRAWER BUTTON -->
+					<a id="drawer-btn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+
+					<!-- APP TITLE -->
 					<span class="mdc-top-app-bar__title code101-logo">code101</span>
+
 				</section>
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-					<a id="menu-btn" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
+
+					<!-- SEARCH ICON -->
+					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download" onclick="toggleSearchBar('open')">search</i>
+
+					<!-- MENU ICON -->
+					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
+
 					<!-- CONTEXTUAL MENU -->
 					<div class="mdc-menu-anchor">
 						<div class="mdc-menu">
 							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+
 								<!-- HOME PAGE -->
 								<li onclick="listLanguagesOnPage(viewMode)" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">home</i>
-									Página inicial
+										Página inicial
 								</li>
+
 								<!-- SUGGEST COMMAND -->
 								<li onclick="window.open('https://goo.gl/forms/xgzvniZZz9sK46A43', '_blank')" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">description</i>
 									Sugerir comando
 								</li>
+
 								<!-- CHANGE VIEW -->
 								<li id="changeview-btn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">view_list</i>
 									Visualizar em lista
 								</li>
+
 								<!-- OFFLINE MODE -->
 								<li onclick="offlineModeDialog()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">signal_wifi_off</i>
 									Modo offline
 								</li>
+
 								<!-- ABOUT -->
 								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">info</i>
 									Sobre
 								</li>
+
 							</ul>
 						</div>
 					</div>
@@ -106,13 +122,24 @@
 			</div>
 		</header>
 
+		<!-- TOP APP BAR (SEARCH BAR EXPANDED) -->
+		<header id="searchBarExpanded" class="mdc-top-app-bar mdc-top-app-bar--fixed" style="display: none;">
+
+			<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon">
+
+				<!-- SEARCH INPUT -->
+				<input id="searchInput" type="text" id="my-input" class="mdc-text-field__input" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+
+				<!-- CLOSE ICON -->
+				<i class="material-icons mdc-text-field__icon" tabindex="1" role="button" onclick="toggleSearchBar('close')">close</i>
+
+				<div class="mdc-line-ripple"></div>
+			</header>
+		</header>
+
 		<!-- PAGE CONTENT -->
 		<div class="mdc-top-app-bar--fixed-adjust">
 			<div id="pageContent">
-
-				<div id="searchInputDiv" class="mdc-text-field mdc-text-field--fullwidth">
-					<input type="text" id="searchInput" class="mdc-text-field__input"placeholder="Pesquisar" aria-label="Pesquisar" />
-				</div>
 
 				<!-- ACCORDIONS -->
 				<div id="accordionList" class="toggle panel-group"></div>

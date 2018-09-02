@@ -1,21 +1,50 @@
-// Material components
-let drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
-document.querySelector("#drawer-btn").addEventListener('click', () => drawer.open = true);
+var drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
 
-// Instantiation
 var menuEl = document.querySelector(".mdc-menu");
 var menu = new mdc.menu.MDCMenu(menuEl);
-var menuButtonEl = document.querySelector('#menu-btn');
 
-// Toggle menu open
-menuButtonEl.addEventListener('click', function() {
-	menu.open = !menu.open;
-});
-
-// Listen for selected item
 menuEl.addEventListener('MDCMenu:selected', function(evt) {
 	var detail = evt.detail;
 });
+
+// action --> open/close/search
+function toggleSearchBar(action) {
+
+	switch (action) {
+		case "open":
+
+			// Reset both search bar animations
+			$("#searchBarExpanded, #searchBarCollapsed").removeClass("animated fadeIn fadeOut");
+
+			// Hide the collapsed search bar
+			$("#searchBarCollapsed").addClass("animated fadeOut");
+			$("#searchBarCollapsed").css("display", "none");
+			
+			// Show the expanded search bar
+			$("#searchBarExpanded").addClass("animated fadeIn");
+			$("#searchBarExpanded").css("display", "block");
+		break;
+
+		case "close":
+
+			// Press key after search bar is close, to reset search results to default state
+			var keyup = jQuery.Event("keyup");
+			keyup.which = keyup.keyCode = 8;
+
+			// Reset both search bar animations
+			$("#searchBarExpanded, #searchBarCollapsed").removeClass("animated fadeIn fadeOut");
+
+			// Hide the expanded search bar
+			$("#searchBarExpanded").addClass("animated fadeOut");
+			$("#searchBarExpanded").css("display", "none");
+			$("#searchBarExpanded #searchInput").val("").trigger(keyup);
+
+			// Show the colapsed search bar
+			$("#searchBarCollapsed").addClass("animated fadeIn");
+			$("#searchBarCollapsed").css("display", "flex");
+		break;
+	}
+}
 
 // Toggles
 function toggleAccordion() {
@@ -77,14 +106,13 @@ function listLanguagesOnPage(viewMode) {
 					// Append the language on the language list
 					$("#view-list").append(`
 						<li onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-list-item animated fadeIn">
-							<img src="${yamlData[i].icone}" class="mdc-list-item__graphic"></img>
+							<img src="${yamlData[i].icone}" class="mdc-list-item__graphic" alt="${yamlData[i].nome}">
 							<span class="mdc-list-item__text">
 								${yamlData[i].nome}
 								<span class="mdc-list-item__secondary-text">
 									${yamlData[i].descricao}
 								</span>
 							</span>
-							<span class="mdc-list-item__meta material-icons">question_answer</span>
 						</li>
 					`)
 				})
@@ -146,7 +174,7 @@ function listLanguagesOnDrawer() {
 			// Appends the following code to the drawer
 			$("#languagesDrawer").append(`
 				<a onclick="listCommands('${yamlData[i].nome.toLowerCase()}'); drawer.open = false" class="mdc-list-item mdc-list-item">
-					<img class="mdc-list-item__graphic" src="${yamlData[i].icone}">
+					<img class="mdc-list-item__graphic" src="${yamlData[i].icone}" alt="${yamlData[i].nome}">
 					${yamlData[i].nome}
 				</a>
 			`)

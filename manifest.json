@@ -26,9 +26,15 @@
 			"src": "../res/app-icons/icon-192-192.png",
 			"type": "image/png",
 			"sizes": "192x192"
+		},
+		{
+			"src": "../res/app-icons/icon-512-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
 		}
 	],
 	"lang": "pt-BR",
+	"background-color": "#fafafa",
 	"display": "standalone",
 	"orientation": "any",
 	"theme_color": "#6200cc"

@@ -5,10 +5,8 @@ var precacheFiles = [
 	"/",
 
 	// CSS
-	"css/animate.min.css",
+	"css/css-megapack.css",
 	"css/code101.css",
-	"css/material-components-web.min.css",
-	"css/normalize.min.css",
 
 	// JS
 	"js/js-megapack.js",
