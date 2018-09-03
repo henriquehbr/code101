@@ -1,7 +1,7 @@
 {
 	"name": "code101",
 	"short_name": "code101",
-	"start_url": "/index.html",
+	"start_url": "/code101/index.html",
 	"display": "standalone",
 	"background_color": "#fafafa",
 	"theme_color": "#6200cc",
