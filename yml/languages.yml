@@ -7,3 +7,7 @@
 - nome: Javascript
   descricao: Linguagem de programação interpretada, dinâmica, fraca e implicita.
   icone: res/lang-icons/js.png
+
+- nome: Java
+  descricao: Java é uma linguagem de programação orientada a objetos, compilada e estruturada.
+  icone: res/lang-icons/java_capa.webp

@@ -1,0 +1,88 @@
+---
+- nome: Método main
+  exemplo: public class main {}
+  descricao: |
+    ### O que é o método main?
+    O método main é onde o programa inicia e pode estar presente em qualquer classe  
+    Os parâmetros de linha de comando são enviados para o array de Strings chamado args.
+
+    ### Exemplo:
+    
+    ```java
+    public class main OlaMundo {
+      codigo a ser executado;
+    }
+    ```
+    ### Você pode caracterizar o método com:  
+    `void` = Método sem retorno (retorno vazio)  
+    `public` = É visto em qualquer lugar da aplicação. É o modificador de acesso  
+    `static` = é iniciado automaticamente pela JVM, sem precisar de uma instância  
+
+    ```java
+    public static void main(String[] args) {
+      System.out.println("Olá, Mundo!"); //Imprime na tela a frase
+    ```
+- nome: Classes
+  exemplo: public abstract class Animal {
+  descricao: |
+    ### Exemplo:
+    ```java
+    public abstract class Animal {
+      public abstract void fazerBarulho();
+    }
+
+    public class Cachorro extends Animal {
+      public void fazerBarulho() {
+          System.out.println("AuAu!");
+      }
+    }
+
+    public class Gato extends Animal {
+      public void fazerBarulho() {
+          System.out.println("Miau!");
+      }
+    }
+    ```
+    O exemplo acima cria a classe Animal e duas classes derivadas de Animal. É importante observar que nas classes derivadas temos a redefinição do método fazerBarulho(). Esta redefinição é classificada como uma sobreposição (override) de métodos. O conceito de sobreposição somente pode ser identificado e utilizado quando temos classes dispostas em um relacionamento de herança.    
+      
+    Java não suporta herança múltipla, devido a possibilidade de uma classe pai ter um método com o mesmo nome de outra classe pai, e gerar possíveis falhas ao chamar o método, e todas as classes em Java derivam da classe Object. A única possibilidade de se ver herança múltipla em Java é no uso de interfaces, pois uma classe pode implementar várias interfaces.
+
+- nome: Interfaces
+  exemplo: public interface Pesado {
+   double obterPeso();
+   }
+  descricao: |
+
+    ### O que é uma interface?
+    Uma interface modela um comportamento esperado. Pode-se entendê-la como uma classe que contenha apenas métodos abstratos. Embora uma classe não possa conter mais de uma super classe, a classe pode implementar mais de uma interface.  
+    ### Exemplo:
+    ```java
+    public interface Pesado {
+      double obterPeso();
+    }
+
+    public interface Colorido {
+      Color obterCor();
+    }
+
+    public class Porco extends Animal implements Pesado, Colorido {
+      public void fazerBarulho() {
+          System.out.println("Óinc!");
+      }
+
+      // Implementação da interface Pesado
+      public double obterPeso() {
+          return 50.00;
+      }
+
+      // Implementação da interface Colorido
+      public Color obterCor() {
+          return Color.BLACK;
+      }
+
+      // Uma propriedade só do porco
+      public boolean enlameado() {
+          return true;
+      }
+    }
+    ```
