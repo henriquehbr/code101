@@ -46,3 +46,43 @@
     O exemplo acima cria a classe Animal e duas classes derivadas de Animal. É importante observar que nas classes derivadas temos a redefinição do método fazerBarulho(). Esta redefinição é classificada como uma sobreposição (override) de métodos. O conceito de sobreposição somente pode ser identificado e utilizado quando temos classes dispostas em um relacionamento de herança.    
       
     Java não suporta herança múltipla, devido a possibilidade de uma classe pai ter um método com o mesmo nome de outra classe pai, e gerar possíveis falhas ao chamar o método, e todas as classes em Java derivam da classe Object. A única possibilidade de se ver herança múltipla em Java é no uso de interfaces, pois uma classe pode implementar várias interfaces.
+
+- nome: Interfaces
+  exemplo: public interface Pesado {
+   double obterPeso();
+   }
+  descricao: |
+
+    ### O que é uma interface?
+    Uma interface modela um comportamento esperado. Pode-se entendê-la como uma classe que contenha apenas métodos abstratos. Embora uma classe não possa conter mais de uma super classe, a classe pode implementar mais de uma interface.  
+    ### Exemplo:
+    ```java
+    public interface Pesado {
+      double obterPeso();
+    }
+
+    public interface Colorido {
+      Color obterCor();
+    }
+
+    public class Porco extends Animal implements Pesado, Colorido {
+      public void fazerBarulho() {
+          System.out.println("Óinc!");
+      }
+
+      // Implementação da interface Pesado
+      public double obterPeso() {
+          return 50.00;
+      }
+
+      // Implementação da interface Colorido
+      public Color obterCor() {
+          return Color.BLACK;
+      }
+
+      // Uma propriedade só do porco
+      public boolean enlameado() {
+          return true;
+      }
+    }
+    ```
