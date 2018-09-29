@@ -86,3 +86,233 @@
       }
     }
     ```
+- nome: Objetos Anônimos
+  exemplo:  new Animal() {}.fazerBarulho();
+  descricao: |
+
+    Podemos ter também objetos anônimos, onde não é necessário instanciar o objeto em uma variável para utilizá-lo.  
+    ### Exemplo:
+    ```java
+      public class MostraBarulho {
+      public static void main(String args[]) {
+        new Cavalo().fazerBarulho(); // Objeto anônimo.
+
+        // Abaixo um objeto e classe anônimos!
+        new Animal() {
+          public void fazerBarulho() {
+              System.out.println("QUAC!");
+          }
+        }.fazerBarulho();
+      }
+    }
+    ```
+- nome: Modificadores
+  exemplo: private, static, public...
+  descricao: |
+    Os modificadores de acesso são palavras-chave que modificam a forma como podem ser acessadas as classes, métodos e/ou variáveis.  
+    ### Modificador de acesso private
+    O modificador de acesso "private" quando aplicado a um atributo ou a um método indica que os mesmos só podem ser acessados de dentro da classe que os criou (encapsulamento). Uma classe que herde de uma superclasse com atributos declarados como "private" só poderá ter acesso a eles através dos métodos públicos da própria superclasse, caso contrário, não haverá acesso a estes atributos.  
+    Exemplo:  
+    ```java
+      class Circulo
+      {    
+        private float raio;
+        Circulo()
+          {
+              super();
+              setRaio( 3.0 );
+          }
+        void setRaio( float r )
+          {
+              raio = r
+          }
+      }
+      class Pneu extends Circulo
+      {
+        Pneu p = new Pneu();
+        p.raio = 10.0; //Erro de compilação. O Atributo raio é privado da classe Circulo
+        p.setRaio(10.0); //Correto, pois a classe Pneu está utilizando os métodos definidos na classe Circulo para fazer
+                        //acesso ao atributo privado raio 
+      }
+    ```
+    ### Modificador de acesso protected
+    A instrução protected indica que o método ou a variável assim declarada possa ser acessada somente dentro do pacote em que está contida através de uma subclasse.  
+    ### Modificador de acesso public
+    A instrução public indica que a classe, método ou variável assim declarada possa ser acessada em qualquer lugar e a qualquer momento da execução do programa.
+    ### Friendly
+    Sem modificador de acesso, o membro da classe é considerado friendly. Não há uma palavra-chave para esse modificador.
+
+    ***
+
+    ### Outros Modificadores
+
+    #### Modificador de acesso static
+    A palavra reservada static serve:  
+    * na declaração de uma variável dentro de uma classe, para se criar uma variável que será compartilhada por todas as instâncias de objetos de uma classe como um variável comum. Ou seja, a variável criada será a mesma em todas instâncias e quando seu conteúdo é modificado em uma das instâncias então ele será modificado em todas instâncias; 
+       
+    * na declaração de um método que deve ser acessado diretamente na classe e não nas suas instâncias.
+
+    #### Modificador abstract
+    A instrução abstract serve para:
+    * declarar métodos abstratos, ou seja, métodos que deverão ser desenvolvidos/implementados nas subclasses. Quando a classe que contiver métodos abstratos for herdada, os referidos métodos deverão ser implementados, caso contrário, a classe que extendeu deverá ser declarada como abstrata.  
+      
+    * declarar classes abstratas que se desenvolvem numa(s) subclasse(s). Classes abstratas são aquelas que não estão totalmente implementadas/descritas. Uma classe abstrata não pode ser instanciada e é amplamente usada nas interfaces.  
+     
+    * Uma classe é considerada abstrata se contiver pelo menos um método abstrato. Um método abstrato tem a seguinte característica: void getName( );  
+     
+    * Caso o método tenha as chaves características {}, o mesmo não mais será considerado abstrato, embora não tenha código dentro das chaves.  
+
+    ### Modificador final
+    * A instrução final indica que a classe, método ou variável assim declarada têm uma única atribuição que se mantém constante, ou seja, não pode ser alterada no decorrer do processamento.  
+    * Além de não admitir a criação de classes filhas.  
+    * Este modificador declara o que chamamos, em programação, de constante.  
+
+- nome: Declaração de Variáveis
+  exemplo: modificador tipo identificador;
+  descricao: |
+    A declaração de uma variável consiste em dar um nome para a posição de memória a ser usada e especificar qual tipo de dado a guardar na memória.  
+    Para declarar uma variável, utiliza-se a seguinte sintaxe:
+    ```java
+        static int flor;
+    ```
+    Observação: o modificador é opcional no caso da variável ser a completar  
+    Por exemplo:  
+    ```java
+      static int flor;
+    ```
+    Pode-se declarar mais de uma variável do mesmo tipo separando-as por vírgulas, como na seguinte sintaxe:  
+    ```java
+      modificador tipo identificador1, identificador2, identificador3;
+    ```
+    Na pratica, da seguinte forma:  
+    ```java
+      static float medida, raiz1, raiz2;
+    ```
+
+    *Para saber mais sobre modificadores, é só buscar na barra de pesquisa, temos um tópico sobre isso.*
+
+- nome: Vetores
+  exemplo: int vetor[]; 
+  descricao: |
+    Na declaração de vetores deverão ser fornecidas três informações: 
+    * O nome do vetor;
+    * O número de posições do vetor (seu tamanho);
+    * O tipo de dado armazenado no vetor;  
+
+    *Para ver quais são os tipos de dados, pesquise por tipo de dados, na barra de pesquisa.*
+
+    A declaração de um vetor para "inteiros", de nome "vetor", em Java:  
+    ```java
+      int vetor[]; // declaração do vetor
+    ```
+
+    Podemos notar que as declarações de vetores são semelhantes às declarações de variáveis, 
+    os elementos sintáticos que diferenciam as variáveis do tipo vetor das outras variáveis são os colchetes.
+    Embora declarado, o vetor não está pronto para uso, sendo necessário reservar espaço para seus elementos 
+    (uma operação de alocação de memória).
+
+    ```java
+      vetor = new int[10]; // alocação de espaço para vetor
+    ```
+
+    Na alocação de espaço, não repetimos os colchetes e utilizamos o operador new
+    (uma palavra reservada da linguagem) para reservar espaço para 10 (dez) elementos 
+    do tipo int.  
+
+    As duas declarações podem ser combinadas em um única, mais compacta: 
+
+    ```java
+      int vetor[] = new int[10]; // declaração combinada
+    ```
+
+    #### Exemplos de Declarações de Variáveis do Tipo Vetor
+    Na linguagem Java um vetor é uma "classe, portanto, deve-se utilizar o método new ,
+    que ativa o método construtor correspondente, para criar instâncias, ou exemplares, 
+    da classe vetor do tipo selecionado (int, double, float, char, String, entre outros), 
+    por exemplo:  
+
+    a) declarando um vetor para armazenar 10 números inteiros  
+
+    ```java
+      int nro = new int[10];
+    ```
+
+    b) declarando um vetor para armazenar 10 valores do tipo real (ou monetários)  
+
+    ```java
+      double salario = new double[10];
+    ```
+    c) declarando um vetor para armazenar o nome dos 12 meses do ano  
+
+    ```java
+      String mes = new String[12];
+    ```
+
+    #### Em síntese
+    ```java
+      int n = 10; // tamanho do vetor
+      int v[] = new int[n]; // declaração e alocação de espaço para o vetor "v"
+      int i; // índice ou posição
+      
+      // processando os "n" elementos do vetor "v"
+      for (i=0; i<n; i++) {
+        v[i] = i; // na i-ésima posição do vetor "v" armazena o valor da variável "i"
+      }
+    ```
+    #### Inicialização de vetores
+
+    Java permite a inicialização de vetores no momento da declaração, por exemplo:
+
+    ```java
+      String nome[] = {"Juca Bala", "Maria da Silva", "Marcos Paqueta"};
+    ```
+
+    Isso significa que nome[0] terá o valor Juca Bala, nome[1] terá o valor Maria da Silva,
+    nome[2] terá o valor Marcos Paqueta. Nota-se que não é necessário indicar o tamanho do vetor
+    e também fazer a alocação de espaço através do operador new.   
+
+- nome: IF/ELSE
+  exemplo: Estrutura Condicional
+  descricao: |
+
+    ### Como Funciona?
+
+    A estrutura condicional if/else permite ao programa avaliar uma expressão como
+    sendo verdadeira ou falsa e, de acordo com o resultado dessa verificação, 
+    executar uma ou outra rotina.  
+
+    **Sintaxe:**
+    ```java
+      if (expressão a ser verificada) {
+        // bloco de código 1
+      } else {
+        // bloco de código 2
+      } 
+    ```
+    As instruções presentes no bloco de código 1 serão executadas caso a expressão
+    seja verdadeira. Do contrário, serão executadas as instruções presentes no bloco
+    de código 2.
+
+- nome: While
+  exemplo: Laço de Repetição
+  descricao: |
+    ### Como Funciona?
+
+    While executa uma comparação com a variável. Se a comparação for verdadeira, ele
+    executa o bloco de instruções ( { } ) ou apenas a próxima linha de código logo abaixo.
+
+    **Sintaxe:**
+    ```java
+      while (condição) {
+        // código a ser executado
+      } 
+    ```
+
+    **Exemplo:**
+    ```java
+      while (contador < 50) {
+        System.out.println("Repetição nr: " + contador);
+        contador++;
+      }
+    ```
+  
