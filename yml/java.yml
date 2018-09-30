@@ -21,6 +21,7 @@
     ```java
     public static void main(String[] args) {
       System.out.println("Olá, Mundo!"); //Imprime na tela a frase
+    }
     ```
 - nome: Classes
   exemplo: public abstract class Animal {
@@ -93,7 +94,7 @@
     Podemos ter também objetos anônimos, onde não é necessário instanciar o objeto em uma variável para utilizá-lo.  
     ### Exemplo:
     ```java
-      public class MostraBarulho {
+    public class MostraBarulho {
       public static void main(String args[]) {
         new Cavalo().fazerBarulho(); // Objeto anônimo.
 
@@ -114,25 +115,20 @@
     O modificador de acesso "private" quando aplicado a um atributo ou a um método indica que os mesmos só podem ser acessados de dentro da classe que os criou (encapsulamento). Uma classe que herde de uma superclasse com atributos declarados como "private" só poderá ter acesso a eles através dos métodos públicos da própria superclasse, caso contrário, não haverá acesso a estes atributos.  
     Exemplo:  
     ```java
-      class Circulo
-      {    
+    class Circulo {    
         private float raio;
-        Circulo()
-          {
-              super();
-              setRaio( 3.0 );
-          }
-        void setRaio( float r )
-          {
-              raio = r
-          }
+        Circulo() {
+          super();
+          setRaio( 3.0 );
+        }
+        void setRaio( float r ) {
+          raio = r
+        }
       }
-      class Pneu extends Circulo
-      {
+      class Pneu extends Circulo {
         Pneu p = new Pneu();
         p.raio = 10.0; //Erro de compilação. O Atributo raio é privado da classe Circulo
-        p.setRaio(10.0); //Correto, pois a classe Pneu está utilizando os métodos definidos na classe Circulo para fazer
-                        //acesso ao atributo privado raio 
+        p.setRaio(10.0); //Correto, pois a classe Pneu está utilizando os métodos definidos na classe Circulo para fazer acesso ao atributo privado raio 
       }
     ```
     ### Modificador de acesso protected
@@ -173,20 +169,20 @@
     A declaração de uma variável consiste em dar um nome para a posição de memória a ser usada e especificar qual tipo de dado a guardar na memória.  
     Para declarar uma variável, utiliza-se a seguinte sintaxe:
     ```java
-        static int flor;
+    static int flor;
     ```
     Observação: o modificador é opcional no caso da variável ser a completar  
     Por exemplo:  
     ```java
-      static int flor;
+    static int flor;
     ```
     Pode-se declarar mais de uma variável do mesmo tipo separando-as por vírgulas, como na seguinte sintaxe:  
     ```java
-      modificador tipo identificador1, identificador2, identificador3;
+    modificador tipo identificador1, identificador2, identificador3;
     ```
     Na pratica, da seguinte forma:  
     ```java
-      static float medida, raiz1, raiz2;
+    static float medida, raiz1, raiz2;
     ```
 
     *Para saber mais sobre modificadores, é só buscar na barra de pesquisa, temos um tópico sobre isso.*
@@ -203,7 +199,7 @@
 
     A declaração de um vetor para "inteiros", de nome "vetor", em Java:  
     ```java
-      int vetor[]; // declaração do vetor
+    int vetor[]; // declaração do vetor
     ```
 
     Podemos notar que as declarações de vetores são semelhantes às declarações de variáveis, 
@@ -212,7 +208,7 @@
     (uma operação de alocação de memória).
 
     ```java
-      vetor = new int[10]; // alocação de espaço para vetor
+    vetor = new int[10]; // alocação de espaço para vetor
     ```
 
     Na alocação de espaço, não repetimos os colchetes e utilizamos o operador new
@@ -222,7 +218,7 @@
     As duas declarações podem ser combinadas em um única, mais compacta: 
 
     ```java
-      int vetor[] = new int[10]; // declaração combinada
+    int vetor[] = new int[10]; // declaração combinada
     ```
 
     #### Exemplos de Declarações de Variáveis do Tipo Vetor
@@ -234,44 +230,44 @@
     a) declarando um vetor para armazenar 10 números inteiros  
 
     ```java
-      int nro = new int[10];
+    int num = new int[10];
     ```
 
     b) declarando um vetor para armazenar 10 valores do tipo real (ou monetários)  
 
     ```java
-      double salario = new double[10];
+    double salario = new double[10];
     ```
     c) declarando um vetor para armazenar o nome dos 12 meses do ano  
 
     ```java
-      String mes = new String[12];
+    String mes = new String[12];
     ```
 
     #### Em síntese
     ```java
-      int n = 10; // tamanho do vetor
-      int v[] = new int[n]; // declaração e alocação de espaço para o vetor "v"
-      int i; // índice ou posição
+    int n = 10; // tamanho do vetor
+    int v[] = new int[n]; // declaração e alocação de espaço para o vetor "v"
+    int i; // índice ou posição
       
-      // processando os "n" elementos do vetor "v"
-      for (i=0; i<n; i++) {
-        v[i] = i; // na i-ésima posição do vetor "v" armazena o valor da variável "i"
-      }
+    // processando os "n" elementos do vetor "v"
+    for (i=0; i<n; i++) {
+      v[i] = i; // na i-ésima posição do vetor "v" armazena o valor da variável "i"
+    }
     ```
     #### Inicialização de vetores
 
     Java permite a inicialização de vetores no momento da declaração, por exemplo:
 
     ```java
-      String nome[] = {"Juca Bala", "Maria da Silva", "Marcos Paqueta"};
+    String nome[] = {"Juca Bala", "Maria da Silva", "Marcos Paqueta"};
     ```
 
     Isso significa que nome[0] terá o valor Juca Bala, nome[1] terá o valor Maria da Silva,
     nome[2] terá o valor Marcos Paqueta. Nota-se que não é necessário indicar o tamanho do vetor
     e também fazer a alocação de espaço através do operador new.   
 
-- nome: IF/ELSE
+- nome: If/Else
   exemplo: Estrutura Condicional
   descricao: |
 
@@ -283,11 +279,11 @@
 
     **Sintaxe:**
     ```java
-      if (expressão a ser verificada) {
-        // bloco de código 1
-      } else {
-        // bloco de código 2
-      } 
+    if (expressão a ser verificada) {
+      // bloco de código 1
+    } else {
+      // bloco de código 2
+    } 
     ```
     As instruções presentes no bloco de código 1 serão executadas caso a expressão
     seja verdadeira. Do contrário, serão executadas as instruções presentes no bloco
@@ -303,16 +299,15 @@
 
     **Sintaxe:**
     ```java
-      while (condição) {
-        // código a ser executado
-      } 
+    while (condição) {
+      // código a ser executado
+    } 
     ```
 
     **Exemplo:**
     ```java
-      while (contador < 50) {
-        System.out.println("Repetição nr: " + contador);
-        contador++;
-      }
+    while (contador < 50) {
+      System.out.println("Repetição nr: " + contador);
+      contador++;
+    }
     ```
-  

@@ -136,7 +136,7 @@ function listLanguagesOnPage(viewMode) {
 						<div class="mdc-layout-grid__cell animated fadeIn">
 							<div class="mdc-card">
 								<div onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-card__primary-action">
-									<div style="background-image: url(${yamlData[i].icone});" class="mdc-card__media mdc-card__media--16-9"></div>
+									<div style="background-image: url(${yamlData[i].icone}); background-size: auto;" class="mdc-card__media mdc-card__media--16-9"></div>
 									<div class="mdc-card-content">
 										<h2 class="mdc-typography--headline6">${yamlData[i].nome}</h2>
 										<h3 class="mdc-typography--body2">${yamlData[i].descricao}</h3>
