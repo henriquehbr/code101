@@ -21,7 +21,6 @@
     ```java
     public static void main(String[] args) {
       System.out.println("Olá, Mundo!"); //Imprime na tela a frase
-    }
     ```
 - nome: Classes
   exemplo: public abstract class Animal {
@@ -94,7 +93,7 @@
     Podemos ter também objetos anônimos, onde não é necessário instanciar o objeto em uma variável para utilizá-lo.  
     ### Exemplo:
     ```java
-    public class MostraBarulho {
+      public class MostraBarulho {
       public static void main(String args[]) {
         new Cavalo().fazerBarulho(); // Objeto anônimo.
 
@@ -115,20 +114,25 @@
     O modificador de acesso "private" quando aplicado a um atributo ou a um método indica que os mesmos só podem ser acessados de dentro da classe que os criou (encapsulamento). Uma classe que herde de uma superclasse com atributos declarados como "private" só poderá ter acesso a eles através dos métodos públicos da própria superclasse, caso contrário, não haverá acesso a estes atributos.  
     Exemplo:  
     ```java
-    class Circulo {    
+      class Circulo
+      {    
         private float raio;
-        Circulo() {
-          super();
-          setRaio( 3.0 );
-        }
-        void setRaio( float r ) {
-          raio = r
-        }
+        Circulo()
+          {
+              super();
+              setRaio( 3.0 );
+          }
+        void setRaio( float r )
+          {
+              raio = r
+          }
       }
-      class Pneu extends Circulo {
+      class Pneu extends Circulo
+      {
         Pneu p = new Pneu();
         p.raio = 10.0; //Erro de compilação. O Atributo raio é privado da classe Circulo
-        p.setRaio(10.0); //Correto, pois a classe Pneu está utilizando os métodos definidos na classe Circulo para fazer acesso ao atributo privado raio 
+        p.setRaio(10.0); //Correto, pois a classe Pneu está utilizando os métodos definidos na classe Circulo para fazer
+                        //acesso ao atributo privado raio 
       }
     ```
     ### Modificador de acesso protected
@@ -169,20 +173,20 @@
     A declaração de uma variável consiste em dar um nome para a posição de memória a ser usada e especificar qual tipo de dado a guardar na memória.  
     Para declarar uma variável, utiliza-se a seguinte sintaxe:
     ```java
-    static int flor;
+        static int flor;
     ```
     Observação: o modificador é opcional no caso da variável ser a completar  
     Por exemplo:  
     ```java
-    static int flor;
+      static int flor;
     ```
     Pode-se declarar mais de uma variável do mesmo tipo separando-as por vírgulas, como na seguinte sintaxe:  
     ```java
-    modificador tipo identificador1, identificador2, identificador3;
+      modificador tipo identificador1, identificador2, identificador3;
     ```
     Na pratica, da seguinte forma:  
     ```java
-    static float medida, raiz1, raiz2;
+      static float medida, raiz1, raiz2;
     ```
 
     *Para saber mais sobre modificadores, é só buscar na barra de pesquisa, temos um tópico sobre isso.*
@@ -199,7 +203,7 @@
 
     A declaração de um vetor para "inteiros", de nome "vetor", em Java:  
     ```java
-    int vetor[]; // declaração do vetor
+      int vetor[]; // declaração do vetor
     ```
 
     Podemos notar que as declarações de vetores são semelhantes às declarações de variáveis, 
@@ -208,7 +212,7 @@
     (uma operação de alocação de memória).
 
     ```java
-    vetor = new int[10]; // alocação de espaço para vetor
+      vetor = new int[10]; // alocação de espaço para vetor
     ```
 
     Na alocação de espaço, não repetimos os colchetes e utilizamos o operador new
@@ -218,7 +222,7 @@
     As duas declarações podem ser combinadas em um única, mais compacta: 
 
     ```java
-    int vetor[] = new int[10]; // declaração combinada
+      int vetor[] = new int[10]; // declaração combinada
     ```
 
     #### Exemplos de Declarações de Variáveis do Tipo Vetor
@@ -230,45 +234,45 @@
     a) declarando um vetor para armazenar 10 números inteiros  
 
     ```java
-    int num = new int[10];
+      int nro = new int[10];
     ```
 
     b) declarando um vetor para armazenar 10 valores do tipo real (ou monetários)  
 
     ```java
-    double salario = new double[10];
+      double salario = new double[10];
     ```
     c) declarando um vetor para armazenar o nome dos 12 meses do ano  
 
     ```java
-    String mes = new String[12];
+      String mes = new String[12];
     ```
 
     #### Em síntese
     ```java
-    int n = 10; // tamanho do vetor
-    int v[] = new int[n]; // declaração e alocação de espaço para o vetor "v"
-    int i; // índice ou posição
+      int n = 10; // tamanho do vetor
+      int v[] = new int[n]; // declaração e alocação de espaço para o vetor "v"
+      int i; // índice ou posição
       
-    // processando os "n" elementos do vetor "v"
-    for (i=0; i<n; i++) {
-      v[i] = i; // na i-ésima posição do vetor "v" armazena o valor da variável "i"
-    }
+      // processando os "n" elementos do vetor "v"
+      for (i=0; i<n; i++) {
+        v[i] = i; // na i-ésima posição do vetor "v" armazena o valor da variável "i"
+      }
     ```
     #### Inicialização de vetores
 
     Java permite a inicialização de vetores no momento da declaração, por exemplo:
 
     ```java
-    String nome[] = {"Juca Bala", "Maria da Silva", "Marcos Paqueta"};
+      String nome[] = {"Juca Bala", "Maria da Silva", "Marcos Paqueta"};
     ```
 
     Isso significa que nome[0] terá o valor Juca Bala, nome[1] terá o valor Maria da Silva,
     nome[2] terá o valor Marcos Paqueta. Nota-se que não é necessário indicar o tamanho do vetor
     e também fazer a alocação de espaço através do operador new.   
 
-- nome: If/Else
-  exemplo: Estrutura Condicional
+- nome: IF/Else
+  exemplo: if(1==10){}
   descricao: |
 
     ### Como Funciona?
@@ -279,18 +283,18 @@
 
     **Sintaxe:**
     ```java
-    if (expressão a ser verificada) {
-      // bloco de código 1
-    } else {
-      // bloco de código 2
-    } 
+      if (expressão a ser verificada) {
+        // bloco de código 1
+      } else {
+        // bloco de código 2
+      } 
     ```
     As instruções presentes no bloco de código 1 serão executadas caso a expressão
     seja verdadeira. Do contrário, serão executadas as instruções presentes no bloco
     de código 2.
 
 - nome: While
-  exemplo: Laço de Repetição
+  exemplo: while (contador < 50){}
   descricao: |
     ### Como Funciona?
 
@@ -299,15 +303,166 @@
 
     **Sintaxe:**
     ```java
-    while (condição) {
-      // código a ser executado
-    } 
+      while (condição) {
+        // código a ser executado
+      } 
     ```
 
     **Exemplo:**
     ```java
-    while (contador < 50) {
-      System.out.println("Repetição nr: " + contador);
-      contador++;
-    }
+      while (contador < 50) {
+        System.out.println('Repetição nr:  + contador);
+        contador++;
+      }
     ```
+- nome: Do-While
+  exemplo: do {}while(1>10);
+  descricao: |
+
+    ### Como Funciona?
+
+    DO WHILE é uma estrutura de repetição, tal como o próprio while. A principal
+    diferença entre os dois é que DO WHILE irá fazer a comparação apenas no final
+    do bloco de código, sendo representado da seguinte forma:  
+
+    **Sintaxe:**
+    ```java
+      do {
+        // comandos a serem exeutados
+      } while(comparação);
+    ```
+
+    ***Exemplo:***
+    ```java
+      static int aumento = 250;
+
+      do{
+        System.out.println("O valor atual do aumento é de " + aumento);
+        aumento += 50;
+      } while(aumento < 500);
+    ```
+- nome: For
+  exemplo: for(i=0; i<10; i++) {}
+  descricao: | 
+      
+      ### Como Funciona?
+
+      Em pseudocódigo o laço for da linguagem C é equivalente ao comando Para.  
+      Seu funcionamento é simples, como veremos.  
+
+      **Pseudocódigo:**
+
+      ```
+        Para (valor inicial até condição_final passo n)faça
+        Inicio
+            Instruções;
+        Fim;
+      ```
+      
+      Onde:
+
+      * valor_inicial é uma instrução de atribuição do valor inicial do laço para a variável de controle.
+      * condição final é uma condição que controla o laço.
+      * passo é o incremento do laço.
+
+      **Sintaxe:**
+
+      ```
+        for(valor_inicial; condição_final; valor_incremento)
+        {
+            instruções;
+        }
+      ```
+
+      **Exemplo:**
+
+      ```java
+        for (int i = 0; i < 5; i++){
+            System.out.println("Indice " + i);
+        }
+      ```
+- nome: System.out
+  exemplo: System.out.println("texto_qualquer");
+  descricao: | 
+
+      ### O que é?
+
+      O objeto System.out é a saída padrão, que permite exibir as Strings no console (terminal) de comando 
+      quando o aplicativo de Java é executado. Dentro desse objeto existem métodos para gerar saídas de Strings,
+      entre elas são: println, print e o printf.
+
+      #### O método System.out.println()
+
+      A instrução System.out.println(), gera uma saída de texto entre aspas duplas significando uma String,
+      criando uma nova linha e posicionando o cursor na linha abaixo, o que é identificado pela terminação “ln”. 
+
+      ```java
+        public class Texto_Simples {
+          public static void main(String[] args) {
+              System.out.println(“Seu texto é inserido aqui, entre aspas duplas”);
+          }
+        }
+      ```
+
+      #### O método System.out.print()
+
+      O método com print, se for observado não possui o “ln”, por isso exibe uma String sem criar uma nova linha,
+      deixando o seu cursor na mesma linha,
+
+      ```java
+        public class Texto_Simples_print {
+          public static void main(String[] args) {
+              System.out.print(“José”);
+                System.out.print(“Silva Moraes”); 
+          }
+        }
+      ```
+
+      #### O método printf()
+
+      O argumento do método printf é uma String de formato que pode consistir em texto fixo e especificadores de formato.
+      A letra “f” no final da palavra “print” significa “formatted” ou seja exibe os dados formatados.
+
+      ```java
+        public class Texto_printf{
+            public static void main(String[] args) {
+                  System.out.printf(“%s\n %s\n”, “Marcela”, “Nogueira”);
+            }
+        }
+      ```
+
+      **Exibindo números com o especificador de formato %d**
+
+      ```java
+        public class Testa_Especificador {
+            public static void main(String[] args) {
+                int num1 = 10;
+                int num2 = 30;  
+                System.out.printf("Soma das variáveis num1 e num 2 = %d",(num1 + num2));
+            }
+        } 
+      ```
+
+      *Para saber mais sobre especificadores de formato, é só pesquisar no code. Temos um tópico sobre isso.*
+
+- nome: Especificadores de formato
+  exemplo: '%d,%f,%s...'
+  descricao: | 
+
+      Os especificadores de formato são como marcadores de lugares para um valor, especificando o tipo da saída
+      dos dados que iniciam com um sinal de porcentagem (%) seguido por um caractere representando seu tipo de dado.
+
+      * '%d'  representa valores inteiros;
+      * '%f'  representa valores floats;
+      * '%2f' representa valores doubles;
+      * '%b'  representa valores booleanos;
+      * '%c'  representa valores char;
+      * '%s'  represnta valores char em um vetor (string);
+
+      Geralmente são utilizados em System.Out.printf().
+
+      **Exemplo:**
+
+      ```java
+      System.out.printf("Soma das variáveis num1 e num 2 = %d",(num1 + num2));
+      ```
