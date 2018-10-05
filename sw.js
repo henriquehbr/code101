@@ -8,6 +8,7 @@ var precacheFiles = [
 	"https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
+	"css/w3pro.css",
 	"css/code101.css",
 
 	// JS
@@ -22,15 +23,18 @@ var precacheFiles = [
 	"js/code101.js",
 
 	// RESOURCES (RES)
-	"res/lang-icons/c.png",
-	"res/lang-icons/js.png",
+	"res/lang-icons/c.svg",
+	"res/lang-icons/javascript.svg",
+	"res/lang-icons/java.svg",
 	"res/PressStart2P.ttf",
+	"https://use.fontawesome.com/releases/v5.3.1/css/all.css",
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
 
 	// YML
 	"yml/c.yml",
 	"yml/javascript.yml",
+	"yml/java.yml",
 	"yml/languages.yml",
 
 	// HTML

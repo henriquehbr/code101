@@ -40,9 +40,11 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
+		<link rel="stylesheet" href="css/w3pro.css">
 		<link rel="stylesheet" href="css/code101.css">
 		<link async href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link async rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 	</head>
 	<body>
 
@@ -62,7 +64,7 @@
 		</aside>
 
 		<!-- TOP APP BAR (SEARCH BAR COLLAPSED) -->
-		<header id="searchBarCollapsed" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor">
+		<header id="searchBarCollapsed" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor w3-card">
 			<div class="mdc-top-app-bar__row">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 
@@ -87,19 +89,19 @@
 							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
 
 								<!-- HOME PAGE -->
-								<li onclick="listLanguagesOnPage(viewMode)" class="mdc-list-item" role="menuitem">
+								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">home</i>
-										Página inicial
+									Página inicial
 								</li>
 
 								<!-- SUGGEST COMMAND -->
-								<li onclick="window.open('https://goo.gl/forms/xgzvniZZz9sK46A43', '_blank')" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">description</i>
+								<li onclick="suggestCommandsDialog()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">message</i>
 									Sugerir comando
 								</li>
 
 								<!-- CHANGE VIEW -->
-								<li id="changeview-btn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
+								<li id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
 									<i class="mdc-list-item__graphic material-icons">view_list</i>
 									Visualizar em lista
 								</li>
@@ -123,7 +125,7 @@
 			<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon">
 
 				<!-- SEARCH INPUT -->
-				<input id="searchInput" type="text" id="my-input" class="mdc-text-field__input" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<input id="searchInput" type="text" id="my-input" class="mdc-text-field__input w3-card" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
 
 				<!-- CLOSE ICON -->
 				<i class="material-icons mdc-text-field__icon" tabindex="1" role="button" onclick="toggleSearchBar('close')">close</i>

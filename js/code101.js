@@ -1,11 +1,26 @@
-var drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
+// Instanteate MDC components (drawer and menu)
+drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
 
-var menuEl = document.querySelector(".mdc-menu");
-var menu = new mdc.menu.MDCMenu(menuEl);
+menuEl = document.querySelector(".mdc-menu");
+menu = new mdc.menu.MDCMenu(menuEl);
 
 menuEl.addEventListener('MDCMenu:selected', function(evt) {
 	var detail = evt.detail;
 });
+
+var html2md = new showdown.Converter();
+
+// Verify if browser supports Web Storage
+if (typeof(Storage) !== "undefined") {
+	console.log("Your browser supports Web Storage");
+} else {
+	console.log("Your browser doesn't support Web Storage!");
+}
+
+// Create "viewMode" on localStorage (if not exists)
+if (localStorage.getItem("viewMode") == null) {
+	localStorage.setItem("viewMode", "card");
+}
 
 // action --> open/close/search
 function toggleSearchBar(action) {
@@ -23,6 +38,7 @@ function toggleSearchBar(action) {
 			// Show the expanded search bar
 			$("#searchBarExpanded").addClass("animated fadeIn");
 			$("#searchBarExpanded").css("display", "block");
+
 		break;
 
 		case "close":
@@ -75,11 +91,8 @@ function toggleAccordion() {
 	});
 };
 
-var html2md = new showdown.Converter();
-viewMode = "card";
-
 // List all the programming languages on the page
-function listLanguagesOnPage(viewMode) {
+function listLanguagesOnPage() {
 
 	// Empty the content of the all the lists
 	$("#view-list, #view-card, #accordionList").html("");
@@ -89,7 +102,7 @@ function listLanguagesOnPage(viewMode) {
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
 
-		switch (viewMode) {
+		switch (localStorage.getItem("viewMode")) {
 			case "list":
 
 				// Turn card view invisible
@@ -108,15 +121,13 @@ function listLanguagesOnPage(viewMode) {
 						<li onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-list-item animated fadeIn">
 							<img src="${yamlData[i].icone}" class="mdc-list-item__graphic" alt="${yamlData[i].nome}">
 							<span class="mdc-list-item__text">
-								${yamlData[i].nome}
-								<span class="mdc-list-item__secondary-text">
-									${yamlData[i].descricao}
-								</span>
+								<span class="mdc-list-item__primary-text">${yamlData[i].nome}</span>
+								<span class="mdc-list-item__secondary-text">${yamlData[i].descricao}</span>
 							</span>
 						</li>
 					`)
 				})
-				break;
+			break;
 
 			case "card":
 
@@ -146,7 +157,7 @@ function listLanguagesOnPage(viewMode) {
 						</div>
 					`)
 				})
-				break;
+			break;
 		}
 	})
 }
@@ -158,7 +169,7 @@ function listLanguagesOnDrawer() {
 
 	// Appends the "Home" item to the drawer
 	$("#languagesDrawer").append(`
-		<a onclick="listLanguagesOnPage('${viewMode}'); drawer.open = false" class="mdc-list-item">
+		<a onclick="listLanguagesOnPage('${localStorage.getItem("viewMode")}'); drawer.open = false" class="mdc-list-item">
 			<i class="mdc-list-item__graphic material-icons">home</i>
 			Página inicial
 		</a>
@@ -184,6 +195,9 @@ function listLanguagesOnDrawer() {
 
 // List commands of a specific language
 function listCommands(language) {
+
+	// Close the search bar (if open)
+	toggleSearchBar("close");
 
 	// Empty the content of the all the lists
 	$("#view-list, #view-card, #accordionList").html("");
@@ -230,35 +244,31 @@ function listCommands(language) {
 }
 
 function changeViewMode() {
-	switch (viewMode) {
+	switch (localStorage.getItem("viewMode")) {
 		case "list":
-			viewMode = "card";
-			listLanguagesOnPage(viewMode);
-			$("#changeview-btn").html(`
-				<i class="mdc-list-item__graphic material-icons">view_list</i>
-				Visualizar em lista
-			`);
-			break;
-
-		case "card":
-			viewMode = "list";
-			listLanguagesOnPage(viewMode);
-			$("#changeview-btn").html(`
+			localStorage.setItem("viewMode", "card");
+			listLanguagesOnPage(localStorage.getItem("viewMode"));
+			$("#changeViewBtn").html(`
 				<i class="mdc-list-item__graphic material-icons">view_modules</i>
 				Visualizar em card
 			`);
-			break;
+		break;
+
+		case "card":
+			localStorage.setItem("viewMode", "list");
+			listLanguagesOnPage(localStorage.getItem("viewMode"));
+			$("#changeViewBtn").html(`
+				<i class="mdc-list-item__graphic material-icons">view_list</i>
+				Visualizar em lista
+			`);
+		break;
 	}
 }
 
 // Displays the "about" dialog
 function aboutDialog() {
 	$("body").append(`
-		<aside id="aboutDialog"
-			class="mdc-dialog"
-			role="alertdialog"
-			aria-labelledby="dialog-title"
-			aria-describedby="mdc-dialog-description">
+		<aside id="aboutDialog" class="mdc-dialog" role="alertdialog">
 			<div class="mdc-dialog__surface">
 
 				<header class="mdc-dialog__header">
@@ -267,10 +277,10 @@ function aboutDialog() {
 					</h2>
 				</header>
 
-				<section id="mdc-dialog-description" class="mdc-dialog__body">
+				<section id="mdc-dialog-body" class="mdc-dialog__body">
 					Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
-
-					<a href="https://github.com/henriquehbr/code101" target="_blank">Visitar repositório no Github</a>
+					<a href="https://github.com/henriquehbr/code101" target="_blank"><i class="fab fa-github"></i> Visitar repositório no Github</a><br>
+					<a href="https://instagram.com/code101.com.br" target="_blank"><i class="fab fa-instagram"></i> Visitar página no Instagram</a>
 				</section>
 
 				<footer class="mdc-dialog__footer">
@@ -281,9 +291,43 @@ function aboutDialog() {
 			<div class="mdc-dialog__backdrop"></div>
 		</aside>
 	`);
+
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#aboutDialog"));
 	dialog.show();
 }
 
-listLanguagesOnPage(viewMode);
+// Displays the "suggestCommands" dialog
+function suggestCommandsDialog() {
+	$("body").append(`
+		<aside id="suggestCommandsDialog" class="mdc-dialog" role="alertdialog">
+			<div class="mdc-dialog__surface">
+
+				<header class="mdc-dialog__header">
+					<h2 id="dialog-title" class="mdc-dialog__header__title">
+						Ajude esse projeto a ficar ainda maior, sugira um comando.
+					</h2>
+				</header>
+
+				<section id="mdc-dialog-body" class="mdc-dialog__body">
+					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Nome do comando">
+					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Seu email">
+					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Linguagem de programação">
+					<textarea class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
+				</section>
+
+				<footer class="mdc-dialog__footer">
+					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">OK</button>
+					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Cancelar</button>
+				</footer>
+
+			</div>
+			<div class="mdc-dialog__backdrop"></div>
+		</aside>
+	`);
+
+	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
+	dialog.show();
+}
+
+listLanguagesOnPage(localStorage.getItem("viewMode"));
 listLanguagesOnDrawer();

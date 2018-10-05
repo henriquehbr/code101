@@ -1,8 +1,8 @@
 @font-face {font-family: Atari; src: url("../res/PressStart2P.ttf")}
 
-* {
-	box-sizing: border-box;
-}
+textarea {resize: none}
+
+* {box-sizing: border-box}
 
 body {
 	font-family: Roboto;
@@ -13,9 +13,7 @@ body {
 
 a,
 a:hover,
-a:focus {
-	text-decoration: none;
-}
+a:focus {text-decoration: none}
 
 #searchBarExpanded header {
 	background-color: white;
@@ -33,45 +31,25 @@ a:focus {
 	user-select: none;
 }
 
-.offmode-switch {
-	margin-left: 10px;
-}
+.code101-logo {font-family: Atari}
 
-.code101-logo {
-	font-family: Atari;
-}
-
-.mdc-top-app-bar, .mdc-text-field {
-	box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px;
-}
-
-.mdc-card-content {
-	padding: 1rem;
-}
+.mdc-card-content {padding: 1rem}
 
 /* ACCORDIONS */
 
-.panel {
-	background-color: #fff;
-}
+.panel {background-color: #fff}
 
-.panel-body {
-	padding: 30px;
-}
+.panel-body {padding: 30px}
 
 .panel-title {
 	margin-top: 0;
 	margin-bottom: 8px;
 }
 
-.accordion {
-	margin-bottom: 60px;
-}
+.accordion {margin-bottom: 60px}
 
 .accordion .collapsed,
-.toggle .collapsed {
-	display: none;
-}
+.toggle .collapsed {display: none}
 
 .panel-group .panel {
 	border: none;
@@ -80,9 +58,7 @@ a:focus {
 	border-radius: 4px;
 }
 
-.panel-group .panel {
-	margin-top: 10px;
-}
+.panel-group .panel {margin-top: 10px}
 
 .panel-group .panel-heading {
 	position: relative;
