@@ -1,8 +1,16 @@
-# code101
+<p align="center">
+	<img src="res/code101-banner.png" />
+</p>
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-A progressive web app to query programming languages commands
+<p align="center">
+	<a alt="PRs Welcome">
+		<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+	</a>
+	<a href="https://discord.gg/Hvsz23a">
+		<img src="https://img.shields.io/discord/308323056592486420.svg?logo=discord" alt="Chat on Discord">
+	</a>
+	<p align="center">A progressive web app to query programming languages commands</p>
+</p>
 
 ## About
 
@@ -15,7 +23,7 @@ As a lot of people think, sometimes, programming can be a hard task:
 
 With this in mind, code101 was born, with a main objective, to make programming easier for everyone, putting all your needs together, in one place, so, you don't need to worry with these problems anymore, beside that, you can also improve your productivity and save lots of time and effort.
 
-### Features
+## Features
 
 In conclusion, we couldn't talk about a great tool without listing it's great features, our tool stricly follows the rules and concepts of Progressive Web Applications and Material Design:
 

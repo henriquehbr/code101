@@ -22,6 +22,27 @@ if (localStorage.getItem("viewMode") == null) {
 	localStorage.setItem("viewMode", "card");
 }
 
+// Get viewMode
+switch (localStorage.getItem("viewMode")) {
+	// If viewMode == "list"
+	case "list":
+		// Change button to card mode
+		$("#changeViewBtn").html(`
+			<i class="mdc-list-item__graphic material-icons">view_modules</i>
+			Visualizar em card
+		`);
+	break;
+
+	// If viewMode == "card"
+	case "card":
+		// Change button to list mode
+		$("#changeViewBtn").html(`
+			<i class="mdc-list-item__graphic material-icons">view_list</i>
+			Visualizar em lista
+		`);
+	break;
+}
+
 // action --> open/close/search
 function toggleSearchBar(action) {
 
@@ -245,21 +266,23 @@ function listCommands(language) {
 
 function changeViewMode() {
 	switch (localStorage.getItem("viewMode")) {
+		// Set viewMode to list
 		case "list":
 			localStorage.setItem("viewMode", "card");
 			listLanguagesOnPage(localStorage.getItem("viewMode"));
 			$("#changeViewBtn").html(`
-				<i class="mdc-list-item__graphic material-icons">view_modules</i>
-				Visualizar em card
+				<i class="mdc-list-item__graphic material-icons">view_list</i>
+				Visualizar em lista
 			`);
 		break;
 
+		// Set viewMode to card
 		case "card":
 			localStorage.setItem("viewMode", "list");
 			listLanguagesOnPage(localStorage.getItem("viewMode"));
 			$("#changeViewBtn").html(`
-				<i class="mdc-list-item__graphic material-icons">view_list</i>
-				Visualizar em lista
+				<i class="mdc-list-item__graphic material-icons">view_modules</i>
+				Visualizar em card
 			`);
 		break;
 	}
@@ -316,7 +339,7 @@ function suggestCommandsDialog() {
 				</section>
 
 				<footer class="mdc-dialog__footer">
-					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">OK</button>
+					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Confirmar</button>
 					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Cancelar</button>
 				</footer>
 
