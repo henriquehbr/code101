@@ -23,6 +23,11 @@ a:focus {text-decoration: none}
 	padding: 10px;
 }
 
+#viewCard {
+	text-align: center;
+	margin-top: 10px;
+}
+
 #drawer-btn, #menu-btn, .mdc-menu-anchor {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -33,9 +38,50 @@ a:focus {text-decoration: none}
 
 .code101-logo {font-family: Atari}
 
-.mdc-card-content {padding: 1rem}
+/* ########## MINI CARDS ########## */
 
-/* ACCORDIONS */
+.miniCard {
+	margin-left: 0;
+	display: flex;
+	width: 184px;
+	height: 184px;
+	flex-grow: initial;
+	margin-bottom: 24px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 5px;
+	transition: 200ms;
+	background: #fff;
+	cursor: pointer;
+	box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+	transform: translateZ(0);
+	box-sizing: border-box;
+	line-height: 1.15;
+	user-select: none;
+}
+
+.miniCard:hover {
+	box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+	transform: scale(1.05);
+}
+
+.miniCard:active {
+	transform:scale(.9)
+}
+
+.miniCard img {
+	transition: 150ms;
+	display: block;
+	width: 40px;
+	height: 40px;
+	margin-bottom: 20px;
+	border-style: none;
+}
+
+/* ########## ACCORDIONS ########## */
 
 .panel {background-color: #fff}
 

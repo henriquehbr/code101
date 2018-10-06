@@ -36,7 +36,9 @@
 		<link rel="manifest" href="manifest.json">
 
 		<!-- CSS LIBRARIES -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
@@ -51,11 +53,6 @@
 		<!-- DRAWER -->
 		<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
 			<nav class="mdc-drawer__drawer">
-				<header class="mdc-drawer__header">
-					<div class="mdc-drawer__header-content mdc-theme--on-primary mdc-theme--primary-bg code101-logo">
-						code101
-					</div>
-				</header>
 
 				<!-- LANGUAGES LIST -->
 				<nav id="languagesDrawer" class="mdc-drawer__content mdc-list"></nav>
@@ -142,16 +139,17 @@
 				<div id="accordionList" class="toggle panel-group"></div>
 
 				<!-- LANGUAGES LIST (CARD VIEW) -->
-				<div id="view-card" class="mdc-layout-grid mdc-layout-grid__inner"></div>
+				<div id="viewCard" class="row"></div>
 
 				<!-- LANGUAGES LIST (LIST VIEW) -->
-				<ul id="view-list" class="mdc-list mdc-list--two-line"></ul>
+				<ul id="viewList" class="mdc-list mdc-list--two-line"></ul>
 
 			</div>
 		</div>
 
 		<!-- JS LIBRARIES -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js"></script>
@@ -179,7 +177,7 @@
 				})
 			} else {
 				// If the browser doesn't support Service Workers
-				console.log("Seu navegador não suporta Service Workers, tente utilizar a versão mais recente do Google Chrome");
+				console.log("Seu navegador não suporta Service Workers, tente ativa-las nas configurações, ou considere utilizar a versão mais recente do Google Chrome ou Firefox");
 			}
 		</script>
 	</body>

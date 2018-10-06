@@ -116,7 +116,7 @@ function toggleAccordion() {
 function listLanguagesOnPage() {
 
 	// Empty the content of the all the lists
-	$("#view-list, #view-card, #accordionList").html("");
+	$("#viewList, #viewCard, #accordionList").html("");
 
 	// Request the file languages.yaml
 	$.get("yml/languages.yml", function(data) {
@@ -127,18 +127,18 @@ function listLanguagesOnPage() {
 			case "list":
 
 				// Turn card view invisible
-				$("#view-card").css("display", "none");
+				$("#viewCard").css("display", "none");
 
 				// Initialize the search input on the list view
 				$('#searchInput').hideseek({
-					list: "#view-list",
+					list: "#viewList",
 					nodata: "Nenhum resultado encontrado!"
 				});
 
 				// For each item in languages.yaml...
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
-					$("#view-list").append(`
+					$("#viewList").append(`
 						<li onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-list-item animated fadeIn">
 							<img src="${yamlData[i].icone}" class="mdc-list-item__graphic" alt="${yamlData[i].nome}">
 							<span class="mdc-list-item__text">
@@ -153,29 +153,29 @@ function listLanguagesOnPage() {
 			case "card":
 
 				// Turn card view visible
-				$("#view-card").css("display", "grid");
+				$("#viewCard").css("display", "flex");
 
 				// Initialize the search input on the card view
 				$('#searchInput').hideseek({
-					list: "#view-card",
+					list: "#viewCard",
 					nodata: "Nenhum resultado encontrado!"
 				});
 
 				// For each item in languages.yaml...
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
-					$("#view-card").append(`
-						<div class="mdc-layout-grid__cell animated fadeIn">
-							<div class="mdc-card">
-								<div onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-card__primary-action">
-									<div style="background-image: url(${yamlData[i].icone}); background-size: auto;" class="mdc-card__media mdc-card__media--16-9"></div>
-									<div class="mdc-card-content">
-										<h2 class="mdc-typography--headline6">${yamlData[i].nome}</h2>
-										<h3 class="mdc-typography--body2">${yamlData[i].descricao}</h3>
-									</div>
-								</div>
+					$("#viewCard").append(`
+						<div class="col-xs animated fadeIn">
+							<div class="box">
+								<center>
+									<a class="miniCard" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
+										<img src="${yamlData[i].icone}">
+										<span class="mdc-typography--headline6 title">${yamlData[i].nome}</span>
+										<span class="mdc-typography--caption">${yamlData[i].descricao}</span>
+									</a>
+								</center>
 							</div>
-						</div>
+						</div
 					`)
 				})
 			break;
@@ -221,7 +221,7 @@ function listCommands(language) {
 	toggleSearchBar("close");
 
 	// Empty the content of the all the lists
-	$("#view-list, #view-card, #accordionList").html("");
+	$("#viewList, #viewCard, #accordionList").html("");
 
 	// Initialize the search input on the list view
 	$('#searchInput').hideseek({
@@ -332,15 +332,17 @@ function suggestCommandsDialog() {
 				</header>
 
 				<section id="mdc-dialog-body" class="mdc-dialog__body">
-					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Nome do comando">
-					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Seu email">
-					<input class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Linguagem de programação">
-					<textarea class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
+					<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
+						<input class="w3-input w3-border w3-round w3-margin-bottom" name="commandName" type="text" placeholder="Nome do comando">
+						<input class="w3-input w3-border w3-round w3-margin-bottom" name="userEmail" type="email" placeholder="Seu email">
+						<select name="langSelect" id="langSelect" class="w3-select w3-border w3-round w3-margin-bottom"></select>
+						<textarea name="commandDescription" class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
+					</form>
 				</section>
 
 				<footer class="mdc-dialog__footer">
-					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Confirmar</button>
-					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Cancelar</button>
+					<button disabled id="btnDialogOK" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Confirmar</button>
+					<button id="btnDialogCancel" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Cancelar</button>
 				</footer>
 
 			</div>
@@ -348,8 +350,89 @@ function suggestCommandsDialog() {
 		</aside>
 	`);
 
+	// Clear all items on the language dropdown selector
+	$("#langSelect").html("");
+
+	// Append the "Select Language" placeholder option
+	$("#langSelect").append("<option value='' disabled selected>Escolha uma linguagem</option>");
+
+	// Get all data from the selected language YML file
+	$.get("yml/languages.yml", function(data) {
+		// Convert the file data from YAML into JSON
+		var yamlData = jsyaml.load(data);
+		// For each item in the YAML data...
+		$.each(yamlData, function(i) {
+			$("#langSelect").append(`
+				<option>${yamlData[i].nome}</option>
+			`);
+		})
+	})
+
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
 	dialog.show();
+
+	$("suggestCommandsDialog").on("MDCDialog:closing", function() {
+		console.log("A");
+	})
+
+	// Triggered when any input value on form is changed
+	$("#suggestCommandsForm > :input").on("keyup change", function() {
+
+		// Remove spaces from input value
+		var emptyFields = $("#suggestCommandsForm :input").filter(function() {
+			return $.trim(this.value) === "";
+		});
+
+		// If all inputs are filled
+		if (!emptyFields.length) {
+			// Enabled the form submit button
+			$("#btnDialogOK").removeAttr("disabled");
+		// If any input is empty
+		} else {
+			// Disable the form submit button
+			$("#btnDialogOK").attr("disabled", "disabled");
+		}
+	});
+
+	// When "OK" button is clicked...
+	$("#btnDialogOK").click(function() {
+		var suggestCommandsFormData = $("#suggestCommandsForm").serialize();
+		$.ajax({
+			type: "post",
+			url: "https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail",
+			data: suggestCommandsFormData,
+			success: function(response) {
+			},
+			error: function() {
+			}
+		});
+	})
+
+	// When "Cancel" button is clicked...
+	$("#btnDialogCancel").click(function() {
+		// Clear all inputs and close dialog
+		$("#suggestCommandsForm").trigger("reset");
+	});
+}
+
+function showSnackBar(message, actionText, timeout, actionHandler) {
+	$("#pageContent").append(`
+		<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+			<div class="mdc-snackbar__text"></div>
+			<div class="mdc-snackbar__action-wrapper">
+				<button type="button" class="mdc-snackbar__action-button"></button>
+			</div>
+		</div>
+	`);
+	const snackbar = mdc.snackbar.MDCSnackbar.attachTo(document.querySelector(".mdc-snackbar"));
+	const dataObj = {
+		message: message,
+		actionText: actionText,
+		timeout: timeout,
+		actionHandler: actionHandler
+	};
+
+	snackbar.show(dataObj);	
 }
 
 listLanguagesOnPage(localStorage.getItem("viewMode"));
