@@ -1,13 +1,17 @@
 // Instanteate MDC components (drawer and menu)
-drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
+function instanteateMDC() {
+	// Drawer
+	drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
 
-menuEl = document.querySelector(".mdc-menu");
-menu = new mdc.menu.MDCMenu(menuEl);
+	// Menu
+	menuEl = document.querySelector(".mdc-menu");
+	menu = new mdc.menu.MDCMenu(menuEl);
+	menuEl.addEventListener('MDCMenu:selected', function(evt) {
+		var detail = evt.detail;
+	});
+}
 
-menuEl.addEventListener('MDCMenu:selected', function(evt) {
-	var detail = evt.detail;
-});
-
+instanteateMDC();
 var html2md = new showdown.Converter();
 
 // Verify if browser supports Web Storage
@@ -22,7 +26,7 @@ if (localStorage.getItem("viewMode") == null) {
 	localStorage.setItem("viewMode", "card");
 }
 
-// Get viewMode
+// Get viewMode from localStorage
 switch (localStorage.getItem("viewMode")) {
 	// If viewMode == "list"
 	case "list":
@@ -43,42 +47,91 @@ switch (localStorage.getItem("viewMode")) {
 	break;
 }
 
-// action --> open/close/search
 function toggleSearchBar(action) {
 
 	switch (action) {
 		case "open":
-
-			// Reset both search bar animations
-			$("#searchBarExpanded, #searchBarCollapsed").removeClass("animated fadeIn fadeOut");
-
-			// Hide the collapsed search bar
-			$("#searchBarCollapsed").addClass("animated fadeOut");
-			$("#searchBarCollapsed").css("display", "none");
 			
-			// Show the expanded search bar
-			$("#searchBarExpanded").addClass("animated fadeIn");
-			$("#searchBarExpanded").css("display", "block");
+			// Clear the top app bar content
+			$("#topAppBar .mdc-top-app-bar__row").html("");
 
+			// Change the top app bar background color to white
+			$("#topAppBar").css("background-color", "white");
+
+			// Append the search bar to the top app bar
+			$("#topAppBar .mdc-top-app-bar__row").append(`
+				<input id="searchInput" type="search" class="w3-input w3-border-0 animated fadeIn" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end animated fadeIn" role="toolbar">
+					<i class="material-icons material-icons-dark mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('close')">close</i>
+					<div class="mdc-line-ripple"></div>
+				</section>
+			`);
+
+			// Initialize the search input
+			$('#searchInput').hideseek({list: ".searchList"})
 		break;
 
 		case "close":
 
-			// Press key after search bar is close, to reset search results to default state
+			/* Programmatically press key after search bar is closed
+			in order to reset search results to the default state */
 			var keyup = jQuery.Event("keyup");
 			keyup.which = keyup.keyCode = 8;
 
-			// Reset both search bar animations
-			$("#searchBarExpanded, #searchBarCollapsed").removeClass("animated fadeIn fadeOut");
+			// Clear the search bar text
+			$("#searchInput").val("").trigger(keyup);
 
-			// Hide the expanded search bar
-			$("#searchBarExpanded").addClass("animated fadeOut");
-			$("#searchBarExpanded").css("display", "none");
-			$("#searchBarExpanded #searchInput").val("").trigger(keyup);
+			// Clear the top app bar content
+			$("#topAppBar .mdc-top-app-bar__row").html("");
 
-			// Show the colapsed search bar
-			$("#searchBarCollapsed").addClass("animated fadeIn");
-			$("#searchBarCollapsed").css("display", "flex");
+			// Change the top app bar background color to blue
+			$("#topAppBar").css("background-color", "#6200ee");
+
+			$("#topAppBar .mdc-top-app-bar__row").append(`
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+
+					<a id="drawerBtn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+
+					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
+
+				</section>
+
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+
+					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
+
+					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
+
+					<div class="mdc-menu-anchor">
+						<div class="mdc-menu">
+							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+
+								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">home</i>
+									Página inicial
+								</li>
+
+								<li onclick="suggestCommandsDialog()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">message</i>
+									Sugerir comando
+								</li>
+
+								<li id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">view_list</i>
+									Visualizar em lista
+								</li>
+
+								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
+									<i class="mdc-list-item__graphic material-icons">info</i>
+									Sobre
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</section>
+			`);
+			instanteateMDC();
 		break;
 	}
 }
@@ -129,12 +182,6 @@ function listLanguagesOnPage() {
 				// Turn card view invisible
 				$("#viewCard").css("display", "none");
 
-				// Initialize the search input on the list view
-				$('#searchInput').hideseek({
-					list: "#viewList",
-					nodata: "Nenhum resultado encontrado!"
-				});
-
 				// For each item in languages.yaml...
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
@@ -154,12 +201,6 @@ function listLanguagesOnPage() {
 
 				// Turn card view visible
 				$("#viewCard").css("display", "flex");
-
-				// Initialize the search input on the card view
-				$('#searchInput').hideseek({
-					list: "#viewCard",
-					nodata: "Nenhum resultado encontrado!"
-				});
 
 				// For each item in languages.yaml...
 				$.each(yamlData, function(i) {
@@ -222,12 +263,6 @@ function listCommands(language) {
 
 	// Empty the content of the all the lists
 	$("#viewList, #viewCard, #accordionList").html("");
-
-	// Initialize the search input on the list view
-	$('#searchInput').hideseek({
-		list: "#accordionList",
-		nodata: "Nenhum resultado encontrado!"
-	});
 
 	// Get all data from the selected language YML file
 	$.get(`yml/${language}.yml`, function(data) {
@@ -371,10 +406,6 @@ function suggestCommandsDialog() {
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
 	dialog.show();
 
-	$("suggestCommandsDialog").on("MDCDialog:closing", function() {
-		console.log("A");
-	})
-
 	// Triggered when any input value on form is changed
 	$("#suggestCommandsForm > :input").on("keyup change", function() {
 
@@ -401,11 +432,8 @@ function suggestCommandsDialog() {
 			type: "post",
 			url: "https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail",
 			data: suggestCommandsFormData,
-			success: function(response) {
-			},
-			error: function() {
-			}
 		});
+		showSnackBar("Sua sugestão foi enviada com sucesso!", "OK", 3000);
 	})
 
 	// When "Cancel" button is clicked...

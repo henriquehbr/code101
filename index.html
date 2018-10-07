@@ -44,14 +44,17 @@
 
 		<link rel="stylesheet" href="css/w3pro.css">
 		<link rel="stylesheet" href="css/code101.css">
+
+		<!-- FONTS -->
 		<link async href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 		<link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link async rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 	</head>
 	<body>
 
 		<!-- DRAWER -->
-		<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
+		<aside class="mdc-drawer mdc-drawer--temporary mdc-typography" data-mdc-auto-init="MDCDrawer">
 			<nav class="mdc-drawer__drawer">
 
 				<!-- LANGUAGES LIST -->
@@ -60,22 +63,22 @@
 			</nav>
 		</aside>
 
-		<!-- TOP APP BAR (SEARCH BAR COLLAPSED) -->
-		<header id="searchBarCollapsed" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor w3-card">
+		<!-- TOP APP BAR -->
+		<header id="topAppBar" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor w3-card">
 			<div class="mdc-top-app-bar__row">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 
 					<!-- DRAWER BUTTON -->
-					<a id="drawer-btn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+					<a id="drawerBtn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
 
 					<!-- APP TITLE -->
-					<span class="mdc-top-app-bar__title code101-logo">code101</span>
+					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
 
 				</section>
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
 
 					<!-- SEARCH ICON -->
-					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download" onclick="toggleSearchBar('open')">search</i>
+					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
 
 					<!-- MENU ICON -->
 					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
@@ -116,33 +119,18 @@
 			</div>
 		</header>
 
-		<!-- TOP APP BAR (SEARCH BAR EXPANDED) -->
-		<header id="searchBarExpanded" class="mdc-top-app-bar mdc-top-app-bar--fixed" style="display: none;">
-
-			<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-text-field mdc-text-field--fullwidth mdc-text-field--with-trailing-icon">
-
-				<!-- SEARCH INPUT -->
-				<input id="searchInput" type="text" id="my-input" class="mdc-text-field__input w3-card" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
-
-				<!-- CLOSE ICON -->
-				<i class="material-icons mdc-text-field__icon" tabindex="1" role="button" onclick="toggleSearchBar('close')">close</i>
-
-				<div class="mdc-line-ripple"></div>
-			</header>
-		</header>
-
 		<!-- PAGE CONTENT -->
 		<div class="mdc-top-app-bar--fixed-adjust">
 			<div id="pageContent">
 
 				<!-- ACCORDIONS -->
-				<div id="accordionList" class="toggle panel-group"></div>
+				<div id="accordionList" class="searchList toggle panel-group"></div>
 
 				<!-- LANGUAGES LIST (CARD VIEW) -->
-				<div id="viewCard" class="row"></div>
+				<div id="viewCard" class="searchList row"></div>
 
 				<!-- LANGUAGES LIST (LIST VIEW) -->
-				<ul id="viewList" class="mdc-list mdc-list--two-line"></ul>
+				<ul id="viewList" class="searchList mdc-list mdc-list--two-line"></ul>
 
 			</div>
 		</div>

@@ -31,6 +31,7 @@ var precacheFiles = [
 	"res/lang-icons/java.svg",
 	"res/PressStart2P.ttf",
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
+	"https://fonts.googleapis.com/css?family=Press+Start+2P",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
 	"https://use.fontawesome.com/releases/v5.3.1/css/all.css",
 

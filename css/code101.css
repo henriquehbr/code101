@@ -1,5 +1,3 @@
-@font-face {font-family: Atari; src: url("../res/PressStart2P.ttf")}
-
 textarea {resize: none}
 
 * {box-sizing: border-box}
@@ -15,10 +13,6 @@ a,
 a:hover,
 a:focus {text-decoration: none}
 
-#searchBarExpanded header {
-	background-color: white;
-}
-
 #pageContent {
 	padding: 10px;
 }
@@ -28,7 +22,7 @@ a:focus {text-decoration: none}
 	margin-top: 10px;
 }
 
-#drawer-btn, #menu-btn, .mdc-menu-anchor {
+#drawerBtn, #menu-btn, .mdc-menu-anchor {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -36,7 +30,13 @@ a:focus {text-decoration: none}
 	user-select: none;
 }
 
-.code101-logo {font-family: Atari}
+#topAppBar {font-size: 16px}
+
+#searchInput {outline: none}
+
+.material-icons-dark {color: rgba(0, 0, 0, 0.54) !important}
+
+.code101-logo {font-family: "Press Start 2P"}
 
 /* ########## MINI CARDS ########## */
 
@@ -68,9 +68,7 @@ a:focus {text-decoration: none}
 	transform: scale(1.05);
 }
 
-.miniCard:active {
-	transform:scale(.9)
-}
+.miniCard:active {transform:scale(.9)}
 
 .miniCard img {
 	transition: 150ms;
