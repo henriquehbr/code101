@@ -1,12 +1,12 @@
 ---
 - nome: C
-  descricao: Linguagem de programação compilada de propósito geral, estruturada, imperativa e procedural.
+  descricao: Linguagem de programação
   icone: res/lang-icons/c.svg
   
 - nome: Javascript
-  descricao: Linguagem de programação interpretada, dinâmica, fraca e implicita.
+  descricao: Linguagem de programação
   icone: res/lang-icons/javascript.svg
 
 - nome: Java
-  descricao: Java é uma linguagem de programação orientada a objetos, compilada e estruturada.
+  descricao: Linguagem de programação
   icone: res/lang-icons/java.svg

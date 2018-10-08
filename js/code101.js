@@ -168,10 +168,15 @@ function toggleAccordion() {
 // List all the programming languages on the page
 function listLanguagesOnPage() {
 
+	// Disable slick on viewCard if it's enabled
+	if ($("#viewCard").hasClass("slick-initialized")) {
+		$("#viewCard").slick("unslick");
+	}
+
 	// Empty the content of the all the lists
 	$("#viewList, #viewCard, #accordionList").html("");
 
-	// Request the file languages.yaml
+	// Request the file languages.yml
 	$.get("yml/languages.yml", function(data) {
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
@@ -182,7 +187,7 @@ function listLanguagesOnPage() {
 				// Turn card view invisible
 				$("#viewCard").css("display", "none");
 
-				// For each item in languages.yaml...
+				// For each item in languages.yml...
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
 					$("#viewList").append(`
@@ -200,25 +205,33 @@ function listLanguagesOnPage() {
 			case "card":
 
 				// Turn card view visible
-				$("#viewCard").css("display", "flex");
+				$("#viewCard").css("display", "block");
 
-				// For each item in languages.yaml...
+				// For each item in languages.yml...
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
 					$("#viewCard").append(`
-						<div class="col-xs animated fadeIn">
-							<div class="box">
-								<center>
-									<a class="miniCard" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
-										<img src="${yamlData[i].icone}">
-										<span class="mdc-typography--headline6 title">${yamlData[i].nome}</span>
-										<span class="mdc-typography--caption">${yamlData[i].descricao}</span>
-									</a>
-								</center>
-							</div>
-						</div
+						<a style="display: flex" class="miniCard carousel-cell animated fadeIn" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
+							<img src="${yamlData[i].icone}">
+							<span class="mdc-typography--headline6 title">${yamlData[i].nome}</span>
+							<span class="mdc-typography--caption">${yamlData[i].descricao}</span>
+							<button class="mdc-button" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
+								Aprender
+							</button>
+						</a>
 					`)
 				})
+
+				// Enable slick on view card
+				$("#viewCard").slick({
+					dots: false,
+					arrows: false,
+					infinite: false,
+					swipeToSlide: true,
+					centerMode: false,
+					variableWidth: true
+				});
+
 			break;
 		}
 	})
@@ -231,18 +244,18 @@ function listLanguagesOnDrawer() {
 
 	// Appends the "Home" item to the drawer
 	$("#languagesDrawer").append(`
-		<a onclick="listLanguagesOnPage('${localStorage.getItem("viewMode")}'); drawer.open = false" class="mdc-list-item">
+		<a onclick="listLanguagesOnPage(); drawer.open = false" class="mdc-list-item">
 			<i class="mdc-list-item__graphic material-icons">home</i>
 			Página inicial
 		</a>
 		<hr class="mdc-list-divider">
 	`);
 
-	// Request the file languages.yaml
+	// Request the file languages.yml
 	$.get("yml/languages.yml", function(data) {
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
-		// For each item in languages.yaml...
+		// For each item in languages.yml...
 		$.each(yamlData, function(i) {
 			// Appends the following code to the drawer
 			$("#languagesDrawer").append(`
@@ -304,7 +317,7 @@ function changeViewMode() {
 		// Set viewMode to list
 		case "list":
 			localStorage.setItem("viewMode", "card");
-			listLanguagesOnPage(localStorage.getItem("viewMode"));
+			listLanguagesOnPage();
 			$("#changeViewBtn").html(`
 				<i class="mdc-list-item__graphic material-icons">view_list</i>
 				Visualizar em lista
@@ -314,7 +327,7 @@ function changeViewMode() {
 		// Set viewMode to card
 		case "card":
 			localStorage.setItem("viewMode", "list");
-			listLanguagesOnPage(localStorage.getItem("viewMode"));
+			listLanguagesOnPage();
 			$("#changeViewBtn").html(`
 				<i class="mdc-list-item__graphic material-icons">view_modules</i>
 				Visualizar em card
@@ -463,5 +476,5 @@ function showSnackBar(message, actionText, timeout, actionHandler) {
 	snackbar.show(dataObj);	
 }
 
-listLanguagesOnPage(localStorage.getItem("viewMode"));
+listLanguagesOnPage();
 listLanguagesOnDrawer();

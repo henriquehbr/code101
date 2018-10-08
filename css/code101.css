@@ -46,7 +46,7 @@ a:focus {text-decoration: none}
 	width: 184px;
 	height: 184px;
 	flex-grow: initial;
-	margin-bottom: 24px;
+	margin: 12px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
