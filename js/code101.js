@@ -89,17 +89,12 @@ function toggleSearchBar(action) {
 
 			$("#topAppBar .mdc-top-app-bar__row").append(`
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-
 					<a id="drawerBtn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-
 					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
-
 				</section>
 
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-
 					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
-
 					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
 
 					<div class="mdc-menu-anchor">
@@ -211,11 +206,11 @@ function listLanguagesOnPage() {
 				$.each(yamlData, function(i) {
 					// Append the language on the language list
 					$("#viewCard").append(`
-						<a style="display: flex" class="miniCard carousel-cell animated fadeIn" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
+						<a style="display: flex" class="miniCard carousel-cell animated fadeIn">
 							<img src="${yamlData[i].icone}">
 							<span class="mdc-typography--headline6 title">${yamlData[i].nome}</span>
 							<span class="mdc-typography--caption">${yamlData[i].descricao}</span>
-							<button class="mdc-button" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
+							<button onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
 								Aprender
 							</button>
 						</a>
@@ -241,15 +236,6 @@ function listLanguagesOnDrawer() {
 
 	// Empty the previous content of the language list
 	$("#languagesDrawer").html("");
-
-	// Appends the "Home" item to the drawer
-	$("#languagesDrawer").append(`
-		<a onclick="listLanguagesOnPage(); drawer.open = false" class="mdc-list-item">
-			<i class="mdc-list-item__graphic material-icons">home</i>
-			Página inicial
-		</a>
-		<hr class="mdc-list-divider">
-	`);
 
 	// Request the file languages.yml
 	$.get("yml/languages.yml", function(data) {
@@ -383,7 +369,7 @@ function suggestCommandsDialog() {
 					<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
 						<input class="w3-input w3-border w3-round w3-margin-bottom" name="commandName" type="text" placeholder="Nome do comando">
 						<input class="w3-input w3-border w3-round w3-margin-bottom" name="userEmail" type="email" placeholder="Seu email">
-						<select name="langSelect" id="langSelect" class="w3-select w3-border w3-round w3-margin-bottom"></select>
+						<input class="w3-input w3-border w3-round w3-margin-bottom" name="langSelect" placeholder="Linguagem do comando"></input>
 						<textarea name="commandDescription" class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
 					</form>
 				</section>
@@ -397,24 +383,6 @@ function suggestCommandsDialog() {
 			<div class="mdc-dialog__backdrop"></div>
 		</aside>
 	`);
-
-	// Clear all items on the language dropdown selector
-	$("#langSelect").html("");
-
-	// Append the "Select Language" placeholder option
-	$("#langSelect").append("<option value='' disabled selected>Escolha uma linguagem</option>");
-
-	// Get all data from the selected language YML file
-	$.get("yml/languages.yml", function(data) {
-		// Convert the file data from YAML into JSON
-		var yamlData = jsyaml.load(data);
-		// For each item in the YAML data...
-		$.each(yamlData, function(i) {
-			$("#langSelect").append(`
-				<option>${yamlData[i].nome}</option>
-			`);
-		})
-	})
 
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
 	dialog.show();
