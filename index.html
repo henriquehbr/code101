@@ -37,7 +37,7 @@
 
 		<!-- CSS LIBRARIES -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -54,67 +54,65 @@
 	<body>
 
 		<!-- DRAWER -->
-		<aside class="mdc-drawer mdc-drawer--temporary mdc-typography" data-mdc-auto-init="MDCDrawer">
-			<nav class="mdc-drawer__drawer">
+		<aside class="mdc-drawer mdc-drawer--modal">
+			<div class="mdc-drawer__header">
+				<h3 class="mdc-drawer__title code101-logo">code101</h3>
+				<h6 class="mdc-drawer__subtitle">Learn code, let's practice</h6>
+			</div>
+			<div class="mdc-drawer__content">
+				<nav class="mdc-list">
 
-				<!-- LANGUAGES LIST -->
-				<nav id="languagesDrawer" class="mdc-drawer__content mdc-list"></nav>
+					<!-- HOME -->
+					<a onclick="listLanguagesOnPage()" class="mdc-list-item mdc-list-item--activated" aria-selected="true">
+						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+						<span class="mdc-list-item__text">Página inicial</span>
+					</a>
 
-			</nav>
+					<!-- SUGGEST COMMANDS -->
+					<a onclick="suggestCommandsDialog()" class="mdc-list-item" aria-selected="true">
+						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">message</i>
+						<span class="mdc-list-item__text">Sugerir comandos</span>
+					</a>
+
+					<!-- CHANGE VIEW MODE -->
+					<a id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" aria-selected="true">
+						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">view_list</i>
+						<span class="mdc-list-item__text">Visualizar em lista</span>
+					</a>
+
+					<!-- ABOUT -->
+					<a id="changeViewBtn" onclick="aboutDialog()" class="mdc-list-item" aria-selected="true">
+						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
+						<span class="mdc-list-item__text">Sobre</span>
+					</a>
+
+				</nav>
+			</div>
 		</aside>
+
+		<div class="mdc-drawer-scrim"></div>
 
 		<!-- TOP APP BAR -->
 		<header id="topAppBar" class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-menu-anchor w3-card">
 			<div class="mdc-top-app-bar__row">
+
+				<!-- LEFT SECTION -->
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 
 					<!-- DRAWER BUTTON -->
-					<a id="drawerBtn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+					<a id="drawerBtn" onclick="drawer.open = !drawer.open" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
 
 					<!-- APP TITLE -->
 					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
 
 				</section>
+
+				<!-- RIGHT SECTION -->
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
 
 					<!-- SEARCH ICON -->
 					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
 
-					<!-- MENU ICON -->
-					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
-
-					<!-- CONTEXTUAL MENU -->
-					<div class="mdc-menu-anchor">
-						<div class="mdc-menu">
-							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
-
-								<!-- HOME PAGE -->
-								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">home</i>
-									Página inicial
-								</li>
-
-								<!-- SUGGEST COMMAND -->
-								<li onclick="suggestCommandsDialog()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">message</i>
-									Sugerir comando
-								</li>
-
-								<!-- CHANGE VIEW -->
-								<li id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">view_list</i>
-									Visualizar em lista
-								</li>
-
-								<!-- ABOUT -->
-								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">info</i>
-									Sobre
-								</li>
-
-							</ul>
-						</div>
-					</div>
 				</section>
 			</div>
 		</header>
@@ -138,7 +136,7 @@
 		<!-- JS LIBRARIES -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js"></script>

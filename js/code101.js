@@ -1,17 +1,5 @@
-// Instanteate MDC components (drawer and menu)
-function instanteateMDC() {
-	// Drawer
-	drawer = new mdc.drawer.MDCTemporaryDrawer(document.querySelector(".mdc-drawer--temporary"));
+drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector(".mdc-drawer"));
 
-	// Menu
-	menuEl = document.querySelector(".mdc-menu");
-	menu = new mdc.menu.MDCMenu(menuEl);
-	menuEl.addEventListener('MDCMenu:selected', function(evt) {
-		var detail = evt.detail;
-	});
-}
-
-instanteateMDC();
 var html2md = new showdown.Converter();
 
 // Verify if browser supports Web Storage
@@ -89,44 +77,13 @@ function toggleSearchBar(action) {
 
 			$("#topAppBar .mdc-top-app-bar__row").append(`
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-					<a id="drawerBtn" onclick="drawer.open = true" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+					<a id="drawerBtn" onclick="drawer.open = !drawer.open" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
 					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
 				</section>
-
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
 					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
-					<a id="menu-btn" onclick="menu.open = !menu.open" class="material-icons mdc-top-app-bar__action-item" aria-label="Opções" alt="Opções">more_vert</a>
-
-					<div class="mdc-menu-anchor">
-						<div class="mdc-menu">
-							<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
-
-								<li onclick="listLanguagesOnPage()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">home</i>
-									Página inicial
-								</li>
-
-								<li onclick="suggestCommandsDialog()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">message</i>
-									Sugerir comando
-								</li>
-
-								<li id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">view_list</i>
-									Visualizar em lista
-								</li>
-
-								<li onclick="aboutDialog()" class="mdc-list-item" role="menuitem">
-									<i class="mdc-list-item__graphic material-icons">info</i>
-									Sobre
-								</li>
-
-							</ul>
-						</div>
-					</div>
 				</section>
 			`);
-			instanteateMDC();
 		break;
 	}
 }
@@ -162,6 +119,9 @@ function toggleAccordion() {
 
 // List all the programming languages on the page
 function listLanguagesOnPage() {
+
+	// Close drawer
+	drawer.open = false;
 
 	// Disable slick on viewCard if it's enabled
 	if ($("#viewCard").hasClass("slick-initialized")) {
@@ -325,67 +285,63 @@ function changeViewMode() {
 // Displays the "about" dialog
 function aboutDialog() {
 	$("body").append(`
-		<aside id="aboutDialog" class="mdc-dialog" role="alertdialog">
-			<div class="mdc-dialog__surface">
+		<div id="aboutDialog" class="mdc-dialog" role="alertdialog">
+			<div class="mdc-dialog__container">
+				<div class="mdc-dialog__surface">
 
-				<header class="mdc-dialog__header">
-					<h2 id="dialog-title" class="mdc-dialog__header__title">
-						Sobre o code101
-					</h2>
-				</header>
+					<h2 class="mdc-dialog__title" id="my-dialog-title">Sobre o code101</h2>
 
-				<section id="mdc-dialog-body" class="mdc-dialog__body">
-					Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
-					<a href="https://github.com/henriquehbr/code101" target="_blank"><i class="fab fa-github"></i> Visitar repositório no Github</a><br>
-					<a href="https://instagram.com/code101.com.br" target="_blank"><i class="fab fa-instagram"></i> Visitar página no Instagram</a>
-				</section>
+					<div id="mdc-dialog-body" class="mdc-dialog__content">
+						Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
+						<a href="https://github.com/henriquehbr/code101" target="_blank"><i class="fab fa-github"></i> Visitar repositório no Github</a><br>
+						<a href="https://instagram.com/code101.com.br" target="_blank"><i class="fab fa-instagram"></i> Visitar página no Instagram</a>
+					</div>
 
-				<footer class="mdc-dialog__footer">
-					<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">OK</button>
-				</footer>
+					<footer class="mdc-dialog__actions">
+						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+					</footer>
 
+				</div>
 			</div>
-			<div class="mdc-dialog__backdrop"></div>
-		</aside>
+			<div class="mdc-dialog__scrim"></div>
+		</div>
 	`);
 
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#aboutDialog"));
-	dialog.show();
+	dialog.open();
 }
 
 // Displays the "suggestCommands" dialog
 function suggestCommandsDialog() {
 	$("body").append(`
-		<aside id="suggestCommandsDialog" class="mdc-dialog" role="alertdialog">
-			<div class="mdc-dialog__surface">
+		<div id="suggestCommandsDialog" class="mdc-dialog" role="alertdialog">
+			<div class="mdc-dialog__container">
+				<div class="mdc-dialog__surface">
 
-				<header class="mdc-dialog__header">
-					<h2 id="dialog-title" class="mdc-dialog__header__title">
-						Ajude esse projeto a ficar ainda maior, sugira um comando.
-					</h2>
-				</header>
+					<h2 class="mdc-dialog__title" id="my-dialog-title">Sobre o code101</h2>
 
-				<section id="mdc-dialog-body" class="mdc-dialog__body">
-					<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
-						<input class="w3-input w3-border w3-round w3-margin-bottom" name="commandName" type="text" placeholder="Nome do comando">
-						<input class="w3-input w3-border w3-round w3-margin-bottom" name="userEmail" type="email" placeholder="Seu email">
-						<input class="w3-input w3-border w3-round w3-margin-bottom" name="langSelect" placeholder="Linguagem do comando"></input>
-						<textarea name="commandDescription" class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
-					</form>
-				</section>
+					<div id="mdc-dialog-body" class="mdc-dialog__content">
+						<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
+							<input class="w3-input w3-border w3-round w3-margin-bottom" name="commandName" type="text" placeholder="Nome do comando">
+							<input class="w3-input w3-border w3-round w3-margin-bottom" name="userEmail" type="email" placeholder="Seu email">
+							<input class="w3-input w3-border w3-round w3-margin-bottom" name="langSelect" placeholder="Linguagem do comando"></input>
+							<textarea name="commandDescription" class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
+						</form>
+					</div>
 
-				<footer class="mdc-dialog__footer">
-					<button disabled id="btnDialogOK" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Confirmar</button>
-					<button id="btnDialogCancel" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Cancelar</button>
-				</footer>
+					<footer class="mdc-dialog__actions">
+						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
+						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+					</footer>
 
+				</div>
 			</div>
-			<div class="mdc-dialog__backdrop"></div>
-		</aside>
+			<div class="mdc-dialog__scrim"></div>
+		</div>
 	`);
 
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
-	dialog.show();
+	dialog.open();
 
 	// Triggered when any input value on form is changed
 	$("#suggestCommandsForm > :input").on("keyup change", function() {

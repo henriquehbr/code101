@@ -6,7 +6,7 @@ var precacheFiles = [
 
 	// CSS
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css",
-	"https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.css",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
@@ -16,7 +16,7 @@ var precacheFiles = [
 	// JS
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js",
-	"https://cdn.jsdelivr.net/npm/material-components-web@0.38.0/dist/material-components-web.min.js",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js",
@@ -30,7 +30,6 @@ var precacheFiles = [
 	"res/lang-icons/c.svg",
 	"res/lang-icons/javascript.svg",
 	"res/lang-icons/java.svg",
-	"res/PressStart2P.ttf",
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 	"https://fonts.googleapis.com/css?family=Press+Start+2P",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
