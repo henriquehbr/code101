@@ -63,6 +63,7 @@ a:focus {text-decoration: none}
 	box-sizing: border-box;
 	line-height: 1.15;
 	user-select: none;
+	outline: none;
 }
 
 .miniCard:hover {transform: scale(1.05)}

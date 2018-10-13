@@ -22,7 +22,7 @@ function toggleSearchBar(action) {
 
 			// Append the search bar to the top app bar
 			$("#topAppBar .mdc-top-app-bar__row").append(`
-				<input onkeyup="searchCards()" id="searchInput" type="search" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<input id="searchInput" type="search" onkeyup="searchCards()" autocomplete="off" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end animated fadeIn" role="toolbar">
 					<i class="material-icons material-icons-dark mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('close')">close</i>
 					<div class="mdc-line-ripple"></div>
@@ -250,7 +250,7 @@ function suggestCommandsDialog() {
 						<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
 
 							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="text" name="commandName" class="mdc-text-field__input">
+								<input type="text" name="commandName" autocomplete="off" class="mdc-text-field__input">
 								<label class="mdc-floating-label">Nome do comando</label>
 								<div class="mdc-notched-outline">
 									<svg>
@@ -261,7 +261,7 @@ function suggestCommandsDialog() {
 							</div>
 
 							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="email" name="userEmail" class="mdc-text-field__input">
+								<input type="email" name="userEmail" autocomplete="off" class="mdc-text-field__input">
 								<label class="mdc-floating-label">Seu email</label>
 								<div class="mdc-notched-outline">
 									<svg>
@@ -272,7 +272,7 @@ function suggestCommandsDialog() {
 							</div>
 
 							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="text" name="langSelect" class="mdc-text-field__input">
+								<input type="text" name="langSelect" autocomplete="off" class="mdc-text-field__input">
 								<label class="mdc-floating-label">Linguagem do comando</label>
 								<div class="mdc-notched-outline">
 									<svg>
@@ -283,7 +283,7 @@ function suggestCommandsDialog() {
 							</div>
 
 							<div class="mdc-text-field mdc-text-field--textarea w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<textarea name="commandDescription" class="mdc-text-field__input"></textarea>
+								<textarea name="commandDescription" autocomplete="off" class="mdc-text-field__input"></textarea>
 								<label class="mdc-floating-label">Fale sobre o comando</label>
 							</div>
 
@@ -354,7 +354,7 @@ function searchCards() {
 	} else if (viewMode == "accordions") {
 		var value = $("#searchInput").val().toLowerCase();
 		$("#accordionList h4.panel-title").filter(function() {
-			$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+			$(this).parent().parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	}
 }
