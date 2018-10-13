@@ -18,7 +18,7 @@ var precacheFiles = [
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js",
 	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
-	"https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js",

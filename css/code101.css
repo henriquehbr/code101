@@ -13,9 +13,7 @@ a,
 a:hover,
 a:focus {text-decoration: none}
 
-#pageContent {
-	padding: 10px;
-}
+#pageContent {padding: 10px}
 
 #viewCard {
 	text-align: center;
@@ -33,6 +31,14 @@ a:focus {text-decoration: none}
 #topAppBar {font-size: 16px}
 
 #searchInput {outline: none}
+
+#suggestCommandsForm .mdc-text-field {width: 100%}
+
+#suggestCommandsForm .mdc-text-field--outlined::before,
+#suggestCommandsForm .mdc-text-field--outlined::after {
+	width: 0 !important;
+	height: 0 !important;
+}
 
 .material-icons-dark {color: rgba(0, 0, 0, 0.54) !important}
 
@@ -56,7 +62,7 @@ a:focus {text-decoration: none}
 	transition: 200ms;
 	background: #fff;
 	cursor: pointer;
-	box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+	/*box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);*/
 	transform: translateZ(0);
 	box-sizing: border-box;
 	line-height: 1.15;
@@ -64,7 +70,7 @@ a:focus {text-decoration: none}
 }
 
 .miniCard:hover {
-	box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+	/*box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);*/
 	transform: scale(1.05);
 }
 

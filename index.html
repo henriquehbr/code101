@@ -74,12 +74,6 @@
 						<span class="mdc-list-item__text">Sugerir comandos</span>
 					</a>
 
-					<!-- CHANGE VIEW MODE -->
-					<a id="changeViewBtn" onclick="changeViewMode()" class="mdc-list-item" aria-selected="true">
-						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">view_list</i>
-						<span class="mdc-list-item__text">Visualizar em lista</span>
-					</a>
-
 					<!-- ABOUT -->
 					<a id="changeViewBtn" onclick="aboutDialog()" class="mdc-list-item" aria-selected="true">
 						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
@@ -122,13 +116,10 @@
 			<div id="pageContent">
 
 				<!-- ACCORDIONS -->
-				<div id="accordionList" class="searchList toggle panel-group"></div>
+				<div id="accordionList" class="toggle panel-group"></div>
 
 				<!-- LANGUAGES LIST (CARD VIEW) -->
-				<div id="viewCard" class="searchList row"></div>
-
-				<!-- LANGUAGES LIST (LIST VIEW) -->
-				<ul id="viewList" class="searchList mdc-list mdc-list--two-line"></ul>
+				<div id="viewCard" class="mdc-card"></div>
 
 			</div>
 		</div>
@@ -138,7 +129,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/hideseek/0.8.0/jquery.hideseek.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>

@@ -9,32 +9,6 @@ if (typeof(Storage) !== "undefined") {
 	console.log("Your browser doesn't support Web Storage!");
 }
 
-// Create "viewMode" on localStorage (if not exists)
-if (localStorage.getItem("viewMode") == null) {
-	localStorage.setItem("viewMode", "card");
-}
-
-// Get viewMode from localStorage
-switch (localStorage.getItem("viewMode")) {
-	// If viewMode == "list"
-	case "list":
-		// Change button to card mode
-		$("#changeViewBtn").html(`
-			<i class="mdc-list-item__graphic material-icons">view_modules</i>
-			Visualizar em card
-		`);
-	break;
-
-	// If viewMode == "card"
-	case "card":
-		// Change button to list mode
-		$("#changeViewBtn").html(`
-			<i class="mdc-list-item__graphic material-icons">view_list</i>
-			Visualizar em lista
-		`);
-	break;
-}
-
 function toggleSearchBar(action) {
 
 	switch (action) {
@@ -55,8 +29,6 @@ function toggleSearchBar(action) {
 				</section>
 			`);
 
-			// Initialize the search input
-			$('#searchInput').hideseek({list: ".searchList"})
 		break;
 
 		case "close":
@@ -88,7 +60,6 @@ function toggleSearchBar(action) {
 	}
 }
 
-// Toggles
 function toggleAccordion() {
 	$('.toggle-link').click(function(e) {
 
@@ -120,7 +91,7 @@ function toggleAccordion() {
 // List all the programming languages on the page
 function listLanguagesOnPage() {
 
-	// Close drawer
+	// Close the drawer
 	drawer.open = false;
 
 	// Disable slick on viewCard if it's enabled
@@ -129,88 +100,40 @@ function listLanguagesOnPage() {
 	}
 
 	// Empty the content of the all the lists
-	$("#viewList, #viewCard, #accordionList").html("");
+	$("#viewCard, #accordionList").html("");
 
 	// Request the file languages.yml
 	$.get("yml/languages.yml", function(data) {
+
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
 
-		switch (localStorage.getItem("viewMode")) {
-			case "list":
-
-				// Turn card view invisible
-				$("#viewCard").css("display", "none");
-
-				// For each item in languages.yml...
-				$.each(yamlData, function(i) {
-					// Append the language on the language list
-					$("#viewList").append(`
-						<li onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-list-item animated fadeIn">
-							<img src="${yamlData[i].icone}" class="mdc-list-item__graphic" alt="${yamlData[i].nome}">
-							<span class="mdc-list-item__text">
-								<span class="mdc-list-item__primary-text">${yamlData[i].nome}</span>
-								<span class="mdc-list-item__secondary-text">${yamlData[i].descricao}</span>
-							</span>
-						</li>
-					`)
-				})
-			break;
-
-			case "card":
-
-				// Turn card view visible
-				$("#viewCard").css("display", "block");
-
-				// For each item in languages.yml...
-				$.each(yamlData, function(i) {
-					// Append the language on the language list
-					$("#viewCard").append(`
-						<a style="display: flex" class="miniCard carousel-cell animated fadeIn">
-							<img src="${yamlData[i].icone}">
-							<span class="mdc-typography--headline6 title">${yamlData[i].nome}</span>
-							<span class="mdc-typography--caption">${yamlData[i].descricao}</span>
-							<button onclick="listCommands('${yamlData[i].nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${yamlData[i].nome.toLowerCase()}')">
-								Aprender
-							</button>
-						</a>
-					`)
-				})
-
-				// Enable slick on view card
-				$("#viewCard").slick({
-					dots: false,
-					arrows: false,
-					infinite: false,
-					swipeToSlide: true,
-					centerMode: false,
-					variableWidth: true
-				});
-
-			break;
-		}
-	})
-}
-
-function listLanguagesOnDrawer() {
-
-	// Empty the previous content of the language list
-	$("#languagesDrawer").html("");
-
-	// Request the file languages.yml
-	$.get("yml/languages.yml", function(data) {
-		// Convert the file data from YAML into JSON
-		var yamlData = jsyaml.load(data);
 		// For each item in languages.yml...
-		$.each(yamlData, function(i) {
-			// Appends the following code to the drawer
-			$("#languagesDrawer").append(`
-				<a onclick="listCommands('${yamlData[i].nome.toLowerCase()}'); drawer.open = false" class="mdc-list-item mdc-list-item">
-					<img class="mdc-list-item__graphic" src="${yamlData[i].icone}" alt="${yamlData[i].nome}">
-					${yamlData[i].nome}
+		$.each(yamlData[0].programming_languages, function(i) {
+
+			// Append the language on the language list
+			$("#viewCard").append(`
+				<a style="display: flex" class="miniCard carousel-cell animated fadeIn">
+					<img src="${this.icone}">
+					<span class="mdc-typography--headline6 title">${this.nome}</span>
+					<span class="mdc-typography--caption">${this.descricao}</span>
+					<button onclick="listCommands('${this.nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${this.nome.toLowerCase()}')">
+						Aprender
+					</button>
 				</a>
 			`)
+
 		})
+
+		// Enable slick on view card
+		$("#viewCard").slick({
+			dots: false,
+			arrows: false,
+			infinite: false,
+			swipeToSlide: true,
+			centerMode: false,
+			variableWidth: true
+		});
 	})
 }
 
@@ -221,7 +144,7 @@ function listCommands(language) {
 	toggleSearchBar("close");
 
 	// Empty the content of the all the lists
-	$("#viewList, #viewCard, #accordionList").html("");
+	$("#viewCard, #accordionList").html("");
 
 	// Get all data from the selected language YML file
 	$.get(`yml/${language}.yml`, function(data) {
@@ -234,14 +157,14 @@ function listCommands(language) {
 				<div class="panel panel-default animated fadeIn">
 					<div class="panel-heading waves-effect">
 						<a class="toggle-link" aria-expanded="false">
-							<h4 class="panel-title active">${yamlData[i].nome}</h4>
-							<code class="panel-subtitle">${yamlData[i].exemplo}</code>
+							<h4 class="panel-title active">${this.nome}</h4>
+							<code class="panel-subtitle">${this.exemplo}</code>
 							<i class="material-icons accordion-toggle-icon">arrow_downward</i>
 						</a>
 					</div>
 					<div class="content-collapse collapsed" aria-expanded="false">
 						<div class="panel-body">
-							<p>${html2md.makeHtml(yamlData[i].descricao)}</p>
+							<p>${html2md.makeHtml(this.descricao)}</p>
 						</div>
 					</div>
 				</div>
@@ -258,30 +181,6 @@ function listCommands(language) {
 	})
 }
 
-function changeViewMode() {
-	switch (localStorage.getItem("viewMode")) {
-		// Set viewMode to list
-		case "list":
-			localStorage.setItem("viewMode", "card");
-			listLanguagesOnPage();
-			$("#changeViewBtn").html(`
-				<i class="mdc-list-item__graphic material-icons">view_list</i>
-				Visualizar em lista
-			`);
-		break;
-
-		// Set viewMode to card
-		case "card":
-			localStorage.setItem("viewMode", "list");
-			listLanguagesOnPage();
-			$("#changeViewBtn").html(`
-				<i class="mdc-list-item__graphic material-icons">view_modules</i>
-				Visualizar em card
-			`);
-		break;
-	}
-}
-
 // Displays the "about" dialog
 function aboutDialog() {
 	$("body").append(`
@@ -289,9 +188,9 @@ function aboutDialog() {
 			<div class="mdc-dialog__container">
 				<div class="mdc-dialog__surface">
 
-					<h2 class="mdc-dialog__title" id="my-dialog-title">Sobre o code101</h2>
+					<h2 class="mdc-dialog__title">Sobre o code101</h2>
 
-					<div id="mdc-dialog-body" class="mdc-dialog__content">
+					<div class="mdc-dialog__content">
 						Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
 						<a href="https://github.com/henriquehbr/code101" target="_blank"><i class="fab fa-github"></i> Visitar repositório no Github</a><br>
 						<a href="https://instagram.com/code101.com.br" target="_blank"><i class="fab fa-instagram"></i> Visitar página no Instagram</a>
@@ -318,14 +217,49 @@ function suggestCommandsDialog() {
 			<div class="mdc-dialog__container">
 				<div class="mdc-dialog__surface">
 
-					<h2 class="mdc-dialog__title" id="my-dialog-title">Sobre o code101</h2>
+					<h2 class="mdc-dialog__title">Ajude esse projeto a ficar ainda maior, sugira um comando.</h2>
 
-					<div id="mdc-dialog-body" class="mdc-dialog__content">
+					<div class="mdc-dialog__content">
 						<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
-							<input class="w3-input w3-border w3-round w3-margin-bottom" name="commandName" type="text" placeholder="Nome do comando">
-							<input class="w3-input w3-border w3-round w3-margin-bottom" name="userEmail" type="email" placeholder="Seu email">
-							<input class="w3-input w3-border w3-round w3-margin-bottom" name="langSelect" placeholder="Linguagem do comando"></input>
-							<textarea name="commandDescription" class="w3-input w3-border w3-round w3-margin-bottom" placeholder="Fale sobre o comando"></textarea>
+
+							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+								<input type="text" name="commandName" class="mdc-text-field__input">
+								<label class="mdc-floating-label">Nome do comando</label>
+								<div class="mdc-notched-outline">
+									<svg>
+										<path class="mdc-notched-outline__path" />
+									</svg>
+								</div>
+								<div class="mdc-notched-outline__idle"></div>
+							</div>
+
+							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+								<input type="email" name="userEmail" class="mdc-text-field__input">
+								<label class="mdc-floating-label">Seu email</label>
+								<div class="mdc-notched-outline">
+									<svg>
+										<path class="mdc-notched-outline__path" />
+									</svg>
+								</div>
+								<div class="mdc-notched-outline__idle"></div>
+							</div>
+
+							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+								<input type="text" name="langSelect" class="mdc-text-field__input">
+								<label class="mdc-floating-label">Linguagem do comando</label>
+								<div class="mdc-notched-outline">
+									<svg>
+										<path class="mdc-notched-outline__path" />
+									</svg>
+								</div>
+								<div class="mdc-notched-outline__idle"></div>
+							</div>
+
+							<div class="mdc-text-field mdc-text-field--textarea w3-margin-top" data-mdc-auto-init="MDCTextField">
+								<textarea name="commandDescription" class="mdc-text-field__input"></textarea>
+								<label class="mdc-floating-label">Fale sobre o comando</label>
+							</div>
+
 						</form>
 					</div>
 
@@ -339,6 +273,10 @@ function suggestCommandsDialog() {
 			<div class="mdc-dialog__scrim"></div>
 		</div>
 	`);
+
+	/* Init MDC on all inputs in the suggest commands form
+	And also prevent from logging warnings about already-initialized elements */
+	window.mdc.autoInit(document, () => {});
 
 	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
 	dialog.open();
@@ -382,13 +320,14 @@ function suggestCommandsDialog() {
 
 function showSnackBar(message, actionText, timeout, actionHandler) {
 	$("#pageContent").append(`
-		<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+		<div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
 			<div class="mdc-snackbar__text"></div>
 			<div class="mdc-snackbar__action-wrapper">
 				<button type="button" class="mdc-snackbar__action-button"></button>
 			</div>
 		</div>
 	`);
+
 	const snackbar = mdc.snackbar.MDCSnackbar.attachTo(document.querySelector(".mdc-snackbar"));
 	const dataObj = {
 		message: message,
@@ -401,4 +340,3 @@ function showSnackBar(message, actionText, timeout, actionHandler) {
 }
 
 listLanguagesOnPage();
-listLanguagesOnDrawer();
