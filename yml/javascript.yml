@@ -1,4 +1,111 @@
 ---
-- nome: Declarar variável
-  exemplo: int variavel;
-  descricao: Declara uma variável no código
+- nome: Mostrar mensagem
+  exemplo: alert("Aprendendo Javascript!");
+  descricao: |
+    #### Função do `alert()`
+    O método `alert()` mostra uma mensagem ao usuário e um botão de confirmação, geralmente, é utilizado para
+    enfatizar algo que o usuário necessite saber
+
+    **Observação:** Todo o texto da caixa de alerta deve ser colocado em apenas uma linha, porém, é possivel
+    quebrar linhas utilizando o caractere `\n`
+
+    #### Exemplo
+    ```javascript
+    // Caixa de alerta simples
+    alert("Eu sou uma caixa de alerta");
+
+    // Caixa de alerta com múltiplas linhas
+    alert("Primeira linha\nSegunda linha\nTerceira linha");
+    ```
+
+    **Aviso:** a caixa de alerta remove o foco da janela atual, e força o navegador a ler
+    a mensagem, não use esse método com muita frequência, pois ele evita que o usuário acesse
+    as outras partes da página até que a caixa de alerta seja fechada
+
+- nome: Caixa de confirmação
+  exemplo: confirm("Você tem certeza disso?");
+  descricao: |
+    #### Função do `confirm()`
+    O método `confirm()` mostra uma mensagem ao usuário e dois botões, um de confirmação
+    e outro de cancelamento, geralmente, é utilizado quando o usuário deve escolher apenas
+    entre duas opções, sendo elas: "OK" ou "Cancelar"
+
+    - O método `confirm()` retorna `true` (verdadeiro) caso o usuário clique em "OK"
+    - Caso o usuário clique em "Cancelar", é retornado o valor `false` (falso)
+
+    **Observação:** Todo o texto da caixa de confirmação deve ser colocado em apenas uma linha, porém
+    é possivel quebrar linhas utilizando o caractere `\n`
+
+    #### Exemplo
+    ```javascript
+    confirm("Faça a sua escolha usuário");
+    ```
+
+    **Aviso:** a caixa de confirmação remove o foco da janela atual, e força o navegador a ler
+    a mensagem, não use esse método com muita frequência, pois ele evita que o usuário acesse
+    as outras partes da página até que a caixa de alerta seja fechada
+
+- nome: Caixa de entrada de texto
+  exemplo: prompt("Digite o seu nome:");
+  descricao: |
+    #### Função do `prompt()`
+    O método `prompt()` pede que o usuário entre com algum valor na caixa de texto, geralmente, é utilizado
+    quando o usuário deve informar algum dado ou valor, nessa caixa são mostrados dois botões, um de
+    confirmação e outro de cancelamento
+
+    - Caso o usuário clique em "OK", o método `prompt()` retorna o valor informado pelo usuário na caixa de
+    texto
+    - Caso o usuário clique em "Cancelar", é retornado o valor `null` (nulo)
+
+    **Observação:** Todo o texto da caixa de entrada de texto deve ser colocado em apenas uma linha, porém,
+    é possivel quebrar linhas utilizando o caractere `\n`
+
+    #### Exemplo
+    ```javascript
+    prompt("Avalie-nos com uma nota de 0 a 10:");
+    ```
+
+    **Aviso:** a caixa de entrada de texto remove o foco da janela atual, e força o navegador a ler
+    a mensagem, não use esse método com muita frequência, pois ele evita que o usuário acesse
+    as outras partes da página até que a caixa de alerta seja fechada
+
+- nome: Comentários
+  exemplo: // Comentário em Javascript
+  descricao: |
+    #### Função do comentário
+    Apesar de não serem obrigatórios, assim como em muitas outras linguagens, os comentários são essenciais,
+    podendo ser usados para:
+
+    - Explicar trechos de código e fazer com que fique mais legivel
+    - Evitar a execução, enquanto estiver testando um código alternativo
+
+    **Aviso:** os comentários são trechos de código completamente ignorados, ou seja, eles nunca serão
+    executados, e também não irão interferir no funcionamento do resto do código
+
+    #### Comentários de linha única
+    Comentários de linha única sempre começam com `//`
+
+    Qualquer texto que estiver entre `//` e o fim da linha será ignorado pelo Javascript (não será executado)
+
+    ##### Exemplo
+    ```javascript
+    // Eu sou um comentário de linha única, e não posso saltar para as outras linhas
+    ```
+
+    #### Comentários de múltiplas linhas
+    Comentários de múltiplas linhas iniciam com `/*` e terminam com `*/`
+
+    Qualquer texto que estiver entre `/*` e `*/` será ignorado pelo Javascript 
+
+    ##### Exemplo
+    ```javascript
+    /*
+    Eu sou um comentário de múltiplas linhas
+    diferentemente do comentário de linha única
+    posso saltar para outras linhas
+    de forma com que o texto fique mais legivel
+    */
+    ```
+
+    **Observação:** o uso dos comentários de linha única é mais comum, sendo que os comentários
+    de múltiplas linhas geralmente são utilizados em documentações formais

@@ -18,7 +18,6 @@ var precacheFiles = [
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js",
 	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
-	"https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js",
@@ -28,8 +27,11 @@ var precacheFiles = [
 
 	// RESOURCES (RES)
 	"res/lang-icons/c.svg",
-	"res/lang-icons/javascript.svg",
+	"res/lang-icons/html.svg",
 	"res/lang-icons/java.svg",
+	"res/lang-icons/javascript.svg",
+	"res/lang-icons/python.svg",
+	"res/lang-icons/ruby.svg",
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 	"https://fonts.googleapis.com/css?family=Press+Start+2P",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
@@ -37,8 +39,8 @@ var precacheFiles = [
 
 	// YML
 	"yml/c.yml",
-	"yml/javascript.yml",
 	"yml/java.yml",
+	"yml/javascript.yml",
 	"yml/languages.yml",
 
 	// HTML

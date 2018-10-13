@@ -1,6 +1,6 @@
 drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector(".mdc-drawer"));
 
-var html2md = new showdown.Converter();
+html2md = new showdown.Converter();
 
 // Verify if browser supports Web Storage
 if (typeof(Storage) !== "undefined") {
@@ -22,7 +22,7 @@ function toggleSearchBar(action) {
 
 			// Append the search bar to the top app bar
 			$("#topAppBar .mdc-top-app-bar__row").append(`
-				<input id="searchInput" type="search" class="w3-input w3-border-0 animated fadeIn" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<input onkeyup="searchCards()" id="searchInput" type="search" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end animated fadeIn" role="toolbar">
 					<i class="material-icons material-icons-dark mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('close')">close</i>
 					<div class="mdc-line-ripple"></div>
@@ -49,8 +49,8 @@ function toggleSearchBar(action) {
 
 			$("#topAppBar .mdc-top-app-bar__row").append(`
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-					<a id="drawerBtn" onclick="drawer.open = !drawer.open" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-					<span id="appTitle" class="mdc-top-app-bar__title code101-logo">code101</span>
+					<a onclick="drawer.open = !drawer.open" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+					<span class="mdc-top-app-bar__title code101-logo">code101</span>
 				</section>
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
 					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
@@ -91,13 +91,11 @@ function toggleAccordion() {
 // List all the programming languages on the page
 function listLanguagesOnPage() {
 
+	// Tell the input to search on the cards
+	viewMode = "cards";
+
 	// Close the drawer
 	drawer.open = false;
-
-	// Disable slick on viewCard if it's enabled
-	if ($("#viewCard").hasClass("slick-initialized")) {
-		$("#viewCard").slick("unslick");
-	}
 
 	// Empty the content of the all the lists
 	$("#viewCard, #accordionList").html("");
@@ -108,37 +106,66 @@ function listLanguagesOnPage() {
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
 
-		// For each item in languages.yml...
-		$.each(yamlData[0].programming_languages, function(i) {
+		// For each category in languages.yml...
+		$.each(yamlData, function(i) {
 
-			// Append the language on the language list
+			// Append the category card
 			$("#viewCard").append(`
-				<a style="display: flex" class="miniCard carousel-cell animated fadeIn">
-					<img src="${this.icone}">
-					<span class="mdc-typography--headline6 title">${this.nome}</span>
-					<span class="mdc-typography--caption">${this.descricao}</span>
-					<button onclick="listCommands('${this.nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${this.nome.toLowerCase()}')">
-						Aprender
-					</button>
-				</a>
+				<div class="mdc-card w3-margin-bottom">
+					<div class="mdc-card__primary-action">
+						<div style="padding:16px;display:flex" class="card-header">
+							<div class="card-title">
+								<h2 style="margin:0" class="mdc-typography--headline6">${this.category_name}</h2>
+							</div>
+						</div>
+					</div>
+					<div id="${this.category_id}" class="card-body mdc-typography--body2"></div>
+				</div>
 			`)
+
+			// Append the elements on the category card
+			$.each(yamlData[i].category_elements, function(index) {
+				$(`#${yamlData[i].category_id}`).append(`
+					<a style="display: flex" class="miniCard animated fadeIn">
+						<img src="${this.icone}">
+						<span class="mdc-typography--headline6">${this.nome}</span>
+						<span class="mdc-typography--caption">${this.descricao}</span>
+						<button onclick="listCommands('${this.nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${this.nome.toLowerCase()}')">
+							Aprender
+						</button>
+					</a>
+				`)
+			})
 
 		})
 
-		// Enable slick on view card
-		$("#viewCard").slick({
-			dots: false,
-			arrows: false,
-			infinite: false,
-			swipeToSlide: true,
-			centerMode: false,
-			variableWidth: true
-		});
+		// For each cateogry card
+		$.each(yamlData, function(i) {
+
+			// Disable slick on category card if it's enabled
+			if ($(`#${this.category_id}`).hasClass("slick-initialized")) {
+				$(`#${this.category_id}`).slick("unslick");
+			}
+
+			// Enable slick on the category card
+			$(`#${this.category_id}`).slick({
+				dots: false,
+				arrows: false,
+				infinite: false,
+				swipeToSlide: true,
+				centerMode: false,
+				variableWidth: true
+			});
+		})
+
 	})
 }
 
 // List commands of a specific language
 function listCommands(language) {
+
+	// Tell the input to search on the accordions
+	viewMode = "accordions";
 
 	// Close the search bar (if open)
 	toggleSearchBar("close");
@@ -316,6 +343,20 @@ function suggestCommandsDialog() {
 		// Clear all inputs and close dialog
 		$("#suggestCommandsForm").trigger("reset");
 	});
+}
+
+function searchCards() {
+	if (viewMode == "cards") {
+		var value = $("#searchInput").val().toLowerCase();
+		$("#viewCard span.mdc-typography--headline6").filter(function() {
+			$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+		});
+	} else if (viewMode == "accordions") {
+		var value = $("#searchInput").val().toLowerCase();
+		$("#accordionList h4.panel-title").filter(function() {
+			$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+		});
+	}
 }
 
 function showSnackBar(message, actionText, timeout, actionHandler) {

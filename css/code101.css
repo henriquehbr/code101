@@ -15,10 +15,7 @@ a:focus {text-decoration: none}
 
 #pageContent {padding: 10px}
 
-#viewCard {
-	text-align: center;
-	margin-top: 10px;
-}
+#viewCard {margin-top: 10px}
 
 #drawerBtn, #menu-btn, .mdc-menu-anchor {
 	-webkit-touch-callout: none;
@@ -62,17 +59,13 @@ a:focus {text-decoration: none}
 	transition: 200ms;
 	background: #fff;
 	cursor: pointer;
-	/*box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);*/
 	transform: translateZ(0);
 	box-sizing: border-box;
 	line-height: 1.15;
 	user-select: none;
 }
 
-.miniCard:hover {
-	/*box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);*/
-	transform: scale(1.05);
-}
+.miniCard:hover {transform: scale(1.05)}
 
 .miniCard:active {transform:scale(.9)}
 

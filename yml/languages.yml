@@ -1,13 +1,26 @@
 ---
-- programming_languages:
+- category_name: Linguagens de programação
+  category_id: programming_languages
+  category_elements:
   - nome: C
     descricao: Linguagem de programação
     icone: res/lang-icons/c.svg
-    
   - nome: Javascript
     descricao: Linguagem de programação
     icone: res/lang-icons/javascript.svg
-
   - nome: Java
     descricao: Linguagem de programação
     icone: res/lang-icons/java.svg
+  - nome: Ruby
+    descricao: Linguagem de programação
+    icone: res/lang-icons/ruby.svg
+  - nome: Python
+    descricao: Linguagem de programação
+    icone: res/lang-icons/python.svg
+
+- category_name: Linguagens de marcação
+  category_id: markup_languages
+  category_elements:
+  - nome: HTML
+    descricao: Linguagem de marcação
+    icone: res/lang-icons/html.svg
