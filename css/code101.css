@@ -41,6 +41,11 @@ a:focus {text-decoration: none}
 
 .code101-logo {font-family: "Press Start 2P"}
 
+.code101-logo-colored {
+	font-family: "Press Start 2P";
+	color: #6200ee !important;
+}
+
 /* ########## MINI CARDS ########## */
 
 .miniCard {

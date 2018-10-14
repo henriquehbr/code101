@@ -1,19 +1,16 @@
+/* Variables
+============================= */
 drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector(".mdc-drawer"));
-
 html2md = new showdown.Converter();
-
-// Verify if browser supports Web Storage
-if (typeof(Storage) !== "undefined") {
-	console.log("Your browser supports Web Storage");
-} else {
-	console.log("Your browser doesn't support Web Storage!");
-}
+viewMode = "cards";
+searchBarEnabled = false;
 
 function toggleSearchBar(action) {
-
 	switch (action) {
 		case "open":
-			
+			// Indicate the state of the search bar (enabled)
+			searchBarEnabled = true;
+
 			// Clear the top app bar content
 			$("#topAppBar .mdc-top-app-bar__row").html("");
 
@@ -22,16 +19,19 @@ function toggleSearchBar(action) {
 
 			// Append the search bar to the top app bar
 			$("#topAppBar .mdc-top-app-bar__row").append(`
-				<input id="searchInput" type="search" onkeyup="searchCards()" autocomplete="off" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<input id="searchInput" type="search" oninput="searchCards()" autocomplete="off" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end animated fadeIn" role="toolbar">
 					<i class="material-icons material-icons-dark mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('close')">close</i>
 					<div class="mdc-line-ripple"></div>
 				</section>
 			`);
 
+			// Focus on the search input
+			$("#searchInput").focus();
 		break;
-
 		case "close":
+			// Indicate the state of the search bar (disabled)
+			searchBarEnabled = false;
 
 			/* Programmatically press key after search bar is closed
 			in order to reset search results to the default state */
@@ -40,6 +40,9 @@ function toggleSearchBar(action) {
 
 			// Clear the search bar text
 			$("#searchInput").val("").trigger(keyup);
+
+			// Reset the search results before closing the search bar
+			searchCards();
 
 			// Clear the top app bar content
 			$("#topAppBar .mdc-top-app-bar__row").html("");
@@ -116,6 +119,7 @@ function listLanguagesOnPage() {
 						<div style="padding:16px;display:flex" class="card-header">
 							<div class="card-title">
 								<h2 style="margin:0" class="mdc-typography--headline6">${this.category_name}</h2>
+								<h2 style="margin:0;display:none" class="mdc-typography--body2">Nenhum resultado encontrado!</h2>
 							</div>
 						</div>
 					</div>
@@ -152,6 +156,7 @@ function listLanguagesOnPage() {
 				dots: false,
 				arrows: false,
 				infinite: false,
+				speed: 1000,
 				swipeToSlide: true,
 				centerMode: false,
 				variableWidth: true
@@ -168,7 +173,9 @@ function listCommands(language) {
 	viewMode = "accordions";
 
 	// Close the search bar (if open)
-	toggleSearchBar("close");
+	if (searchBarEnabled == true) {
+		toggleSearchBar("close");
+	}
 
 	// Empty the content of the all the lists
 	$("#viewCard, #accordionList").html("");
@@ -210,6 +217,10 @@ function listCommands(language) {
 
 // Displays the "about" dialog
 function aboutDialog() {
+
+	// Close the drawer
+	drawer.open = false;
+
 	$("body").append(`
 		<div id="aboutDialog" class="mdc-dialog" role="alertdialog">
 			<div class="mdc-dialog__container">
@@ -239,6 +250,10 @@ function aboutDialog() {
 
 // Displays the "suggestCommands" dialog
 function suggestCommandsDialog() {
+
+	// Close the drawer
+	drawer.open = false;
+
 	$("body").append(`
 		<div id="suggestCommandsDialog" class="mdc-dialog" role="alertdialog">
 			<div class="mdc-dialog__container">
@@ -292,7 +307,7 @@ function suggestCommandsDialog() {
 
 					<footer class="mdc-dialog__actions">
 						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
-						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+						<button id="btnDialogOK" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
 					</footer>
 
 				</div>
@@ -345,12 +360,22 @@ function suggestCommandsDialog() {
 	});
 }
 
-function searchCards() {
+function searchCards() {	
 	if (viewMode == "cards") {
 		var value = $("#searchInput").val().toLowerCase();
 		$("#viewCard span.mdc-typography--headline6").filter(function() {
 			$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
+
+		// If nothing was found, display a "not found" message
+		$.each($("#viewCard .mdc-card .card-body .slick-track"), function(i) {
+			if ($(this).children(":visible").length == 0) {
+				$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "block");
+			} else {
+				$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "none");
+			}
+		})
+
 	} else if (viewMode == "accordions") {
 		var value = $("#searchInput").val().toLowerCase();
 		$("#accordionList h4.panel-title").filter(function() {
