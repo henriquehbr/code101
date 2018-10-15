@@ -17,8 +17,7 @@
     #include <biblioteca.h>
     ```
 
-    É usado para as [bibliotecas padrões da linguagem](https://pt.wikipedia.org/wiki/Biblioteca_padr%C3%A3o_do_C#Cabe%C3%A7alhos_do_ANSI_C),
-    Em geral o compilador já sabe onde estão os cabeçalhos do que faz parte da linguagem.
+    É usado para as [bibliotecas padrões da linguagem](https://pt.wikipedia.org/wiki/Biblioteca_padr%C3%A3o_do_C#Cabe%C3%A7alhos_do_ANSI_C), Em geral o compilador já sabe onde estão os cabeçalhos do que faz parte da linguagem.
 
     ```
     #include "biblioteca.h"

@@ -89,13 +89,16 @@ function toggleAccordion() {
 			return false;
 		}
 	});
-};
+}
 
 // List all the programming languages on the page
 function listLanguagesOnPage() {
 
 	// Tell the input to search on the cards
 	viewMode = "cards";
+
+	// Change the page title to "code101"
+	document.title = `code101`;
 
 	// Close the drawer
 	drawer.open = false;
@@ -125,23 +128,23 @@ function listLanguagesOnPage() {
 					</div>
 					<div id="${this.category_id}" class="card-body mdc-typography--body2"></div>
 				</div>
-			`)
+			`);
 
 			// Append the elements on the category card
 			$.each(yamlData[i].category_elements, function(index) {
 				$(`#${yamlData[i].category_id}`).append(`
 					<a style="display: flex" class="miniCard animated fadeIn">
-						<img src="${this.icone}">
+						<img alt="${this.nome}" src="${this.icone}">
 						<span class="mdc-typography--headline6">${this.nome}</span>
 						<span class="mdc-typography--caption">${this.descricao}</span>
 						<button onclick="listCommands('${this.nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${this.nome.toLowerCase()}')">
 							Aprender
 						</button>
 					</a>
-				`)
-			})
+				`);
+			});
 
-		})
+		});
 
 		// For each cateogry card
 		$.each(yamlData, function(i) {
@@ -161,9 +164,9 @@ function listLanguagesOnPage() {
 				centerMode: false,
 				variableWidth: true
 			});
-		})
+		});
 
-	})
+	});
 }
 
 // List commands of a specific language
@@ -182,8 +185,13 @@ function listCommands(language) {
 
 	// Get all data from the selected language YML file
 	$.get(`yml/${language}.yml`, function(data) {
+
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
+
+		// Change the page title to "code101 | Language"
+		document.title = `code101 | ${language.charAt(0).toUpperCase() + language.slice(1)}`;
+
 		// For each item in the YAML data...
 		$.each(yamlData, function(i) {
 			// Append the following code on the accordion list
@@ -202,8 +210,8 @@ function listCommands(language) {
 						</div>
 					</div>
 				</div>
-			`)
-		})
+			`);
+		});
 
 		// Highlight all the code blocks
 		$("pre code").each(function(i, block) {
@@ -212,7 +220,7 @@ function listCommands(language) {
 
 		toggleAccordion();
 
-	})
+	});
 }
 
 // Displays the "about" dialog
@@ -229,9 +237,13 @@ function aboutDialog() {
 					<h2 class="mdc-dialog__title">Sobre o code101</h2>
 
 					<div class="mdc-dialog__content">
-						Plataforma desenvolvida com o objetivo de facilitar a busca por comandos de linguagens de programação.<br><br>
-						<a href="https://github.com/henriquehbr/code101" target="_blank"><i class="fab fa-github"></i> Visitar repositório no Github</a><br>
-						<a href="https://instagram.com/code101.com.br" target="_blank"><i class="fab fa-instagram"></i> Visitar página no Instagram</a>
+						code101 é uma aplicação web progressiva desenvolvida com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
+						<a href="https://github.com/henriquehbr/code101" target="_blank">
+							<i class="fab fa-github"></i> Visitar repositório no Github
+						</a><br>
+						<a href="https://instagram.com/code101.com.br" target="_blank">
+							<i class="fab fa-instagram"></i> Visitar página no Instagram
+						</a>
 					</div>
 
 					<footer class="mdc-dialog__actions">
@@ -244,7 +256,7 @@ function aboutDialog() {
 		</div>
 	`);
 
-	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#aboutDialog"));
+	dialog = new mdc.dialog.MDCDialog(document.querySelector("#aboutDialog"));
 	dialog.open();
 }
 
@@ -306,7 +318,7 @@ function suggestCommandsDialog() {
 					</div>
 
 					<footer class="mdc-dialog__actions">
-						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
+						<button id="btnDialogCancel" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
 						<button id="btnDialogOK" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
 					</footer>
 
@@ -320,7 +332,7 @@ function suggestCommandsDialog() {
 	And also prevent from logging warnings about already-initialized elements */
 	window.mdc.autoInit(document, () => {});
 
-	var dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
+	dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
 	dialog.open();
 
 	// Triggered when any input value on form is changed
@@ -344,23 +356,27 @@ function suggestCommandsDialog() {
 
 	// When "OK" button is clicked...
 	$("#btnDialogOK").click(function() {
-		var suggestCommandsFormData = $("#suggestCommandsForm").serialize();
+
+		// Send the suggestion data to Firebase Cloud Functions
 		$.ajax({
 			type: "post",
 			url: "https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail",
-			data: suggestCommandsFormData,
+			data: $("#suggestCommandsForm").serialize(),
+			success: function() {
+				showSnackBar("Sua sugestão foi enviada com sucesso!", "OK", 3000);
+			}
 		});
-		showSnackBar("Sua sugestão foi enviada com sucesso!", "OK", 3000);
-	})
 
-	// When "Cancel" button is clicked...
-	$("#btnDialogCancel").click(function() {
-		// Clear all inputs and close dialog
-		$("#suggestCommandsForm").trigger("reset");
+		$("#suggestCommandsDialog").remove();
+	});
+
+	// Event triggered when the dialog is closed
+	$("#suggestCommandsDialog").on("MDCDialog:closed", function() {
+		$("#suggestCommandsDialog").remove();
 	});
 }
 
-function searchCards() {	
+function searchCards() {
 	if (viewMode == "cards") {
 		var value = $("#searchInput").val().toLowerCase();
 		$("#viewCard span.mdc-typography--headline6").filter(function() {
@@ -374,7 +390,7 @@ function searchCards() {
 			} else {
 				$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "none");
 			}
-		})
+		});
 
 	} else if (viewMode == "accordions") {
 		var value = $("#searchInput").val().toLowerCase();
@@ -386,7 +402,7 @@ function searchCards() {
 
 function showSnackBar(message, actionText, timeout, actionHandler) {
 	$("#pageContent").append(`
-		<div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+		<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
 			<div class="mdc-snackbar__text"></div>
 			<div class="mdc-snackbar__action-wrapper">
 				<button type="button" class="mdc-snackbar__action-button"></button>
@@ -402,7 +418,7 @@ function showSnackBar(message, actionText, timeout, actionHandler) {
 		actionHandler: actionHandler
 	};
 
-	snackbar.show(dataObj);	
+	snackbar.show(dataObj);
 }
 
 listLanguagesOnPage();

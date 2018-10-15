@@ -1,0 +1,208 @@
+---
+- nome: Mostrar mensagem
+  exemplo: puts, print
+  descricao: |
+    #### Função do comando
+    Basicamente, ambos os comandos (`puts` e `print`) são usados para imprimir dados na tela, porém, possuem características diferentes:
+
+    - `puts` adiciona quebras de linha automáticamente
+    - `print` não adiciona uma quebra de linha
+
+    #### Exemplo
+    ```ruby
+    # O puts quebra linhas automáticamente
+    puts "Aprendendo Ruby"
+    puts "com o code101!"
+
+    # O print não quebra linhas
+    print "Aprendendo Ruby com o code101!"
+    ```
+
+    **Observação**: Também é possível incluir o valor de uma váriavel dentro do `puts` ou do `print`
+
+    #### Exemplo
+    ```ruby
+    # Declara as variáveis que serão usadas
+    nome="João"
+    sobrenome="Silva"
+    idade=22
+
+    # Mostra o texto, juntamente com o conteúdo das variáveis
+    puts "Meu nome é: #{nome} #{sobrenome}, tenho #{idade} anos"
+    ```
+
+- nome: Comentários
+  exemplo: "# Eu sou um comentário"
+  descricao: |
+    #### Função do comentário
+    Apesar de não serem obrigatórios, assim como em muitas outras linguagens, os comentários são essenciais, podendo ser usados para:
+
+    - Explicar trechos de código e fazer com que fique mais legivel
+    - Evitar a execução, enquanto estiver testando um código alternativo
+
+    **Aviso:** os comentários são trechos de código completamente ignorados, ou seja, eles nunca serão executados, e também não irão interferir no funcionamento do resto do código
+
+    #### Comentários de linha única
+
+    Comentários de linha única sempre começam com `#`, qualquer texto que estiver entre `#` e o fim da linha será ignorado pelo Javascript (não será executado)
+
+    ##### Exemplo
+    ```ruby
+    # Eu sou um comentário de linha única
+    ```
+
+    #### Comentários de múltiplas linhas
+    Comentários de múltiplas linhas iniciam com `=begin` e terminam com `=end`, qualquer texto que estiver entre esses dois parâmetros será ignorado pelo Ruby
+
+    ##### Exemplo
+    ```ruby
+    =begin
+    Eu sou um comentário de múltiplas linhas
+    diferentemente do comentário de linha única
+    posso saltar para outras linhas
+    de forma com que o texto fique mais legivel
+    =end
+    ```
+
+- nome: Entrada de dados
+  exemplo: gets.chomp, gets.to_i, gets.to_f
+  descricao: |
+    #### Função do comando `gets`
+    O comando `gets` pausa a execução do programa, e espera o usuário digitar algum valor para continuar
+
+    O `gets` pode váriar, dependendo do tipo do valor desejado, por exemplo: 
+
+    - `gets.chomp` é usado com string (texto)
+    - `gets.to_i` é usado com int (números inteiros)
+    - `gets.to_f` é usado com float (números quebrados)
+
+    #### Exemplo
+    ```ruby
+    # Solicita que o usuário informe o primeiro nome
+    print "Digite seu primeiro nome: "
+    nome=gets.chomp
+
+    # Solicita que o usuário informe o sobrenome
+    print "Digite seu sobrenome: "
+    sobrenome=gets.chomp
+
+    # Solicita que o usuário informe a idade
+    print "Digite sua idade: "
+    idade=gets.to_i
+    ```
+
+- nome: Estruturas condicionais
+  exemplo: if...else, elsif, unless, case
+  descricao: |
+    #### O que são estruturas condicionais?
+    Chamamos de estruturas condicionais as instruções usadas para testar se uma determinada condição é verdadeira (`true`) ou não (`false`) e, de acordo com o resultado dessa verificação, executar uma ou outra rotina, entre essas instruções, estão:
+
+    #### A estrutura `if...else`
+
+    A instrução `if...else` é a estrutura de teste mais básica e é encontrada em todas as linguagens (com sintaxes diferentes). Ela permite executar uma série de instruções caso uma condição se realize, a sintaxe desta expressão é a seguinte:
+
+    ##### Exemplo
+    ```ruby
+    if (# se a condição for verdadeira)
+      (# execute este código)
+    else (# senão)
+      (# execute este código)
+    end
+    ```
+
+    - O `if` (se) é usado para avaliar se uma determinada condição for verdadeira, vai executar o código referente a ele, pode ser utilizado sozinho para avaliar apenas uma condição.
+
+    - Já o `else` (senão) só pode ser utilizado após um if, caso a condição do if seja falsa, é o código referente a este if que vai ser executado.
+
+    #### A estrutura `elsif`
+    É uma junção do else com o `if`, deve ser usado caso haja mais de uma condição `if` e uma else para ser verificada. Ou seja, mais de duas condições.
+
+    ##### Exemplo
+    ```ruby
+    print "Digite a sua idade: "
+    idade=gets.to_i
+    if idade >= 20
+      puts "Você é adulto"
+    elsif idade < 20 && idade >=14 
+      # && quer dizer "e". As duas condições devem ser verdadeiras
+      puts "Você é adolescente"
+    elsif idade < 14
+      puts "Você é criança"
+    end
+    ```
+
+    #### A estrutura `unless`
+    O `unless` é simplesmente o contrário do `if`. Enquanto o `if` executa um código caso a condição seja verdadeira, o unless executa quando ela for falsa. A sintaxe é a mesma.
+
+    ##### Exemplo
+    ```ruby
+    x = 1 
+    unless x == 2
+      puts "x é diferente de 2"
+    else
+      puts "x é igual a 2"
+    end
+    ```
+
+    #### A estrutura `case`
+    O `case` é utilizado quando um simples conjunto de if - else - elsif não é suficiente devido às muitas condições a serem analisadas. O case se torna então mais legível, prático e fácil.
+
+    ##### Exemplo
+    ```ruby
+    print "Digite o número do seu mês de aniversário: "
+    mes=gets.to_i
+    case mes
+    when 1..3 # no intervalo de 1 a 3
+        puts "Nasceu no começo do ano"
+    when 4..6 # no intervalo de 4 a 6
+        puts "Nasceu na primeira metade do ano"
+    when 7..9 # no intervalo de 7 a 9
+        puts "Nasceu na segunda metade do ano"
+    when 10..12 # no intervalo de 10 a 12
+        puts "Nasceu no final do ano"
+    end
+    ```
+
+- nome: Laços de repetição
+  exemplo: while, for, times
+  descricao: |
+    #### O que são laços de repetição?
+    Os laços de repetição são estruturas utilizadas para executar repetidamente, uma instrução, ou bloco de instrução enquanto determinada condição estiver sendo satisfeita
+
+    Existem três tipos de laços de repetição no Ruby (`while`, `for` e `times`), e cada um deles tem uma função específica
+
+    #### A estrutura `while`
+    O laço `while`, é usado quando há a necessidade de escrever um mesmo código um número limitado de vezes
+
+    ##### Exemplo
+    ```ruby
+    x = 1
+    while x <= 100 do # Enquanto x for igual ou menor a 100
+      puts "#{x}" # Mostra o valor de x
+      x=x+1 # Soma 1 ao valor de x
+    end
+    ```
+
+    Este pequeno código de 5 linhas é suficiente para imprimir de 1 a 100 na tela do seu computador, ao invés de escrever `puts "1"` a `puts "100"`, que daria um trabalho simplesmente desnecessário, é só usar o while
+
+    #### A estrutura `for`
+
+    O laço `for` tem uma estrutura bem semelhante ao while, com a diferença de que não há necessidade de declarar uma variável no `for`, o que auxilia as iterações em sua própria estrutura
+
+    ##### Exemplo
+    ```ruby
+    for x in 1..100
+      puts "#{x}"
+      x = x+1
+    end
+    ```
+
+    #### A estrutura `times`
+    O laço `times` determina quantas vezes vai ocorrer a repetição, sua sintaxe também é semelhante as outras estruturas de repetição
+
+    ##### Exemplo
+    ```ruby
+    10.times do
+      puts "Esse texto será repetido 10 vezes"
+    end
+    ```

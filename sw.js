@@ -35,13 +35,14 @@ var precacheFiles = [
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 	"https://fonts.googleapis.com/css?family=Press+Start+2P",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
-	"https://use.fontawesome.com/releases/v5.3.1/css/all.css",
+	"https://use.fontawesome.com/releases/v5.4.1/css/all.css",
 
 	// YML
 	"yml/c.yml",
 	"yml/java.yml",
 	"yml/javascript.yml",
 	"yml/languages.yml",
+	"yml/ruby.yml",
 
 	// HTML
 	"index.html",
