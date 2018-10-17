@@ -1,10 +1,10 @@
 {
 	"name": "code101",
 	"short_name": "code101",
-	"start_url": "/code101/index.html",
+	"start_url": "/index.html",
 	"display": "standalone",
 	"background_color": "#fafafa",
-	"theme_color": "#6200cc",
+	"theme_color": "#6200ee",
 	"icons": [
 		{
 			"src": "res/app-icons/icon-48x48.png",
