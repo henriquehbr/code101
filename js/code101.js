@@ -1,9 +1,13 @@
-/* Variables
-============================= */
+/* ########## VARIABLES ########## */
 drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector(".mdc-drawer"));
-html2md = new showdown.Converter();
+convertHtmlToMarkdown = new showdown.Converter();
 viewMode = "cards";
 searchBarEnabled = false;
+
+$(document).ready(() => {
+	// Enable mouse/touch interactions after page load
+	$("body").css("pointer-events", "all");
+});
 
 function toggleSearchBar(action) {
 	switch (action) {
@@ -92,7 +96,7 @@ function toggleAccordion() {
 }
 
 // List all the programming languages on the page
-function listLanguagesOnPage() {
+function displayLanguagesOnPage() {
 
 	// Tell the input to search on the cards
 	viewMode = "cards";
@@ -137,7 +141,7 @@ function listLanguagesOnPage() {
 						<img alt="${this.nome}" src="${this.icone}">
 						<span class="mdc-typography--headline6">${this.nome}</span>
 						<span class="mdc-typography--caption">${this.descricao}</span>
-						<button onclick="listCommands('${this.nome.toLowerCase()}')" class="mdc-button" onclick="listCommands('${this.nome.toLowerCase()}')">
+						<button onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')" class="mdc-button" onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')">
 							Aprender
 						</button>
 					</a>
@@ -170,7 +174,7 @@ function listLanguagesOnPage() {
 }
 
 // List commands of a specific language
-function listCommands(language) {
+function displayCommandsOnPage(language) {
 
 	// Tell the input to search on the accordions
 	viewMode = "accordions";
@@ -206,7 +210,7 @@ function listCommands(language) {
 					</div>
 					<div class="content-collapse collapsed" aria-expanded="false">
 						<div class="panel-body">
-							<p>${html2md.makeHtml(this.descricao)}</p>
+							<p>${convertHtmlToMarkdown.makeHtml(this.descricao)}</p>
 						</div>
 					</div>
 				</div>
@@ -224,7 +228,7 @@ function listCommands(language) {
 }
 
 // Displays the "about" dialog
-function aboutDialog() {
+function displayAboutDialog() {
 
 	// Close the drawer
 	drawer.open = false;
@@ -239,10 +243,13 @@ function aboutDialog() {
 					<div class="mdc-dialog__content">
 						code101 é uma aplicação web progressiva desenvolvida com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
 						<a href="https://github.com/henriquehbr/code101" target="_blank">
-							<i class="fab fa-github"></i> Visitar repositório no Github
-						</a><br>
+							<i class="fab fa-github"></i>
+							<span class="mdc-list-item__text">Visitar repositório no Github</span>
+						</a>
+						<br>
 						<a href="https://instagram.com/code101.com.br" target="_blank">
-							<i class="fab fa-instagram"></i> Visitar página no Instagram
+							<i class="fab fa-instagram"></i>
+							<span class="mdc-list-item__text">Visitar página no Instagram</span>
 						</a>
 					</div>
 
@@ -360,14 +367,12 @@ function suggestCommandsDialog() {
 		// Send the suggestion data to Firebase Cloud Functions
 		$.ajax({
 			type: "post",
-			url: "https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail",
+			url: "https://us-central1-code101-b884a.cloudfunctions.net/registerSuggestion",
 			data: $("#suggestCommandsForm").serialize(),
-			success: function() {
-				showSnackBar("Sua sugestão foi enviada com sucesso!", "OK", 3000);
-			}
 		});
 
 		$("#suggestCommandsDialog").remove();
+		showSnackBar("Sua sugestão foi enviada com sucesso!");
 	});
 
 	// Event triggered when the dialog is closed
@@ -400,7 +405,7 @@ function searchCards() {
 	}
 }
 
-function showSnackBar(message, actionText, timeout, actionHandler) {
+function showSnackBar(message) {
 	$("#pageContent").append(`
 		<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
 			<div class="mdc-snackbar__text"></div>
@@ -413,12 +418,11 @@ function showSnackBar(message, actionText, timeout, actionHandler) {
 	const snackbar = mdc.snackbar.MDCSnackbar.attachTo(document.querySelector(".mdc-snackbar"));
 	const dataObj = {
 		message: message,
-		actionText: actionText,
-		timeout: timeout,
-		actionHandler: actionHandler
+		actionText: "OK",
+		timeout: 3000
 	};
 
 	snackbar.show(dataObj);
 }
 
-listLanguagesOnPage();
+displayLanguagesOnPage();

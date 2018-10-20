@@ -27,10 +27,11 @@
 		<meta name="msapplication-TileColor" content="#6200cc">
 		<meta name="msapplication-TileImage" content="icon-144x144.png">
 
+		<!-- PAGE TITLE -->
 		<title>code101</title>
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="res/app-icons/favicon-16x16.png" type="image/png">
+		<link rel="shortcut icon" href="assets/app-icons/favicon-16x16.png" type="image/png">
 
 		<!-- MANIFEST JSON -->
 		<link rel="manifest" href="manifest.json">
@@ -39,17 +40,16 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
 		<link rel="stylesheet" href="css/w3pro.css">
 		<link rel="stylesheet" href="css/code101.css">
 
 		<!-- FONTS -->
-		<link async href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-		<link async rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link async rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 	</head>
 	<body>
 
@@ -63,7 +63,7 @@
 				<nav class="mdc-list">
 
 					<!-- HOME -->
-					<a onclick="listLanguagesOnPage()" class="mdc-list-item mdc-list-item--activated" aria-selected="true">
+					<a onclick="displayLanguagesOnPage()" class="mdc-list-item mdc-list-item--activated" aria-selected="true">
 						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
 						<span class="mdc-list-item__text">Página inicial</span>
 					</a>
@@ -75,7 +75,7 @@
 					</a>
 
 					<!-- ABOUT -->
-					<a id="changeViewBtn" onclick="aboutDialog()" class="mdc-list-item" aria-selected="true">
+					<a id="changeViewBtn" onclick="displayAboutDialog()" class="mdc-list-item" aria-selected="true">
 						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
 						<span class="mdc-list-item__text">Sobre</span>
 					</a>
@@ -134,12 +134,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
 
 		<script src="js/code101.js"></script>
 		<script>
-			// If the browser support Service Workers
+			// Verify if the browser support Service Workers
 			if ("serviceWorker" in navigator) {
-				// Verify if is there a service worker running on the page
+				// Register the Service Worker
 				navigator.serviceWorker
 					.register("sw.js")
 					.then(function(registration) {
@@ -148,7 +149,8 @@
 					.catch(function(err) {
 					console.log("Service Worker falhou em registrar", err);
 				})
-						
+
+				// Tells the user when the Service Worker is ready
 				navigator.serviceWorker.ready.then(function(registration) {
 					console.log("Service Worker pronto");
 				})
@@ -156,6 +158,13 @@
 				// If the browser doesn't support Service Workers
 				console.log("Seu navegador não suporta Service Workers, tente ativa-las nas configurações, ou considere utilizar a versão mais recente do Google Chrome ou Firefox");
 			}
+
+			// Initialize Google Analytics
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag("js", new Date());
+			gtag("config", "UA-127754443-1");
 		</script>
+
 	</body>
 </html>

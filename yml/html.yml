@@ -1,0 +1,51 @@
+---
+- nome: Bloco de conteúdo
+  exemplo: "&lt;div&gt;"
+  descricao: |
+    #### Função da tag
+    `<div>` é uma tag essencial que possibilita a criação de blocos, nos quais é possível inserir conteúdo
+
+    #### Exemplo
+    ```html
+    <div>
+      <!-- O conteúdo será inserido dentro da <div> -->
+    </div>
+    ```
+
+- nome: Títulos
+  exemplo: "&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;"
+  descricao: |
+    #### Função da tag
+    `<h1>` `<h2>` `<h3>` `<h4>` são tags de titulo, o número seguido do "h" representa o tamanho do texto que será inserido dentro dessa tag
+
+    #### Exemplo
+    ```html
+    <h1>Texto grande</h1>
+    <h2>Texto médio</h2>
+    <h3>Texto pequeno</h3>
+    <h4>Texto muito pequeno</h4>
+    ```
+  
+- nome: Parágrafo de texto
+  exemplo: "&lt;p&gt;"
+  descricao: |
+    #### Função da tag
+    `<p>` é uma tag que representa um parágrafo de texto no documento
+
+    #### Atributos
+
+    > **Atenção:** O atributo `align` é considerado como obsoleto no HTML5, e seu uso não é recomendado, considere usar o `text-align` do CSS como uma alternativa
+
+    * `align` define o alinhamento do parágrafo
+        * `left` alinhamento a esquerda
+        * `center` alinhameto centralizado
+        * `right` alinhamento a direita
+        * `justify` alinhamento justificado
+
+    #### Exemplo
+    ```html
+    <p>Parágrafo normal (alinhado a esquerda por padrão)</p>
+    <p align="right">Parágrafo alinhado a direita</p>
+    <p align="center">Parágrafo centralizado</p>
+    <p align="left">Parágrafo alinhado a esquerda</p>
+    ```

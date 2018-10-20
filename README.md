@@ -38,7 +38,6 @@ In conclusion, we couldn't talk about a great tool without listing it's great fe
 ## Built with
 
 * HTML, CSS and JS - The structure, style and logic (Respectively)
-* [Animate.css](https://github.com/daneden/animate.css) - A cross-browser library of CSS animations.
 * [jQuery](https://github.com/jquery/jquery) - This one needs no introduction :grin:
 * [js-yaml](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper.
 * [Material Components Web](https://github.com/material-components/material-components-web)- Modular and customizable Material Design UI components for the web

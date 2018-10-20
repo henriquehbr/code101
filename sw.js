@@ -8,7 +8,6 @@ var precacheFiles = [
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css",
 	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
-	"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
 	"css/w3pro.css",
 	"css/code101.css",
@@ -25,13 +24,13 @@ var precacheFiles = [
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js",
 	"js/code101.js",
 
-	// RESOURCES (RES)
-	"res/lang-icons/c.svg",
-	"res/lang-icons/html.svg",
-	"res/lang-icons/java.svg",
-	"res/lang-icons/javascript.svg",
-	"res/lang-icons/python.svg",
-	"res/lang-icons/ruby.svg",
+	// RESOURCES (ASSETS)
+	"assets/lang-icons/c.svg",
+	"assets/lang-icons/html.svg",
+	"assets/lang-icons/java.svg",
+	"assets/lang-icons/javascript.svg",
+	"assets/lang-icons/python.svg",
+	"assets/lang-icons/ruby.svg",
 	"https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 	"https://fonts.googleapis.com/css?family=Press+Start+2P",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
@@ -39,6 +38,7 @@ var precacheFiles = [
 
 	// YML
 	"yml/c.yml",
+	"yml/html",
 	"yml/java.yml",
 	"yml/javascript.yml",
 	"yml/languages.yml",
