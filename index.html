@@ -50,6 +50,16 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+		<!-- ANALYTICS -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
+		<script>
+			// Initialize Google Analytics
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag("js", new Date());
+			gtag("config", "UA-127754443-1");
+		</script>
 	</head>
 	<body>
 
@@ -134,7 +144,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
+		
 
 		<script src="js/code101.js"></script>
 		<script>
@@ -158,12 +168,6 @@
 				// If the browser doesn't support Service Workers
 				console.log("Seu navegador não suporta Service Workers, tente ativa-las nas configurações, ou considere utilizar a versão mais recente do Google Chrome ou Firefox");
 			}
-
-			// Initialize Google Analytics
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag("js", new Date());
-			gtag("config", "UA-127754443-1");
 		</script>
 
 	</body>
