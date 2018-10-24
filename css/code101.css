@@ -30,10 +30,12 @@ a:focus {text-decoration: none}
 
 #searchInput {outline: none}
 
-#suggestCommandsForm .mdc-text-field {width: 100%}
+/* ########## FIX FOR MDC-TEXT-FIELD INSIDE DIALOG ########## */
 
-#suggestCommandsForm .mdc-text-field--outlined::before,
-#suggestCommandsForm .mdc-text-field--outlined::after {
+.mdc-dialog .mdc-text-field {width: 100%}
+
+.mdc-dialog .mdc-text-field--outlined::before,
+.mdc-dialog .mdc-text-field--outlined::after {
 	width: 0 !important;
 	height: 0 !important;
 }
@@ -101,6 +103,7 @@ a:focus {text-decoration: none}
 	transform: translateZ(0);
 	box-sizing: border-box;
 	line-height: 1.15;
+	text-align: center;
 	user-select: none;
 	outline: none;
 }

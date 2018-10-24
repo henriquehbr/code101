@@ -36,25 +36,25 @@
 		<!-- MANIFEST JSON -->
 		<link rel="manifest" href="manifest.json">
 
-		<!-- CSS LIBRARIES -->
+		<!-- CDN CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
-		<link rel="stylesheet" href="css/w3pro.css">
+		<!-- LOCAL CSS -->
+		<link rel="stylesheet" href="css/w3.css">
 		<link rel="stylesheet" href="css/code101.css">
 
 		<!-- FONTS -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
-		<!-- ANALYTICS -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
+		<!-- GOOGLE ANALYTICS -->
+		<script src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
 		<script>
-			// Initialize Google Analytics
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag("js", new Date());
@@ -65,12 +65,24 @@
 
 		<!-- DRAWER -->
 		<aside class="mdc-drawer mdc-drawer--modal">
+
+			<!-- DRAWER HEADER -->
 			<div class="mdc-drawer__header">
 				<h3 class="mdc-drawer__title code101-logo-colored">code101</h3>
-				<h6 class="mdc-drawer__subtitle">Learn code, let's practice</h6>
+				<h6 class="mdc-drawer__subtitle"><b>Learn code</b>, let's practice</h6>
 			</div>
+
+			<!-- DRAWER CONTENT -->
 			<div class="mdc-drawer__content">
 				<nav class="mdc-list">
+
+					<!-- LOGIN -->
+					<a onclick="displayLoginDialog()" class="mdc-list-item" aria-selected="true">
+						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">fingerprint</i>
+						<span class="mdc-list-item__text">Entrar com o codeID</span>
+					</a>
+
+					<hr class="mdc-list-divider">
 
 					<!-- HOME -->
 					<a onclick="displayLanguagesOnPage()" class="mdc-list-item mdc-list-item--activated" aria-selected="true">
@@ -79,7 +91,7 @@
 					</a>
 
 					<!-- SUGGEST COMMANDS -->
-					<a onclick="suggestCommandsDialog()" class="mdc-list-item" aria-selected="true">
+					<a onclick="displaySuggestCommandsDialog()" class="mdc-list-item" aria-selected="true">
 						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">message</i>
 						<span class="mdc-list-item__text">Sugerir comandos</span>
 					</a>
@@ -94,6 +106,7 @@
 			</div>
 		</aside>
 
+		<!-- DRAWER OVERLAY -->
 		<div class="mdc-drawer-scrim"></div>
 
 		<!-- TOP APP BAR -->
@@ -144,7 +157,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-		
 
 		<script src="js/code101.js"></script>
 		<script>

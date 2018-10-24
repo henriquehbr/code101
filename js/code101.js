@@ -4,10 +4,15 @@ convertHtmlToMarkdown = new showdown.Converter();
 viewMode = "cards";
 searchBarEnabled = false;
 
+// Enable mouse/touch interactions after page load
 $(document).ready(() => {
-	// Enable mouse/touch interactions after page load
 	$("body").css("pointer-events", "all");
 });
+
+// Init all MDC elements preventing log warnings about already-initialized elements
+function initMDCElements() {
+	window.mdc.autoInit(document, () => {});
+}
 
 function toggleSearchBar(action) {
 	switch (action) {
@@ -32,7 +37,11 @@ function toggleSearchBar(action) {
 
 			// Focus on the search input
 			$("#searchInput").focus();
-		break;
+
+			$("#searchInput").on("blur", function() {
+				toggleSearchBar("close");
+			})
+			break;
 		case "close":
 			// Indicate the state of the search bar (disabled)
 			searchBarEnabled = false;
@@ -63,7 +72,7 @@ function toggleSearchBar(action) {
 					<i class="material-icons mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('open')">search</i>
 				</section>
 			`);
-		break;
+			break;
 	}
 }
 
@@ -230,141 +239,79 @@ function displayCommandsOnPage(language) {
 // Displays the "about" dialog
 function displayAboutDialog() {
 
-	// Close the drawer
-	drawer.open = false;
+	displayDialog("aboutDialog", "Sobre o code101", `
+		code101 é uma aplicação web progressiva desenvolvida com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
+		<a href="https://github.com/henriquehbr/code101" target="_blank">
+			<i class="fab fa-github"></i>
+			<span class="mdc-list-item__text">Visitar repositório no Github</span>
+		</a>
+		<br>
+		<a href="https://instagram.com/code101.com.br" target="_blank">
+			<i class="fab fa-instagram"></i>
+			<span class="mdc-list-item__text">Visitar página no Instagram</span>
+		</a>
+		<br>
+		<a href="../assets/privacy_policies.html" target="_blank">
+			<i class="fas fa-bullhorn"></i>
+			<span class="mdc-list-item__text">Ver as Politicas de Privacidade</span>
+		</a>
+	`, `
+		<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+	`, true);
 
-	$("body").append(`
-		<div id="aboutDialog" class="mdc-dialog" role="alertdialog">
-			<div class="mdc-dialog__container">
-				<div class="mdc-dialog__surface">
-
-					<h2 class="mdc-dialog__title">Sobre o code101</h2>
-
-					<div class="mdc-dialog__content">
-						code101 é uma aplicação web progressiva desenvolvida com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
-						<a href="https://github.com/henriquehbr/code101" target="_blank">
-							<i class="fab fa-github"></i>
-							<span class="mdc-list-item__text">Visitar repositório no Github</span>
-						</a>
-						<br>
-						<a href="https://instagram.com/code101.com.br" target="_blank">
-							<i class="fab fa-instagram"></i>
-							<span class="mdc-list-item__text">Visitar página no Instagram</span>
-                        </a>
-                        <br>
-                        <a href="/privacy_policies.html" target="_blank">
-							<i class="fas fa-bullhorn"></i>
-							<span class="mdc-list-item__text">Ver as políticas de privacidade</span>
-						</a>
-					</div>
-
-					<footer class="mdc-dialog__actions">
-						<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
-					</footer>
-
-				</div>
-			</div>
-			<div class="mdc-dialog__scrim"></div>
-		</div>
-	`);
-
-	dialog = new mdc.dialog.MDCDialog(document.querySelector("#aboutDialog"));
-	dialog.open();
 }
 
 // Displays the "suggestCommands" dialog
-function suggestCommandsDialog() {
+function displaySuggestCommandsDialog() {
 
-	// Close the drawer
-	drawer.open = false;
+	displayDialog("suggestCommandsDialog", "Ajude esse projeto a ficar ainda maior, sugira um comando", `
+		<form id="suggestCommandsForm">
 
-	$("body").append(`
-		<div id="suggestCommandsDialog" class="mdc-dialog" role="alertdialog">
-			<div class="mdc-dialog__container">
-				<div class="mdc-dialog__surface">
-
-					<h2 class="mdc-dialog__title">Ajude esse projeto a ficar ainda maior, sugira um comando.</h2>
-
-					<div class="mdc-dialog__content">
-						<form id="suggestCommandsForm" action="https://us-central1-code101-b884a.cloudfunctions.net/enviarEmail" method="post">
-
-							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="text" name="commandName" autocomplete="off" class="mdc-text-field__input">
-								<label class="mdc-floating-label">Nome do comando</label>
-								<div class="mdc-notched-outline">
-									<svg>
-										<path class="mdc-notched-outline__path" />
-									</svg>
-								</div>
-								<div class="mdc-notched-outline__idle"></div>
-							</div>
-
-							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="email" name="userEmail" autocomplete="off" class="mdc-text-field__input">
-								<label class="mdc-floating-label">Seu email</label>
-								<div class="mdc-notched-outline">
-									<svg>
-										<path class="mdc-notched-outline__path" />
-									</svg>
-								</div>
-								<div class="mdc-notched-outline__idle"></div>
-							</div>
-
-							<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<input type="text" name="langSelect" autocomplete="off" class="mdc-text-field__input">
-								<label class="mdc-floating-label">Linguagem do comando</label>
-								<div class="mdc-notched-outline">
-									<svg>
-										<path class="mdc-notched-outline__path" />
-									</svg>
-								</div>
-								<div class="mdc-notched-outline__idle"></div>
-							</div>
-
-							<div class="mdc-text-field mdc-text-field--textarea w3-margin-top" data-mdc-auto-init="MDCTextField">
-								<textarea name="commandDescription" autocomplete="off" class="mdc-text-field__input"></textarea>
-								<label class="mdc-floating-label">Fale sobre o comando</label>
-							</div>
-
-						</form>
-					</div>
-
-					<footer class="mdc-dialog__actions">
-						<button id="btnDialogCancel" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
-						<button id="btnDialogOK" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
-					</footer>
-
+			<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+				<input type="text" name="commandName" autocomplete="off" class="mdc-text-field__input">
+				<label class="mdc-floating-label">Nome do comando</label>
+				<div class="mdc-notched-outline">
+					<svg>
+						<path class="mdc-notched-outline__path" />
+					</svg>
 				</div>
+				<div class="mdc-notched-outline__idle"></div>
 			</div>
-			<div class="mdc-dialog__scrim"></div>
-		</div>
-	`);
 
-	/* Init MDC on all inputs in the suggest commands form
-	And also prevent from logging warnings about already-initialized elements */
-	window.mdc.autoInit(document, () => {});
+			<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+				<input type="email" name="userEmail" autocomplete="off" class="mdc-text-field__input">
+				<label class="mdc-floating-label">Seu email</label>
+				<div class="mdc-notched-outline">
+					<svg>
+						<path class="mdc-notched-outline__path" />
+					</svg>
+				</div>
+				<div class="mdc-notched-outline__idle"></div>
+			</div>
 
-	dialog = new mdc.dialog.MDCDialog(document.querySelector("#suggestCommandsDialog"));
-	dialog.open();
+			<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+				<input type="text" name="langSelect" autocomplete="off" class="mdc-text-field__input">
+				<label class="mdc-floating-label">Linguagem do comando</label>
+				<div class="mdc-notched-outline">
+					<svg>
+						<path class="mdc-notched-outline__path" />
+					</svg>
+				</div>
+				<div class="mdc-notched-outline__idle"></div>
+			</div>
 
-	// Triggered when any input value on form is changed
-	$("#suggestCommandsForm > :input").on("keyup change", function() {
+			<div class="mdc-text-field mdc-text-field--textarea w3-margin-top" data-mdc-auto-init="MDCTextField">
+				<textarea name="commandDescription" autocomplete="off" class="mdc-text-field__input"></textarea>
+				<label class="mdc-floating-label">Fale sobre o comando</label>
+			</div>
 
-		// Remove spaces from input value
-		var emptyFields = $("#suggestCommandsForm :input").filter(function() {
-			return $.trim(this.value) === "";
-		});
+		</form>
+	`, `
+		<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
+		<button id="btnDialogOK" disabled="disabled" type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+	`, true);
 
-		// If all inputs are filled
-		if (!emptyFields.length) {
-			// Enabled the form submit button
-			$("#btnDialogOK").removeAttr("disabled");
-		// If any input is empty
-		} else {
-			// Disable the form submit button
-			$("#btnDialogOK").attr("disabled", "disabled");
-		}
-	});
+	validateForm("suggestCommandsForm", "btnDialogOK");
 
 	// When "OK" button is clicked...
 	$("#btnDialogOK").click(function() {
@@ -379,10 +326,229 @@ function suggestCommandsDialog() {
 		$("#suggestCommandsDialog").remove();
 		showSnackBar("Sua sugestão foi enviada com sucesso!");
 	});
+}
+
+// Displays the "login" dialog
+function displayLoginDialog() {
+
+	displayDialog("loginDialog", "Autentique-se", `
+		<div class="mdc-tab-bar" role="tablist" data-mdc-auto-init="MDCTabBar">
+			<div class="mdc-tab-scroller">
+				<div class="mdc-tab-scroller__scroll-area">
+					<div class="mdc-tab-scroller__scroll-content">
+
+						<button id="loginTab" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+							<span class="mdc-tab__content">
+								<span class="mdc-tab__text-label">Fazer login</span>
+							</span>
+							<span class="mdc-tab-indicator mdc-tab-indicator--active">
+								<span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+							</span>
+							<span class="mdc-tab__ripple"></span>
+						</button>
+
+						<button id="registerTab" class="mdc-tab mdc-tab" role="tab" aria-selected="true" tabindex="0">
+							<span class="mdc-tab__content">
+								<span class="mdc-tab__text-label">Criar conta</span>
+							</span>
+							<span class="mdc-tab-indicator mdc-tab-indicator">
+								<span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+							</span>
+							<span class="mdc-tab__ripple"></span>
+						</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="tabContent"></div>
+	`, `
+		<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
+	`, true);
+
+	// When login tab is clicked...
+	$("#loginTab").click(function() {
+
+		// Clear the dialog content
+		$("#loginDialog #tabContent, .mdc-dialog__actions").html("");
+
+		// Append the login form on the tab content
+		$("#loginDialog #tabContent").append(`
+			<form id="loginForm">
+				<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+					<input type="email" name="loginEmail" autocomplete="off" class="mdc-text-field__input">
+					<label class="mdc-floating-label">Seu email</label>
+					<div class="mdc-notched-outline">
+						<svg>
+							<path class="mdc-notched-outline__path" />
+						</svg>
+					</div>
+					<div class="mdc-notched-outline__idle"></div>
+				</div>
+
+				<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+					<input type="password" name="loginPassword" autocomplete="off" class="mdc-text-field__input">
+					<label class="mdc-floating-label">Sua senha</label>
+					<div class="mdc-notched-outline">
+						<svg>
+							<path class="mdc-notched-outline__path" />
+						</svg>
+					</div>
+					<div class="mdc-notched-outline__idle"></div>
+				</div>
+			</form>
+		`);
+
+		// Append the buttons on the dialog footer
+		$("#loginDialog .mdc-dialog__actions").append(`
+			<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
+			<button type="button" id="btnDialogOK" disabled="disabled" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">Entrar</button>
+		`);
+
+		initMDCElements();
+
+		validateForm("loginForm", "btnDialogOK");
+
+	});
+
+	// When register tab is clicked...
+	$("#registerTab").click(function() {
+
+		// Clear the dialog content
+		$("#loginDialog #tabContent, .mdc-dialog__actions").html("");
+
+		// Append the register form
+		$("#loginDialog #tabContent").append(`
+			<form id="registerForm">
+				<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+					<input type="text" name="registerName" autocomplete="off" class="mdc-text-field__input">
+					<label class="mdc-floating-label">Seu nome</label>
+					<div class="mdc-notched-outline">
+						<svg>
+							<path class="mdc-notched-outline__path" />
+						</svg>
+					</div>
+					<div class="mdc-notched-outline__idle"></div>
+				</div>
+
+				<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+					<input type="email" name="registerEmail" autocomplete="off" class="mdc-text-field__input">
+					<label class="mdc-floating-label">Seu email</label>
+					<div class="mdc-notched-outline">
+						<svg>
+							<path class="mdc-notched-outline__path" />
+						</svg>
+					</div>
+					<div class="mdc-notched-outline__idle"></div>
+				</div>
+
+				<div class="mdc-text-field mdc-text-field--outlined w3-margin-top" data-mdc-auto-init="MDCTextField">
+					<input type="password" name="registerPassword" autocomplete="off" class="mdc-text-field__input">
+					<label class="mdc-floating-label">Sua senha</label>
+					<div class="mdc-notched-outline">
+						<svg>
+							<path class="mdc-notched-outline__path" />
+						</svg>
+					</div>
+					<div class="mdc-notched-outline__idle"></div>
+				</div>
+
+				<div class="mdc-form-field w3-margin-top">
+					<div class="mdc-checkbox">
+						<input type="checkbox" class="mdc-checkbox__native-control" id="checkbox-1" />
+						<div class="mdc-checkbox__background">
+							<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+								<path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+							</svg>
+							<div class="mdc-checkbox__mixedmark"></div>
+						</div>
+					</div>
+					<label for="checkbox-1">
+						Li e aceito os <a href="../assets/privacy_policies.html" target="_blank"><b>Termos de Privacidade</b></a>
+					</label>
+				</div>
+
+			</form>
+		`);
+
+		// Append the buttons on the dialog footer
+		$("#loginDialog .mdc-dialog__actions").append(`
+			<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancelar</button>
+			<button type="button" id="btnDialogOK" disabled="disabled" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">Confirmar</button>
+		`);
+
+		initMDCElements();
+
+		validateForm("registerForm", "btnDialogOK");
+
+	});
+
+	// Open the login tab when the dialog is shown
+	$("#loginTab").trigger("click");
+}
+
+// Generate a MDC dialog with the given arguments
+function displayDialog(dialogId, dialogTitle, dialogContent, dialogButtons, closeDrawer) {
+
+	// If the drawer need to be closed...
+	if (closeDrawer == true) {
+		// Close the drawer
+		drawer.open = false;
+	}
+
+	$("body").append(`
+		<div id="${dialogId}" class="mdc-dialog" role="alertdialog">
+			<div class="mdc-dialog__container">
+				<div class="mdc-dialog__surface">
+
+					<h2 class="mdc-dialog__title">${dialogTitle}</h2>
+
+					<div class="mdc-dialog__content">
+						${dialogContent}
+					</div>
+
+					<footer class="mdc-dialog__actions">
+						${dialogButtons}
+					</footer>
+
+				</div>
+			</div>
+			<div class="mdc-dialog__scrim"></div>
+		</div>
+	`);
+
+	initMDCElements();
+
+	dialog = new mdc.dialog.MDCDialog(document.querySelector(`#${dialogId}`));
+	dialog.open();
 
 	// Event triggered when the dialog is closed
-	$("#suggestCommandsDialog").on("MDCDialog:closed", function() {
-		$("#suggestCommandsDialog").remove();
+	$(`#${dialogId}`).on("MDCDialog:closed", function() {
+		$(`#${dialogId}`).remove();
+	});
+}
+
+// Verify if form inputs are filled and valid
+function validateForm(formId, submitButton) {
+	// Triggered when any input value on the login form is changed
+	$(`#${formId} :input`).on("keyup change blur", function() {
+
+		// Remove spaces from input value
+		var emptyFields = $(`#${formId} :input`).filter(function() {
+			return $.trim(this.value) === "";
+		});
+
+		// If all inputs are filled, valid, and checked
+		if (!emptyFields.length &&
+			$(".mdc-text-field--invalid").length < 1 &&
+			$("input[type='checkbox']:checked").length == $("input[type='checkbox']").length) {
+			// Enabled the form submit button
+			$(`#${submitButton}`).removeAttr("disabled");
+		} else {
+			// If any input is empty, disable the form submit button
+			$(`#${submitButton}`).attr("disabled", "disabled");
+		}
 	});
 }
 
@@ -411,7 +577,7 @@ function searchCards() {
 }
 
 function showSnackBar(message) {
-	$("#pageContent").append(`
+	$("body").append(`
 		<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
 			<div class="mdc-snackbar__text"></div>
 			<div class="mdc-snackbar__action-wrapper">
@@ -428,6 +594,11 @@ function showSnackBar(message) {
 	};
 
 	snackbar.show(dataObj);
+
+	// Event triggered when the snackbar hides
+	$(".mdc-snackbar").on("MDCSnackbar:hide", function() {
+		$(".mdc-snackbar").remove();
+	})
 }
 
 displayLanguagesOnPage();

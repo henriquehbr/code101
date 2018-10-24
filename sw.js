@@ -9,7 +9,7 @@ var precacheFiles = [
 	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css",
 	"https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
-	"css/w3pro.css",
+	"css/w3.css",
 	"css/code101.css",
 
 	// JS
@@ -38,7 +38,7 @@ var precacheFiles = [
 
 	// YML
 	"yml/c.yml",
-	"yml/html",
+	"yml/html.yml",
 	"yml/java.yml",
 	"yml/javascript.yml",
 	"yml/languages.yml",

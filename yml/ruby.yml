@@ -32,7 +32,7 @@
     ```
 
 - nome: Comentários
-  exemplo: "# Eu sou um comentário"
+  exemplo: "# Exemplo de comentário"
   descricao: |
     #### Função do comentário
     Apesar de não serem obrigatórios, assim como em muitas outras linguagens, os comentários são essenciais, podendo ser usados para:
