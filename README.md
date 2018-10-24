@@ -39,7 +39,7 @@ In conclusion, we couldn't talk about a great tool without listing it's great fe
 * [pace.js](https://github.com/HubSpot/pace) - Automatically add a progress bar to your site.
 * [js-yaml](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper.
 * [Material Components Web](https://github.com/material-components/material-components-web)- Modular and customizable Material Design UI components for the web
-* [Slick](https://github.com/kenwheeler/slick) - the last carousel you'll ever need
+* [Flickity](https://github.com/metafizzy/flickity) - Touch, responsive, flickable carousels
 * [highlight.js](https://github.com/highlightjs/highlight.js) - Javascript syntax highlighter
 * [Showdown.js](https://github.com/showdownjs/showdown) - A bidirectional MD to HTML to MD converter written in Javascript 
 * [Velocity JS/UI](https://github.com/julianshapiro/velocity) - Accelerated JavaScript animation

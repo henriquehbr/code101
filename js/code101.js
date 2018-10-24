@@ -28,20 +28,68 @@ function toggleSearchBar(action) {
 
 			// Append the search bar to the top app bar
 			$("#topAppBar .mdc-top-app-bar__row").append(`
-				<input id="searchInput" type="search" oninput="searchCards()" autocomplete="off" class="w3-input w3-border-0 animated fadeIn search" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
+				<input id="searchInput" type="search" autocomplete="off" class="w3-input w3-border-0 animated fadeIn" placeholder="Sobre o que você quer aprender?" style="padding-left: 16px;">
 				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end animated fadeIn" role="toolbar">
 					<i class="material-icons material-icons-dark mdc-top-app-bar__action-item" aria-label="Pesquisar" alt="Pesquisar" onclick="toggleSearchBar('close')">close</i>
 					<div class="mdc-line-ripple"></div>
 				</section>
 			`);
 
+			// Event triggered when something is typed on the search input
+			$("#searchInput").on("keyup", function() {
+				// Search on languages
+				if (viewMode == "cards") {
+					var value = $("#searchInput").val().toLowerCase();
+					$("#viewCard span.mdc-typography--headline6").filter(function() {
+						$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+					});
+
+					// Organize slider items
+					$.each($("#viewCard .card-body"), function(i) {
+						$(this).flickity("reposition");
+					});
+
+					// For each category card...
+					$.each($("#viewCard .flickity-slider"), function(i) {
+
+						// Reset the category card visibility state
+						$("#viewCard .card-body").eq(i).css("display", "block");
+
+						// If nothing was found, display a "not found" message
+						if ($(this).children(":visible").length == 0) {
+							$("#viewCard .card-body").eq(i).css("display", "none");
+							$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "block");
+						} else {
+							$("#viewCard .card-body").eq(i).css("display", "block");
+							$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "none");
+						}
+					});
+
+				} else if (viewMode == "accordions") {
+					// Search on commands
+					var value = $("#searchInput").val().toLowerCase();
+					$("#accordionList h4.panel-title").filter(function() {
+						$(this).parent().parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+					});
+
+					// If nothing was found, display a "not found" message
+					if ($("#accordionList").children(":visible").length == 0) {
+						$("#notFoundText").css("display", "block");
+					} else {
+						$("#notFoundText").css("display", "none");
+					}
+				}
+			});
+
 			// Focus on the search input
 			$("#searchInput").focus();
 
+			// Event triggered whenever the search input loses focus
 			$("#searchInput").on("blur", function() {
 				toggleSearchBar("close");
-			})
+			});
 			break;
+
 		case "close":
 			// Indicate the state of the search bar (disabled)
 			searchBarEnabled = false;
@@ -51,11 +99,8 @@ function toggleSearchBar(action) {
 			var keyup = jQuery.Event("keyup");
 			keyup.which = keyup.keyCode = 8;
 
-			// Clear the search bar text
+			// Clear the search bar text and reset the search results
 			$("#searchInput").val("").trigger(keyup);
-
-			// Reset the search results before closing the search bar
-			searchCards();
 
 			// Clear the top app bar content
 			$("#topAppBar .mdc-top-app-bar__row").html("");
@@ -146,13 +191,10 @@ function displayLanguagesOnPage() {
 			// Append the elements on the category card
 			$.each(yamlData[i].category_elements, function(index) {
 				$(`#${yamlData[i].category_id}`).append(`
-					<a style="display: flex" class="miniCard animated fadeIn">
+					<a onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')" style="display: flex" class="miniCard carousel-cell animated fadeIn">
 						<img alt="${this.nome}" src="${this.icone}">
 						<span class="mdc-typography--headline6">${this.nome}</span>
 						<span class="mdc-typography--caption">${this.descricao}</span>
-						<button onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')" class="mdc-button" onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')">
-							Aprender
-						</button>
 					</a>
 				`);
 			});
@@ -162,20 +204,11 @@ function displayLanguagesOnPage() {
 		// For each cateogry card
 		$.each(yamlData, function(i) {
 
-			// Disable slick on category card if it's enabled
-			if ($(`#${this.category_id}`).hasClass("slick-initialized")) {
-				$(`#${this.category_id}`).slick("unslick");
-			}
-
-			// Enable slick on the category card
-			$(`#${this.category_id}`).slick({
-				dots: false,
-				arrows: false,
-				infinite: false,
-				speed: 1000,
-				swipeToSlide: true,
-				centerMode: false,
-				variableWidth: true
+			// Enable flickity on the category card
+			$(`#${this.category_id}`).flickity({
+				pageDots: false,
+				freeScroll: true,
+				cellAlign: "left"
 			});
 		});
 
@@ -550,30 +583,6 @@ function validateForm(formId, submitButton) {
 			$(`#${submitButton}`).attr("disabled", "disabled");
 		}
 	});
-}
-
-function searchCards() {
-	if (viewMode == "cards") {
-		var value = $("#searchInput").val().toLowerCase();
-		$("#viewCard span.mdc-typography--headline6").filter(function() {
-			$(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-
-		// If nothing was found, display a "not found" message
-		$.each($("#viewCard .mdc-card .card-body .slick-track"), function(i) {
-			if ($(this).children(":visible").length == 0) {
-				$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "block");
-			} else {
-				$("#viewCard .card-title .mdc-typography--body2").eq(i).css("display", "none");
-			}
-		});
-
-	} else if (viewMode == "accordions") {
-		var value = $("#searchInput").val().toLowerCase();
-		$("#accordionList h4.panel-title").filter(function() {
-			$(this).parent().parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	}
 }
 
 function showSnackBar(message) {

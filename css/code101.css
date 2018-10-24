@@ -30,6 +30,11 @@ a:focus {text-decoration: none}
 
 #searchInput {outline: none}
 
+#notFoundText {
+	text-align: center;
+	display: none;
+}
+
 /* ########## FIX FOR MDC-TEXT-FIELD INSIDE DIALOG ########## */
 
 .mdc-dialog .mdc-text-field {width: 100%}
