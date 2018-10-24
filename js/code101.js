@@ -250,6 +250,11 @@ function displayAboutDialog() {
 						<a href="https://instagram.com/code101.com.br" target="_blank">
 							<i class="fab fa-instagram"></i>
 							<span class="mdc-list-item__text">Visitar página no Instagram</span>
+                        </a>
+                        <br>
+                        <a href="/privacy_policies.html" target="_blank">
+							<i class="fas fa-bullhorn"></i>
+							<span class="mdc-list-item__text">Ver as políticas de privacidade</span>
 						</a>
 					</div>
 
