@@ -1,0 +1,135 @@
+---
+- nome: Declarar variável
+  exemplo: variavel_com_numero = 5
+  descricao: |
+    #### Função do comando
+    A declaração de uma variável consiste em dar um nome para a posição de memória a ser usada e especificar qual tipo de dado a guardar na memória.
+
+    **Observação:** Diferentemente de outras linguagens de programação, no Python não há um comando para declarar uma variável, pois a mesma é criada no momento em que um valor é atribuido a ela
+
+    ##### Exemplo
+    ```python
+    variavel_com_numero = 5
+    variavel_com_nome = "João"
+    ```
+
+- nome: Mostrar mensagem
+  exemplo: print()
+  descricao: |
+    #### Função do comando
+    O comando `print` pode ser usado tanto para mostrar mensagens quanto para mostrar o conteúdo de variáveis na tela, para juntar texto e variável num mesmo comano, basta utilizar o caractere `+`
+
+    ##### Exemplo
+    ```python
+    x = "fácil"
+    print("Python é" + x);
+    ```
+
+    Também é possível usar o caractere `+` para juntar duas variaveis em formato de texto
+
+    ```python
+    x = "Python é"
+    y = "fácil"
+    z = x + y
+    print(z)
+    ```
+
+    Para os números, o caractere `+` funciona como um operador matemático de soma
+
+    ```python
+    x = 5
+    y = 10
+    print(x + y)
+    ```
+
+    **Atenção:** Caso tente juntar uma string (texto) com um número, Python irá relatar um erro
+
+    ```python
+    x = 5
+    y = "João"
+    print(x + y)
+    ```
+
+- nome: Comentários
+  exemplo: "# Exemplo de comentário"
+  descricao: |
+    #### Função do comentário
+    Apesar de não serem obrigatórios, assim como em muitas outras linguagens, os comentários são essenciais, podendo ser usados para:
+
+    - Explicar trechos de código e fazer com que fique mais legivel
+    - Evitar a execução, enquanto estiver testando um código alternativo
+
+    **Aviso:** os comentários são trechos de código completamente ignorados, ou seja, eles nunca serão executados, e também não irão interferir no funcionamento do resto do código
+
+    #### Comentários de linha única
+    Comentários de linha única sempre começam com `#`
+
+    Qualquer texto que estiver entre `#` e o fim da linha será ignorado pelo Javascript (não será executado)
+
+    ##### Exemplo
+    ```python
+    # Eu sou um comentário de linha única
+    ```
+
+    #### Comentários de múltiplas linhas
+    Comentários de múltiplas linhas iniciam com `'''` (aspas triplas) e terminam com `'''`
+
+    Qualquer texto que estiver entre `'''` e `'''` será ignorado pelo Javascript
+
+    ##### Exemplo
+    ```python
+    '''
+    Eu sou um comentário de múltiplas linhas
+    diferentemente do comentário de linha única
+    posso saltar para outras linhas
+    de forma com que o texto fique mais legivel
+    '''
+    ```
+
+    **Observação:** o uso dos comentários de linha única é mais comum, sendo que os comentários de múltiplas linhas geralmente são utilizados em documentações formais
+
+- nome: Entrada e armazenamento de dados
+  exemplo: input()
+  descricao: |
+    #### Função do comando
+    Geralmente, a função `input` é utilizada quando é necessário armazenar dados que serão informados pelo usuário
+
+    ##### Sintaxe
+    ```python
+    input(mensagem)
+    ```
+
+    #### Parametros
+    * `mensagem` --> deve ser do tipo `string`, representa a mensagem que será mostrada assim que o `input()` for executado
+
+    ##### Exemplo
+    ```python
+    print("Digite seu nome:")
+    x = input()
+    print("Olá, " + x)
+    ```
+
+- nome: Operadores lógicos
+  exemplo: "**, *, /, //, %, +, -"
+  descricao: |
+    #### Função dos operadores lógicos
+    Basicamente, os operadores lógicos são essenciais quando se trata de realizar cálculos
+
+    * `**` --> Potência
+    * `*` --> Multiplicação
+    * `/` --> Divisão
+    * `//` --> Divisão inteira
+    * `%` --> Resto da divisão
+    * `+` --> Soma
+    * `-` --> Subtração
+
+    ##### Exemplo
+    ```python
+    primeiro_numero = 20
+    segundo_numero = 10
+    soma = n1 + n2
+    subtracao = n1 - n2
+    multiplicacao = n1 * n2
+    divisao = n1 / n2
+    divisao_int = n1 // n2
+    ```

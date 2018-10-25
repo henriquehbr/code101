@@ -83,11 +83,6 @@ function toggleSearchBar(action) {
 
 			// Focus on the search input
 			$("#searchInput").focus();
-
-			// Event triggered whenever the search input loses focus
-			$("#searchInput").on("blur", function() {
-				toggleSearchBar("close");
-			});
 			break;
 
 		case "close":

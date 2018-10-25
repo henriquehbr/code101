@@ -42,6 +42,7 @@ var precacheFiles = [
 	"yml/java.yml",
 	"yml/javascript.yml",
 	"yml/languages.yml",
+	"yml/python.yml",
 	"yml/ruby.yml",
 
 	// HTML
