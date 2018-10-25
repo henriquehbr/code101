@@ -28,8 +28,34 @@
 
 - nome: Declarar variável
   exemplo: int variavel;
-  descricao: Declara uma variável no código
+  descricao: |
+    #### Função do comando
+    Para declarar variáveis em C, é necessário especificar o tipo que será usado (int, char, float, etc...), e criar um nome para a variável
+
+    ##### Exemplo
+    ```c
+    // Essa variável representa um valor inteiro (int)
+    int valor_inteiro = 10;
+
+    // Essa variável representa um vetor (char)
+    char vetor[20];
+
+    // Essa variável representa um número quebrado (float)
+    float valor_quebrado = 3.1415;
+    ```
   
-- nome: Condicional
-  exemplo: if (1 > 0) {...}
-  descricao: Cria um laço condicional (if) no código
+- nome: Laço condicional
+  exemplo: if, if...else
+  descricao: |
+    #### Função do comando
+    Cria um laço condicional que analisa uma sentença, e dependendo do resultado dessa sentença, será executado um trecho de código especifico
+
+    ##### Exemplo
+    ```c
+    int valor1 = 10;
+    if (valor1 > 20) {
+      // Se o valor1 (10) for maior que 20
+    } else {
+      // Se o valor1 (10) não for maior que 20
+    }
+    ```
