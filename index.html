@@ -51,15 +51,6 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
-		<!-- GOOGLE ANALYTICS -->
-		<script src="https://www.googletagmanager.com/gtag/js?id=UA-127754443-1"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag("js", new Date());
-			gtag("config", "UA-127754443-1");
-		</script>
 	</head>
 	<body>
 
@@ -75,14 +66,6 @@
 			<!-- DRAWER CONTENT -->
 			<div class="mdc-drawer__content">
 				<nav class="mdc-list">
-
-					<!-- LOGIN -->
-					<a onclick="displayLoginDialog()" class="mdc-list-item" aria-selected="true">
-						<i class="material-icons mdc-list-item__graphic" aria-hidden="true">fingerprint</i>
-						<span class="mdc-list-item__text">Entrar com o codeID</span>
-					</a>
-
-					<hr class="mdc-list-divider">
 
 					<!-- HOME -->
 					<a onclick="displayLanguagesOnPage()" class="mdc-list-item mdc-list-item--activated" aria-selected="true">
@@ -150,7 +133,7 @@
 			</div>
 		</div>	
 
-		<!-- JS LIBRARIES -->
+		<!-- CDN JS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js"></script>
@@ -161,7 +144,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
+		<!-- LOCAL JS -->
 		<script src="js/code101.js"></script>
+
+		<!-- SERVICE WORKER -->
 		<script>
 			// Verify if the browser support Service Workers
 			if ("serviceWorker" in navigator) {
