@@ -71,13 +71,6 @@ function toggleSearchBar(action) {
 					$("#accordionList h4.panel-title").filter(function() {
 						$(this).parent().parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
 					});
-
-					// If nothing was found, display a "not found" message
-					if ($("#accordionList").children(":visible").length == 0) {
-						$("#notFoundText").css("display", "block");
-					} else {
-						$("#notFoundText").css("display", "none");
-					}
 				}
 			});
 
@@ -266,9 +259,8 @@ function displayCommandsOnPage(language) {
 
 // Displays the "about" dialog
 function displayAboutDialog() {
-
 	displayDialog("aboutDialog", "Sobre o code101", `
-		code101 é uma aplicação web progressiva desenvolvida com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
+		code101 é uma aplicação web progressiva desenvolvida para a 1º Mostra Ciêntifica do IFTO Campus Palmas com o objetivo de facilitar a busca por comandos de diversas linguagens de programação.<br><br>
 		<a href="https://github.com/henriquehbr/code101" target="_blank">
 			<i class="fab fa-github"></i>
 			<span class="mdc-list-item__text">Visitar repositório no Github</span>
@@ -286,12 +278,10 @@ function displayAboutDialog() {
 	`, `
 		<button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">OK</button>
 	`, true);
-
 }
 
 // Displays the "suggestCommands" dialog
 function displaySuggestCommandsDialog() {
-
 	displayDialog("suggestCommandsDialog", "Ajude esse projeto a ficar ainda maior, sugira um comando", `
 		<form id="suggestCommandsForm">
 

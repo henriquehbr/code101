@@ -2,7 +2,7 @@
 - nome: Incluir biblioteca
   exemplo: "#include &lt;stdio.h&gt;"
   descricao: |
-    #### Função do comando:
+    #### Função do comando
     Inclui uma biblioteca no programa.
 
     #### O que é uma biblioteca?
@@ -10,7 +10,7 @@
     geralmente possuem a extensão `.h` e são utilizados quando há necessidade
     de repetir um trecho de código multiplas vezes no programa.
 
-    #### Exemplo:
+    #### Exemplo
     Existem duas formas de incluir uma biblioteca:
 
     ```c

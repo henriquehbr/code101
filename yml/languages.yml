@@ -18,9 +18,12 @@
     descricao: Linguagem de programação
     icone: assets/lang-icons/python.svg
 
-- category_name: Linguagens de marcação
-  category_id: markup_languages
+- category_name: Outras linguagens
+  category_id: other_languages
   category_elements:
   - nome: HTML
     descricao: Linguagem de marcação
     icone: assets/lang-icons/html.svg
+  - nome: SQL
+    descricao: Linguagem de consulta
+    icone: assets/lang-icons/sql.svg

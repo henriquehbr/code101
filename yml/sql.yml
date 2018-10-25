@@ -1,0 +1,82 @@
+---
+- nome: Criar banco de dados
+  exemplo: CREATE DATABASE banco_de_dados
+  descricao: |
+    #### Função do comando
+    O comando `CREATE DATABASE` tem como função, criar um banco de dados SQL, o nome do banco de dados a ser criado deve ser especificado logo após o comando
+
+    ##### Exemplo
+    ```sql
+    CREATE DATABASE banco_de_dados
+    ```
+
+- nome: Apagar banco de dados
+  exemplo: DROP DATABASE banco_de_dados
+  descricao: |
+    #### Função do comando
+    O comando `DROP DATABASE` é usado para eliminar um banco de dados SQL existente, o nome do banco de dados a ser eliminado deve ser especificado logo após o comando
+
+    ##### Exemplo
+    ```sql
+    DROP DATABASE banco_de_dados
+    ```
+  
+- nome: Criar tabela
+  exemplo: CREATE TABLE nome_da_tabela
+  descricao: |
+    #### Função do comando
+    O comando `CREATE TABLE` é usado para criar uma nova tabela em um banco de dados existente, o nome da tabela a ser criada deve ser especificado logo após o comando
+
+    ##### Sintaxe
+    ```sql
+    CREATE TABLE nome_da_tabela (
+      coluna1 tipo_de_dado,
+      coluna2 tipo_de_dado,
+      coluna3 tipo_de_dado
+    );
+    ```
+
+    Os parâmetros da coluna (coluna1, coluna2 e coluna3) especificam os nomes das colunas da tabela
+
+    O parâmetro tipo_de_dado especifica o tipo de dados que a coluna pode conter, por exemplo: `varchar`, `integer`, `date`, etc...
+
+    ##### Exemplo
+    ```sql
+    CREATE TABLE Cliente (
+      ClienteID int,
+      Nome varchar(255),
+      Sobrenome varchar(255),
+      Endereço varchar(255),
+      Cidade varchar(255)
+    );
+    ```
+
+    A coluna `ClienteID` é do tipo `int` e conterá um inteiro.
+
+    As colunas `Nome`, `Sobrenome`, `Endereço` e `Cidade` são do tipo `varchar` e conterão caracteres, e o comprimento máximo desses campos é de 255 caracteres.
+
+- nome: Inserir dados em uma tabela
+  exemplo: INSERT INTO nome_da_tabela
+  descricao: |
+    #### Função do comando
+    O comando `INSERT INTO` é usado para inserir novos dados em uma tabela, os dados a serem inseridos devem ser especificados logo após o comando
+
+    #### Sintaxe
+    ```sql
+    INSERT INTO nome_tabela (coluna1, coluna2, coluna3, ...)
+    VALUES (valor1, valor2, valor3, ...);
+    ```
+    Se você estiver adicionando valores para todas as colunas da tabela, não será necessário especificar os nomes das colunas na consulta SQL. No entanto, verifique se a ordem dos valores está na mesma ordem das colunas na tabela. A sintaxe `INSERT INTO` seria a seguinte:
+
+    ```sql
+    INSERT INTO nome_tabela
+    VALUES (valor1, valor2, valor3, ...);
+    ```
+
+    ##### Exemplo
+    ```sql
+    INSERT INTO Clientes (ClienteID, Nome, Sobrenome, Endereço, Cidade)  
+    VALUES (1, "Francisco", "da Silva", "CENTRO", "PALMAS");
+    ```
+
+    **Observação:** É importante ressaltar que valores inteiros (númericos) não devem ser colocados entre aspas, já as strings (palavras) devem estar entre aspas.

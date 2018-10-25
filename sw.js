@@ -44,6 +44,7 @@ var precacheFiles = [
 	"yml/languages.yml",
 	"yml/python.yml",
 	"yml/ruby.yml",
+	"yml/sql.yml",
 
 	// HTML
 	"index.html",
