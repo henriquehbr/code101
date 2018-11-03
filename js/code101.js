@@ -229,17 +229,26 @@ function displayCommandsOnPage(language) {
 				// If the actual language name == the selected language name
 				if (this.nome.toLowerCase() == language) {
 					$("#accordionList").append(`
-						<div style="overflow:hidden">
-							<img style="width:8.5rem;float:right" src="${this.icone}" alt="javascript-logo">
-							<h1 class="mdc-typography--headline6">${this.nome}</h1>
-							<p class="mdc-typography--body1">
-								${this.descricao}
-							</p>
-							<p class="mdc-typography--body2">
-								Criado por ${this.criador}<br>
-								Lançada em ${this.data_de_criacao}
-							</p>
+						<div class="panel panel-default animated fadeIn">
+							<div class="panel-heading waves-effect">
+								<a class="toggle-link" aria-expanded="false">
+									<h4 class="panel-title active">${this.nome}</h4>
+									<code class="panel-subtitle">Veja mais informações sobre ${this.nome}</code>
+									<i class="material-icons accordion-toggle-icon">arrow_downward</i>
+								</a>
+							</div>
+							<div class="content-collapse collapsed" aria-expanded="false">
+								<div class="panel-body">
+									<img style="width:8.5rem;float:right" src="${this.icone}" alt="${this.nome}-logo">
+									<p>${this.descricao}</p>
+									<p class="mdc-typography--body2">
+										Criado por ${this.criador}<br>
+										Lançada em ${this.data_de_criacao}
+									</p>
+								</div>
+							</div>
 						</div>
+						<hr>
 					`);
 				}
 			});
