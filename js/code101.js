@@ -182,7 +182,6 @@ function displayLanguagesOnPage() {
 					<a onclick="displayCommandsOnPage('${this.nome.toLowerCase()}')" style="display: flex" class="miniCard carousel-cell animated fadeIn">
 						<img alt="${this.nome}" src="${this.icone}">
 						<span class="mdc-typography--headline6">${this.nome}</span>
-						<span class="mdc-typography--caption">${this.descricao}</span>
 					</a>
 				`);
 			});
@@ -217,13 +216,43 @@ function displayCommandsOnPage(language) {
 	// Empty the content of the all the lists
 	$("#viewCard, #accordionList").html("");
 
-	// Get all data from the selected language YML file
+	// Get all data from all the languages
+	$.get("yml/languages.yml", function(data) {
+
+		// Convert the file data from YAML into JSON
+		var yamlData = jsyaml.load(data);
+
+		// Loop that repeat for each existent language category
+		$.each(yamlData, function(i) {
+			// Loop that repeat for each existent language in a specific category
+			$.each(this.category_elements, function(i2) {
+				// If the actual language name == the selected language name
+				if (this.nome.toLowerCase() == language) {
+					$("#accordionList").append(`
+						<div style="overflow:hidden">
+							<img style="width:8.5rem;float:right" src="${this.icone}" alt="javascript-logo">
+							<h1 class="mdc-typography--headline6">${this.nome}</h1>
+							<p class="mdc-typography--body1">
+								${this.descricao}
+							</p>
+							<p class="mdc-typography--body2">
+								Criado por ${this.criador}<br>
+								Lançada em ${this.data_de_criacao}
+							</p>
+						</div>
+					`);
+				}
+			});
+		});
+	});
+
+	// Get all data from the selected language
 	$.get(`yml/${language}.yml`, function(data) {
 
 		// Convert the file data from YAML into JSON
 		var yamlData = jsyaml.load(data);
 
-		// Change the page title to "code101 | Language"
+		// Change the page title to "code101 | LanguageName"
 		document.title = `code101 | ${language.charAt(0).toUpperCase() + language.slice(1)}`;
 
 		// For each item in the YAML data...

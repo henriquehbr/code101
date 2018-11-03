@@ -6,7 +6,7 @@ var precacheFiles = [
 
 	// CSS
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-flash.min.css",
-	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.css",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.41.0/dist/material-components-web.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.min.css",
 	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css",
 	"css/w3.css",
@@ -15,13 +15,13 @@ var precacheFiles = [
 	// JS
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js",
-	"https://cdn.jsdelivr.net/npm/material-components-web@0.40.1/dist/material-components-web.min.js",
+	"https://cdn.jsdelivr.net/npm/material-components-web@0.41.0/dist/material-components-web.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/flickity/2.1.2/flickity.pkgd.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.0/js-yaml.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js",
-	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js",
 	"js/code101.js",
 
 	// RESOURCES (ASSETS)

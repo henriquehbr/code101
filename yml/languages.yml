@@ -2,28 +2,49 @@
 - category_name: Linguagens de programação
   category_id: programming_languages
   category_elements:
+
   - nome: C
-    descricao: Linguagem de programação
+    descricao: C é uma linguagem de programação projetada por Dennis Ritchie, da Bell Labs. C é muito usado, simples e pode ser compilado em várias plataformas e sistemas operacionais. C é uma linguagem imperativa, com um pequeno número de palavras-chave e um grande número de operadores matemáticos.
     icone: assets/lang-icons/c.svg
+    criador: Dennis Ritchie
+    data_de_criacao: "1972"
+
   - nome: Javascript
-    descricao: Linguagem de programação
+    descricao: O JavaScript é usado para dar às páginas da Web uma sensação mais interativa. Sua natureza orientada a eventos permite recursos como menus suspensos ou videogames. JavaScript é executado via cliente, em vez de servidor. Isso permite que o navegador responda mais rapidamente à entrada de um usuário.
     icone: assets/lang-icons/javascript.svg
+    criador: Brendan Eich
+    data_de_criacao: "1995"
+
   - nome: Java
-    descricao: Linguagem de programação
+    descricao: Java foi originalmente desenvolvido como uma alternativa para as linguagens de programação C / C ++. Agora é usado principalmente para criar aplicativos de desktop, Android e servidores da web. Java é de propriedade e licenciado através do Oracle.
     icone: assets/lang-icons/java.svg
+    criador: James Gosling
+    data_de_criacao: "23 de Maio de 1995"
+
   - nome: Ruby
-    descricao: Linguagem de programação
+    descricao: Ruby foi desenvolvido por Yukihiro "Matz" Matsumoto em 1995 com a intenção de ter uma linguagem de programação facilmente legível. Ele é integrado ao framework Rails para criar aplicações web dinâmicas. A sintaxe do Ruby é semelhante à do Perl e Python.
     icone: assets/lang-icons/ruby.svg
+    criador: Yukihiro Matsumoto
+    data_de_criacao: "21 de Dezembro de 1995"
+
   - nome: Python
-    descricao: Linguagem de programação
+    descricao: Python é uma linguagem de programação dinamicamente tipada projetada por Guido van Rossum. Assim como a linguagem de programação Ruby, o Python foi projetado para ser facilmente lido por programadores. Devido ao seu grande número de seguidores e muitas bibliotecas, o Python pode ser implementado e usado para fazer qualquer coisa, desde páginas da Web até pesquisas científicas.
     icone: assets/lang-icons/python.svg
+    criador: Brendan Eich
+    data_de_criacao: "20 de Fevereiro de 1991"
 
 - category_name: Outras linguagens
   category_id: other_languages
   category_elements:
+
   - nome: HTML
-    descricao: Linguagem de marcação
+    descricao: HTML, ou Hypertext Markup Language, foi projetado principalmente para fornecer um meio de criar documentos científicos estruturados. O HTML pode incorporar linguagens de script, como PHP ou JavaScript, para afetar o comportamento e o conteúdo de páginas da web. O World Wide Web Consortium (W3C) mantém os padrões HTML e CSS.
     icone: assets/lang-icons/html.svg
+    criador: Tim Berners-Lee
+    data_de_criacao: "Junho de 1993"
+
   - nome: SQL
-    descricao: Linguagem de consulta
+    descricao: SQL significa linguagem de consulta estruturada. Utiliza comandos como "select", "insert", "delete". Alguns sistemas comuns de gerenciamento de bancos de dados relacionais que usam SQL são Oracle, MySQL, Microsoft SQL Server, PostgreSQL, etc.
     icone: assets/lang-icons/sql.svg
+    criador: Donald D. Chamberlin e Raymond F. Boyce
+    data_de_criacao: "1986"
