@@ -9,6 +9,8 @@
 	<p align="center">A progressive web app to query programming languages commands</p>
 </p>
 
+[//]: <> (o code101 é uma aplicação web progressiva que tem como objetivo principal, tornar o desenvolvimento de software uma atividade simples e trivial para todos, contando com uma interface "arrasta e solta" extremamente intuitiva, e com um design moderno, seguindo as especificações oficiais do Material Design, tudo isso para que você tenha todas as suas necessidades relacionadas a programação em um só lugar, de forma que você não tenha que se preocupar com outros problemas que geralmente consumiriam muito do seu tempo, e consequentemente, aumentando exponencialmente a sua produtividade)
+
 ## About
 
 As a lot of people think, sometimes, programming can be a hard task, and here are some challenges that the majority of the programmers must face daily:
